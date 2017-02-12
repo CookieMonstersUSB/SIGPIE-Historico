@@ -1,13 +1,45 @@
 body{
 	background:#5A5660;
 }
+.dato{
+	font-family:Comic Sans;
+	font-size:22px;
+	text-align:center;
+}
+.dato1{
+	text-align:center;
+	font-size:18px;
+}
+table{
+	border-spacing:  5px 10px;
+}
+div textarea{
+	position:absolute;
+	top:363px;
+	left:1020px;
+	font-size:14px; 	
+}
+
+.titulo{
+	background:#C0E0F5;
+	color: #3B6F90;
+	width:310px;
+	height:22px;
+	position:absolute;
+	top:53px;
+	left:1029px;
+	font-size:12px;
+	font-family: verdana;
+	text-align: center;
+}
 .cuadro_atributos{
 	background:#CAAFF5;
 	height:570px;
-	width: 441px;
+	width: 334px;
 	float:left;
 	display:block;
-	margin: 5px 5px 5px 5px;
+	margin: 5px 0px 5px 5px;
+	overflow-y: scroll;
 }
 .opciones_salida{
 	height:40px;
@@ -46,4 +78,9 @@ textarea{
 	float:left;
 	vertical-align:middle;
 	
+}
+
+table{
+	margin: 5px 5px 5px 5px;
+	vertical-align:middle;
 }

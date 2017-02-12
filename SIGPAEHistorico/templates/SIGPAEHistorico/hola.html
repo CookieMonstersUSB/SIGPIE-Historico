@@ -13,16 +13,76 @@
 <link rel ="stylesheet" href="{{STATIC_URL}}css/style.css">
 </head>
 <body>
-<div class="opciones_salida">
-	<ul class = "botones_s">
-		<li><a href="#">Texto</a></li>
-		<li><a href="#">HTML</a></li>
-	</ul>
-</div>
-
-<textarea name="pdf" placeholder="PDF" cols="60" rows="38"></textarea>
-<textarea name="listo" placeholder="listo" cols="60" rows="38"></textarea>
-<div class="cuadro_atributos"></div>
-
+	
+	<div class="opciones_salida">
+		<ul class = "botones_s">
+			<li><a href="#">Texto</a></li>
+			<li><a href="#">HTML</a></li>
+		</ul>
+	</div>
+	<div class = "titulo">
+		<h2>Datos del programa sinóptico</h2>
+	</div>
+	
+	<textarea name="pdf" placeholder="PDF" cols="68" rows="38"></textarea>
+	
+	<textarea name="listo" placeholder="listo" cols="68" rows="38"></textarea>
+	
+	<div class="cuadro_atributos">
+		<form name="datos_tabla"> </form>
+		<br />
+		<table border="0" style="border:1 hidden; margin: 0 auto;" >
+			<tr>
+				<td class="dato">Código</td>
+				<td class="dato1">
+					<input type="text" name="codigo" />
+				</td>
+			</tr>
+			<tr>
+				<td  class="dato">Creditos</td>
+				<td class="dato1">
+					<input type="number" name="creditos" min="0" max="10" />
+				</td>
+			</tr>
+			<tr>
+				<td class="dato">Título</td>
+				<td class="dato1">
+					<input type="text" name="titulo"/>
+				</td>
+			</tr>
+			<tr>
+				<td valign ="top" class="dato">Periodo</td>
+				<td class="dato1">
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic 
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar 
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul <br />
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato">Departamento</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<select name="dep">
+						<option value="1">Departamento1</option>
+						<option value="2">Departamento2</option>
+						<option value="3">Departamento3</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato">Objetivos</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<textarea name="obj" placeholder="Objetivos" cols="35" rows="10" ></textarea>
+				</td>
+			</tr>			
+		</table>
+		
+		
+	</div>
+	
 </body>
 </html>
