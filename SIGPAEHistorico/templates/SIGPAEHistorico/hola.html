@@ -3,9 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Hola mundo</title>
+<style type="text/css">
+* {
+	margin:0px;
+	padding: 0px;
+}
+</style>
+
+<link rel ="stylesheet" href="{{STATIC_URL}}css/style.css">
 </head>
 <body>
-	<h1>Hola a todos!</h1>
-	<p>Como estan?</p>
+<div class="opciones_salida">
+	<ul class = "botones_s">
+		<li><a href="#">Texto</a></li>
+		<li><a href="#">HTML</a></li>
+	</ul>
+</div>
+
+<textarea name="pdf" placeholder="PDF" cols="60" rows="38"></textarea>
+<textarea name="listo" placeholder="listo" cols="60" rows="38"></textarea>
+<div class="cuadro_atributos"></div>
+
 </body>
 </html>
