@@ -9,9 +9,14 @@ from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
 # Create your views here.
 
+class index(TemplateView):
+    def get(self , request , *args , **kwargs):        
+        return render_to_response('SIGPAEHistorico/index.html')
+
 class hola(TemplateView):
     def get(self,request,*args,**kwargs):
-        return render_to_response('SIGPAEHistorico/hola.html')
+        document = Document.objects.last()
+        return render(request , 'SIGPAEHistorico/hola.html' , {'document' : document})
 
 class upload(TemplateView):
     def post(self, request):
