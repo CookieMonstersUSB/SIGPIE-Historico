@@ -7,6 +7,8 @@ from .forms import UploadFileForm
 from .models import Document
 from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
+from .pdfReaders import leerPDFtexto
+from .pdfReaders import LeerPDFimagenes
 # Create your views here.
 
 class index(TemplateView):
@@ -22,8 +24,16 @@ class upload(TemplateView):
     def post(self, request):
         form = UploadFileForm(request.POST , request.FILES)
         if form.is_valid():
-            newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'])
-            newDoc.save()
+            text = ""
+            if(request.POST['type'] == 'text'):
+                text = leerPDFtexto(request.FILES['docfile'])
+                newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
+                newDoc.save()
+            else:
+                text = LeerPDFimagenes(request.FILES['docfile'])
+                newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
+                newDoc.save()
+            
         
         return HttpResponseRedirect(reverse('Hola Mundo'))
     
