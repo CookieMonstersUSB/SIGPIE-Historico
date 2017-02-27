@@ -32,7 +32,20 @@ Luego para detenerla se debe salir de la consola ssh y usar el comando
 
 ` vagrant halt`
 
+
 ### Iniciar django
+
+La primera vez y cada vez que se agreguen librerias o se creen nuevos modelos se debe correr ./migrations.sh
+
+Luego para arrancar el servidor usen ./runserver (esto por que tiene opciones para que se pueda acceder desde fuera)
+
+Si hay errores con PIL hacer
+
+```sudo easy_install-3.4 Pillow```
+
+y probablemente tengan que hacer
+
+```sudo easy_install-3.4 pyocr```
 
 ### Recargar archivos para django
 
