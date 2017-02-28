@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.chained.min.js"></script>
 <meta charset="UTF-8">
 <title>Hola mundo</title>
 <style type="text/css">
@@ -13,7 +15,6 @@
 <link rel ="stylesheet" href="{{STATIC_URL}}css/style.css">
 </head>
 <body>
-	
 	<div class="opciones_salida">
 		<ul class = "botones_s">
 			<li><a href="#">Texto</a></li>
@@ -100,41 +101,125 @@
 			<tr>
 				<td colspan="2" class="dato" style="border: double blue"> </td>
 			</tr>
+			
 			<tr>
 				<td colspan="2" class="dato">Departamento</td>
 			</tr>
-			
+			<form>
 			<tr>
 				<td colspan="2" class="dato1">
 					<select name="area_dep" id="area_dep">
-                		<option value="">- Seleccione área de su departamento -</option>
+						<option value="0" selected="selected">---------</option>
+                		<option value="1">Ciencias Físicas y Matemáticas</option>
+						<option value="2">Ciencias Sociales y Humanidades</option>
+						<option value="3">Ciencias Biológicas</option>
+						<option value="4">Ciencias y Tecnologías Administrativas e Industriales</option>
     				</select>
 				</td>
 			</tr>
 			<tr>
+				
 				<td colspan="2" class="dato1">
 					<select name="dep" id="dep">
-                		<option value="">- Seleccione su departamento -</option>
+						<option value="0" selected="selected">---------</option>
+						<option value="1" class="1">Física</option>
+						<option value="2" class="1">Química</option>
+						<option value="3" class="1">Mecánica</option>
+						<option value="4" class="1">Matemáticas Puras y Aplicadas</option>
+						<option value="5" class="1">Computo Científico y Estadística</option>
+						<option value="6" class="1">Electrónica y Circuitos</option>
+						<option value="7" class="1">Termodinámica y Fenómenos de Transferencia</option>
+						<option value="8" class="1">Conversión y Transporte de Energía</option>
+						<option value="9" class="1">Procesos y Sistemas</option>
+						<option value="10" class="1">Ciencias de los Materiales</option>
+						<option value="11" class="1">Ciencias de la Tierra</option>
+						<option value="12" class="2">Ciencia y Tecnología del Comportamiento</option>
+						<option value="13" class="2">Lengua y Literatura</option>
+						<option value="14" class="2">Ciencias Económicas y Administrativas</option>
+						<option value="15" class="2">Idiomas</option>
+						<option value="16" class="2">Filosofía</option>
+						<option value="17" class="2">Ciencias Sociales</option>
+						<option value="18" class="2">Arquitectura y Artes Plásticas</option>
+						<option value="19" class="2">Planificación Urbana</option>
+						<option value="20" class="3">Biología Celular</option>
+						<option value="21" class="3">Estudios Ambientales</option>
+						<option value="22" class="3">Biología de Organismos</option>
+						<option value="23" class="3">Tecnología de Procesos Biológicos y Bioquímicos</option>
+						<option value="24" class="4">Tecnología de Servicios</option>
+						<option value="25" class="4">Tecnología Industrial</option>
+						<option value="26" class="4">Formación General y Ciencias Básicas</option>
     				</select>
 				</td>
 			</tr>
-			
+			</form>
+			<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
+  $(function(){
+      $("#dep").chained("#area_dep");
+  });
+  </script>
 			<tr><td colspan="2" class="dato">Coordinación</td></tr>
+			<form>
 			<tr>
 				<td colspan="2" class="dato1">
 					<select name="area_coor" id="area_coor">
-                		<option value="">- Seleccione área de su coordinación -</option>
+                		<option value="0" selected="selected">---------</option>
+                		<option value="1">Estudios Generales</option>
+						<option value="2">Estudios Profesionales</option>
+						<option value="3">Estudios Tecnológicos</option>
+						<option value="4">Estudios de Postgrado</option>
     				</select>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="dato1">
 					<select name="coor" id="coor">
-                		<option value="">- Seleccione su coordinación -</option>
+                		<option value="0" selected="selected">---------</option>
+                		<option value="1" class="1">Ciclo Básico</option>
+						<option value="2" class="1">Ciclo Profesional</option>
+						<option value="3" class="1">Formación General</option>
+						<option value="4" class="1">Ciclo de Iniciación Universitaria</option>
+						<option value="5" class="2">Física</option>
+						<option value="6" class="2">Química</option>
+						<option value="6" class="2">Biología</option>
+						<option value="7" class="2">Ingenieria Mecánica</option>
+						<option value="8" class="2">Matemática</option>
+						<option value="5" class="2">Tecnología e Ingeniería Eléctrica</option>
+						<option value="6" class="2">Tecnología e Ingeniería Electrónica</option>
+						<option value="7" class="2">Ingeniera Química</option>
+						<option value="8" class="2">Ingeniera de Computación</option>
+						<option value="9" class="2">Ingeniería Geofísica</option>
+						<option value="10" class="2">Ingeniería de Materiales</option>
+						<option value="11" class="2">Ingeniería de Producción y Organización Empresarial</option>
+						<option value="12" class="2">Tecnología Mecánica, Mantenimiento Aeronáutico e
+
+Ingeniera de Mantenimiento</option>
+						<option value="13" class="2">Ingeniería de telecomunicaciones</option>
+						<option value="14" class="2">Arquitectura</option>
+						<option value="15" class="2">Estudios Generales</option>
+						<option value="16" class="2">Turismo, Hotelería y Hospitalidad</option>
+						<option value="17" class="2">Comercio Exterior y Licenciatura en Comercio Internacional</option>
+						<option value="18" class="3">Tecnología e Ingeniería Eléctrica</option>
+						<option value="19" class="3">Tecnología Eléctrica y Electrónica</option>
+						<option value="20" class="3">Ingeniería de Producción y Organización Empresarial</option>
+						<option value="21" class="3">Turismo, Hotelería y Hospitalidad</option>
+						<option value="22" class="3">Administración Aduanera</option>
+						<option value="23" class="3">Comercio Exterior y Licenciatura en Comercio Internacional</option>
+						<option value="24" class="3">Administración del Transporte y Organización Empresarial</option>
+						<option value="25" class="3">Tecnología Mecánica, Mantenimiento Aeronáutico e
+
+Ingeniería de Mantenimiento</option>
+						<option value="26" class="4">Ciencias Básicas y Aplicadas</option>
+						<option value="26" class="4">Ciencias Sociales y Humanidades</option>
+						<option value="26" class="4">Ingeniería y Tecnología</option>
     				</select>
 				</td>
 			</tr>
-			</tr>
+			</form>
+			<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
+  $(function(){
+      $("#coor").chained("#area_coor");
+  });
+  </script>
 			<tr>
 				<td colspan="2" class="dato">Objetivos</td>
 			</tr>
@@ -143,6 +228,10 @@
 		
 		
 	</div>
-	
+
 </body>
+
+$(function() {
+    $("#dep").chained("#area_dep");
+});
 </html>
