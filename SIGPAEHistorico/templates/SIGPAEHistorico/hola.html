@@ -41,7 +41,7 @@
 			<tr>
 				<td  class="dato">Creditos</td>
 				<td class="dato1">
-					<input type="number" name="creditos" min="0" max="10" />
+					<input type="number" name="creditos" min="0" max="16" />
 				</td>
 			</tr>
 			<tr>
@@ -51,34 +51,94 @@
 				</td>
 			</tr>
 			<tr>
+				<td colspan="2" class="dato" style="border: double blue"> </td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato">Entrada en  vigencia</td>
+			</tr>
+			<tr>
+				<td valign ="top" class="dato">Fecha</td>
+				<td class="dato1"> <input type="number"  name="fecha" min="1969"/> </td>
+			</tr>
+			<tr>
+				
 				<td valign ="top" class="dato">Periodo</td>
 				<td class="dato1">
-					<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic 
-					<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar 
-					<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul <br />
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar
+					<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul<br />
 					<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano 
 				</td>
+				
+			</tr>
+			</table>
+			<table>
+			<tr>
+				<td colspan="3" class="dato" style="border: double blue"> </td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato">Horas semanales</td>
+			</tr>
+			<tr>
+				<td  class="dato">Teoría</td>
+				<td class="dato1">
+					<input type="number" name="h_teoria" min="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td  class="dato">Práctica</td>
+				<td class="dato1">
+					<input type="number" name="h_practica" min="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td  class="dato">Laboratorio</td>
+				<td class="dato1">
+					<input type="number" name="h_lab" min="0"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato" style="border: double blue"> </td>
 			</tr>
 			<tr>
 				<td colspan="2" class="dato">Departamento</td>
 			</tr>
+			
 			<tr>
-				<td colspan="2">
-					<select name="dep">
-						<option value="1">Departamento1</option>
-						<option value="2">Departamento2</option>
-						<option value="3">Departamento3</option>
-					</select>
+				<td colspan="2" class="dato1">
+					<select name="area_dep" id="area_dep">
+                		<option value="">- Seleccione área de su departamento -</option>
+    				</select>
 				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato1">
+					<select name="dep" id="dep">
+                		<option value="">- Seleccione su departamento -</option>
+    				</select>
+				</td>
+			</tr>
+			
+			<tr><td colspan="2" class="dato">Coordinación</td></tr>
+			<tr>
+				<td colspan="2" class="dato1">
+					<select name="area_coor" id="area_coor">
+                		<option value="">- Seleccione área de su coordinación -</option>
+    				</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="dato1">
+					<select name="coor" id="coor">
+                		<option value="">- Seleccione su coordinación -</option>
+    				</select>
+				</td>
+			</tr>
 			</tr>
 			<tr>
 				<td colspan="2" class="dato">Objetivos</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<textarea name="obj" placeholder="Objetivos" cols="35" rows="10" ></textarea>
-				</td>
-			</tr>			
+					
 		</table>
 		
 		

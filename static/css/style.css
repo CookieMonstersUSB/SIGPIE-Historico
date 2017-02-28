@@ -1,6 +1,9 @@
 body{
 	background:#5A5660;
 }
++tr {
+  border: #000 5px solid;
+}
 .dato{
 	font-family:Comic Sans;
 	font-size:22px;
@@ -10,9 +13,7 @@ body{
 	text-align:center;
 	font-size:18px;
 }
-table{
-	border-spacing:  5px 10px;
-}
+
 div textarea{
 	position:absolute;
 	top:363px;
