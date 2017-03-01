@@ -13,6 +13,7 @@ body{
 	text-align:center;
 	font-size:18px;
 }
+<<<<<<< HEAD
 
 div textarea{
 	position:absolute;
@@ -20,6 +21,12 @@ div textarea{
 	left:1020px;
 	font-size:14px; 	
 }
+=======
+table{
+	border-spacing:  5px 10px;
+}
+
+>>>>>>> 81572b963881e4a5e3b1178d51bed2025f9cab87
 
 .titulo{
 	background:#C0E0F5;
@@ -35,6 +42,15 @@ div textarea{
 }
 .cuadro_atributos{
 	background:#CAAFF5;
+	height:570px;
+	width: 334px;
+	float:left;
+	display:block;
+	margin: 5px 0px 5px 5px;
+	overflow-y: scroll;
+}
+
+.cuadro_pdf{
 	height:570px;
 	width: 334px;
 	float:left;
@@ -72,16 +88,25 @@ div textarea{
 	background-color: #6238A7;
 	color: #000;
 }
-textarea{
-	margin: 5px 5px 5px 5px;
-	resize:none;
-	display:block;
-	float:left;
-	vertical-align:middle;
-	
-}
 
 table{
 	margin: 5px 5px 5px 5px;
 	vertical-align:middle;
+}
+
+.container {
+	display : flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width : 100%;
+}
+
+.item {
+	flex-grow : 1;
+}
+
+.pdfitem {
+	flex-grow : 1;
+	flex-basis : 40vw;
+	min-width: 550px;
 }
