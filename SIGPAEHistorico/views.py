@@ -20,6 +20,11 @@ class hola(TemplateView):
         document = Document.objects.last()
         return render(request , 'SIGPAEHistorico/hola.html' , {'document' : document})
 
+class editar(TemplateView):
+    def get(self,request,*args,**kwargs):
+        document = Document.objects.last()
+        return render(request , 'SIGPAEHistorico/hola.html' , {'document' : document})
+
 class upload(TemplateView):
     def post(self, request):
         form = UploadFileForm(request.POST , request.FILES)
