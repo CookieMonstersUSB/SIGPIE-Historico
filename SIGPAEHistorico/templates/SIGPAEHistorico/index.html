@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Hola mundo</title>
-<style type="text/css">
-* {
-	margin:0px;
-	padding: 0px;
-}
-</style>
-{% load static %}
-<link rel ="stylesheet" href="{% static "css/style.css" %}">
-</head>
-<body>
-	<h1>Index</h1>
-	<h5>Welcome to the system</h5> 
-	<a href="/upload">Upload File</a>
-	<a href="/editor">Edit File</a>
-</body>
-</html>
+{% extends "SIGPAEHistorico/base.html" %}
+{% block content %}
+	<h1>Inicio</h1>
+	<h5>Bienvenido a SIGPAE Historico</h5>
+	<a href="/upload">Cargar archivo</a>
+	<a href="/editor">Editar archivo</a>
+{% endblock %}

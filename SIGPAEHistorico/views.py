@@ -12,7 +12,7 @@ from .pdfReaders import LeerPDFimagenes
 # Create your views here.
 
 class index(TemplateView):
-    def get(self , request , *args , **kwargs):        
+    def get(self , request , *args , **kwargs):
         return render_to_response('SIGPAEHistorico/index.html')
 
 class hola(TemplateView):
@@ -33,10 +33,10 @@ class upload(TemplateView):
                 text = LeerPDFimagenes(request.FILES['docfile'])
                 newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
                 newDoc.save()
-            
-        
+
+
         return HttpResponseRedirect(reverse('Hola Mundo'))
-    
+
     def get(self, request):
         form = UploadFileForm
         return render(
@@ -44,3 +44,9 @@ class upload(TemplateView):
             'SIGPAEHistorico/upload.html',
             {'form' : form}
         )
+
+class listar(TemplateView):
+    def get(self,request):
+        files = Document.objects.exclude(docfile__isnull = True).exclude(docfile__exact='').exclude(doctext__isnull = True).exclude(doctext__exact='')
+        context = {'files' : files}
+        return render(request , 'SIGPAEHistorico/listar.html' , context)

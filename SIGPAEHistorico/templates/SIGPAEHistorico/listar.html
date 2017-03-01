@@ -1,0 +1,16 @@
+{% extends "SIGPAEHistorico/base.html" %}
+{% block title %}SIGPAE | Archivos almacenados{% endblock %}
+
+{% block content %}
+<div style="margin-top:10px;">
+{% if files %}
+	    <ul>
+	    {% for file in files %}
+	        <li><a href="/editor/">{{ file.name }}</a></li>
+	    {% endfor %}
+	    </ul>
+{% else %}
+    <h3 align="center">No hay archivos almacenados.</h3>
+{% endif %}
+</div>
+{% endblock %}

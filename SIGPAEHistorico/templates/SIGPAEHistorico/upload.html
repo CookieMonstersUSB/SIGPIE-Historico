@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Minimal Django File Upload Example</title>
-    </head>
+{% extends "SIGPAEHistorico/base.html" %}
 
-    <body>
+{% block title %}SIGPAE | Cargar archivo{% endblock %}
+
+{% block content %}
 
         <!-- Upload form. Note enctype attribute! -->
         <form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
@@ -22,18 +19,17 @@
 
             <p>
                 {{ form.docfile.errors }}
-                <input type="file" accept=".pdf" {{ form.docfile }}/>
+                <input type="file" accept=".pdf" {{ form.docfile }}
+
             </p>
-            
+
             <p>
             	{{form.type.errors}}
             	{{form.type}}
             </p>
-            
+
 
 
             <p><input type="submit" value="Upload"/></p>
         </form>
-    </body>
-
-</html>
+{% endblock %}
