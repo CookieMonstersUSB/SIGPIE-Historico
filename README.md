@@ -79,3 +79,17 @@ Podria presentarse que necesites instalar Pillow, porque PIL este obsoleta
 
 	sudo pip3.4 install PyPDF2 o sudo pip3.4 install PyPDF2
 	El pip depende de como instales librerias en tu python
+
+# NOTA!!!
+
+si al hacer merge falla intenten
+
+python3.4 manage.py makemigrations --merge
+
+python3.4 manage.py makemigrations
+
+python3.4 manage.py migrate
+
+si da error de tabla no encontrada borren el archivo de mysql lite (db.sqlite3)
+
+y vuelven a hacer todos los pasos anteriores.

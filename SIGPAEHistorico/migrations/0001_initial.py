@@ -6,7 +6,9 @@ import SIGPAEHistorico.validators
 from django.db import migrations, models
 
 
+
 class Migration(migrations.Migration):
+
 
     initial = True
 
@@ -15,6 +17,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            bases=(models.Model,),
+
             name='Document',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -28,5 +32,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.TextField()),
             ],
+
         ),
     ]

@@ -1,6 +1,9 @@
 body{
 	background:#5A5660;
 }
++tr {
+  border: #000 5px solid;
+}
 .dato{
 	font-family:Comic Sans;
 	font-size:22px;
@@ -10,10 +13,20 @@ body{
 	text-align:center;
 	font-size:18px;
 }
+<<<<<<< HEAD
+
+div textarea{
+	position:absolute;
+	top:363px;
+	left:1020px;
+	font-size:14px; 	
+}
+=======
 table{
 	border-spacing:  5px 10px;
 }
 
+>>>>>>> 81572b963881e4a5e3b1178d51bed2025f9cab87
 
 .titulo{
 	background:#C0E0F5;
