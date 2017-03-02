@@ -25,6 +25,11 @@ class editar(TemplateView):
         document = Document.objects.last()
         return render(request , 'SIGPAEHistorico/editar.html' , {'document' : document})
 
+class editarHTML(TemplateView):
+    def get(self,request,*args,**kwargs):
+        document = Document.objects.last()
+        return render(request , 'SIGPAEHistorico/editarhtml.html' , {'document' : document})
+
 class upload(TemplateView):
     def post(self, request):
         form = UploadFileForm(request.POST , request.FILES)
@@ -34,13 +39,12 @@ class upload(TemplateView):
                 text = LeerPDFaString(request.FILES['docfile'])
                 newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
                 newDoc.save()
+                return HttpResponseRedirect(reverse('editar'))
             else:
                 text = leerPDFaHTML(request.FILES['docfile'])
                 newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
                 newDoc.save()
-
-
-        return HttpResponseRedirect(reverse('editar'))
+                return HttpResponseRedirect(reverse('editarhtml'))
 
     def get(self, request):
         form = UploadFileForm

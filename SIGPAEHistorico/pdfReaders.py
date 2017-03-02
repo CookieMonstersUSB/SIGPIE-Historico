@@ -70,7 +70,7 @@ def leerPDFaHTML(stream):
     output = io.BytesIO()
     converter = HTMLConverter(manager, output, codec=codec, laparams=LAParams())
     interpreter = PDFPageInterpreter(manager, converter)
-    infile = open("output.html", 'w')
+    infile = open("static/output.html", 'w')
     for page in PDFPage.get_pages(stream, pagenums,caching=caching, check_extractable=True):
         interpreter.process_page(page)
 
