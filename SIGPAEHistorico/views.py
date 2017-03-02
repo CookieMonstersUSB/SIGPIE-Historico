@@ -7,8 +7,8 @@ from .forms import UploadFileForm
 from .models import Document
 from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
-from .pdfReaders import leerPDFtexto
-from .pdfReaders import LeerPDFimagenes
+from .pdfReaders import LeerPDFaString
+from .pdfReaders import leerPDFaHTML
 # Create your views here.
 
 class index(TemplateView):
@@ -18,12 +18,17 @@ class index(TemplateView):
 class hola(TemplateView):
     def get(self,request,*args,**kwargs):
         document = Document.objects.last()
-        return render(request , 'SIGPAEHistorico/hola.html' , {'document' : document})
+        return render(request , 'SIGPAEHistorico/editar.html' , {'document' : document})
 
 class editar(TemplateView):
     def get(self,request,*args,**kwargs):
         document = Document.objects.last()
-        return render(request , 'SIGPAEHistorico/hola.html' , {'document' : document})
+        return render(request , 'SIGPAEHistorico/editar.html' , {'document' : document})
+
+class editarHTML(TemplateView):
+    def get(self,request,*args,**kwargs):
+        document = Document.objects.last()
+        return render(request , 'SIGPAEHistorico/editarhtml.html' , {'document' : document})
 
 class upload(TemplateView):
     def post(self, request):
@@ -31,16 +36,15 @@ class upload(TemplateView):
         if form.is_valid():
             text = ""
             if(request.POST['type'] == 'text'):
-                text = leerPDFtexto(request.FILES['docfile'])
+                text = LeerPDFaString(request.FILES['docfile'])
                 newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
                 newDoc.save()
+                return HttpResponseRedirect(reverse('editar'))
             else:
-                text = LeerPDFimagenes(request.FILES['docfile'])
+                text = leerPDFaHTML(request.FILES['docfile'])
                 newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
                 newDoc.save()
-
-
-        return HttpResponseRedirect(reverse('Hola Mundo'))
+                return HttpResponseRedirect(reverse('editarhtml'))
 
     def get(self, request):
         form = UploadFileForm
