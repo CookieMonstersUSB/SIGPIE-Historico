@@ -21,11 +21,13 @@
 </div>-->
 <div class="container">
 		<div class="pdfitem" >
-			<embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
+			<embed src="/{{document.docfile}}" width="100%" height="34%"></embed>
 		</div>
 
 		<div class="item" style="margin-bottom:2%;" name="listo" placeholder="listo" cols="68" rows="38">
-			{% include "SIGPAEHistorico/output.html" %}
+			<textarea name="listo" placeholder="listo" cols="68" rows="38">
+				{{document.doctext}}
+			</textarea>
 		</div>
 
 		<div class="item">
