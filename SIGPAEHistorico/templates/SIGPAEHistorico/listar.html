@@ -6,7 +6,7 @@
 {% if files %}
 	    <ul>
 	    {% for file in files %}
-	        <li><a href="/editar/">{{ file.name }}</a></li>
+	        <li>{{ file.name }}:    <a href="{% url 'editar' file.pk %}">String</a> --- <a href="{% url 'editarhtml' file.pk %}">HTML</a></li>
 	    {% endfor %}
 	    </ul>
 {% else %}

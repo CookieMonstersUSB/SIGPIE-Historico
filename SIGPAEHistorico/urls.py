@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import hola
+#from .views import hola
 from .views import upload
 from .views import index
 from .views import listar
@@ -10,6 +10,6 @@ urlpatterns = [
         url(r'^$', index.as_view(), name='index'),
         url(r'^upload/$', upload.as_view(), name ='upload'),
         url(r'^listar/$', listar.as_view(), name ='listar'),
-        url(r'^editar/$', editar.as_view(), name ='editar'),
-        url(r'^editarhtml/$', editarHTML.as_view(), name ='editarhtml')
+        url(r'^editar/(?P<pkdoc>\d+)/$', editar.as_view(), name ='editar'),
+        url(r'^editarhtml/(?P<pkdoc>\d+)/$', editarHTML.as_view(), name ='editarhtml')
     ]
