@@ -24,10 +24,8 @@
 			<embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
 		</div>
 
-		<div class="item" style="margin-bottom:2%;">
-			<textarea name="listo" placeholder="listo" cols="68" rows="38">
-				{{document.doctext}}
-			</textarea>
+		<div class="item" style="margin-bottom:2%;" name="listo" placeholder="listo" cols="68" rows="38">
+			{% include "SIGPAEHistorico/output.html" %}
 		</div>
 
 		<div class="item">
