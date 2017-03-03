@@ -8,7 +8,6 @@ from .models import Document
 from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
-from .pdfReaders import leerPDFaHTML
 # Create your views here.
 
 class index(TemplateView):
@@ -25,31 +24,17 @@ class editar(TemplateView):
         document = Document.objects.filter(pk__exact=pkdoc)[0]
         return render(request , 'SIGPAEHistorico/editar.html' , {'document' : document})
 
-class editarHTML(TemplateView):
-    def get(self,request,pkdoc):
-        document = Document.objects.filter(pk__exact=pkdoc)[0]
-        return render(request , 'SIGPAEHistorico/editarhtml.html' , {'document' : document})
-
 class upload(TemplateView):
     def post(self, request):
         form = UploadFileForm(request.POST , request.FILES)
         pkdoc = ''
         if form.is_valid():
-            text = ""
-            if(request.POST['type'] == 'text'):
-                text = LeerPDFaString(request.FILES['docfile'])
-                newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
-                newDoc.save()
-                pkdoc = newDoc.pk
-                url = reverse('editar', kwargs={'pkdoc': pkdoc})
-                return HttpResponseRedirect(url)
-            else:
-                text = leerPDFaHTML(request.FILES['docfile'])
-                newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
-                newDoc.save()
-                pkdoc = newDoc.pk
-                url = reverse('editarhtml', kwargs={'pkdoc': pkdoc})                
-                return HttpResponseRedirect(url)
+            text = LeerPDFaString(request.FILES['docfile'])
+            newDoc = Document(name = request.POST['name'] , docfile = request.FILES['docfile'] , doctext = text)
+            newDoc.save()
+            pkdoc = newDoc.pk
+            url = reverse('editar', kwargs={'pkdoc': pkdoc})
+            return HttpResponseRedirect(url)
 
     def get(self, request):
         form = UploadFileForm
