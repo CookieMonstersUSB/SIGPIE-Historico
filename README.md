@@ -11,8 +11,9 @@ Luego para arrancar el servidor usen ./runserver (esto por que tiene opciones pa
 1. Instalar Python 3.4 . Si se esta en ubuntu y no se provee la version correcta puedes usar este tutorial
   http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
   
- # O Intalar virtual env
- # Getting python 3.4.4
+ - O Intalar virtual env
+ 
+ ### Getting python 3.4.4 para el virtualenv
  mkdir ~/src
  
  wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
@@ -56,7 +57,7 @@ Luego para arrancar el servidor usen ./runserver (esto por que tiene opciones pa
 
 4. Tener instalado postgresql
 
-5. Instalar Django
+5. Instalar Django vía pip
  
 # NOTA!!!
 
