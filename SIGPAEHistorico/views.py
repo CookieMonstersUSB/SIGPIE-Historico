@@ -14,10 +14,10 @@ class index(TemplateView):
     def get(self , request , *args , **kwargs):
         return render_to_response('SIGPAEHistorico/index.html')
 
-class hola(TemplateView):
-    def get(self,request,*args,**kwargs):
-        docpk = Document.objects.last().pk
-        return render(request , 'SIGPAEHistorico/editar.html' , {'docpk' : docpk})
+# class hola(TemplateView):
+#     def get(self,request,*args,**kwargs):
+#         docpk = Document.objects.last().pk
+#         return render(request , 'SIGPAEHistorico/editar.html' , {'docpk' : docpk})
 
 class editar(TemplateView):
     def get(self,request,pkdoc):
