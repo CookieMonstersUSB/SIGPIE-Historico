@@ -29,10 +29,10 @@ table{
 	font-size:12px;
 	font-family: verdana;
 	text-align: center;
+    margin-top: 5%;
 }
 .cuadro_atributos{
 	background:#CAAFF5;
-
 	float:left;
 	display:block;
 	margin: 5px 0px 5px 5px;

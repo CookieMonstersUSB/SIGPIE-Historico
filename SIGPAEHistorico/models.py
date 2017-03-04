@@ -8,4 +8,3 @@ class Document(models.Model):
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
-        dochtml = models.TextField(default="")

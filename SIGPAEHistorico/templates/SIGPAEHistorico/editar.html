@@ -16,7 +16,6 @@
 <body>
 {% include "SIGPAEHistorico/navbar.html" %}
 
-
 <!--<div class="titulo" style="margin-top: 5%;">
 	<h2>Datos del programa sinóptico</h2>
 </div>-->
@@ -32,7 +31,7 @@
 		</div>
 
 		<div class="item">
-			<div class="cuadro_atributos">
+			<div class="cuadro_atributos" style="margin-top: 8%">
 		<form name="datos_tabla"> </form>
 		<br />
 		<table border="0" style="border:1 hidden; margin: 0 auto;" >
@@ -62,7 +61,7 @@
 			</tr>
 			<tr>
 				<td valign ="top" class="dato">Fecha</td>
-				<td class="dato1"> <input type="number"  name="fecha" min="1969"/> </td>
+				<td class="dato1"> <input type="number"  name="fecha" min="1969" max="2018"/> </td>
 			</tr>
 			<tr>
 
@@ -86,19 +85,19 @@
 			<tr>
 				<td  class="dato">Teoría</td>
 				<td class="dato1">
-					<input type="number" name="h_teoria" min="0" max="16"/>
+					<input type="number" name="h_teoria" min="0" max="40"/>
 				</td>
 			</tr>
 			<tr>
 				<td  class="dato">Práctica</td>
 				<td class="dato1">
-					<input type="number" name="h_practica" min="0"/>
+					<input type="number" name="h_practica" min="0" max="40"/>
 				</td>
 			</tr>
 			<tr>
 				<td  class="dato">Laboratorio</td>
 				<td class="dato1">
-					<input type="number" name="h_lab" min="0"/>
+					<input type="number" name="h_lab" min="0" max="40"/>
 				</td>
 			</tr>
 			<tr>
