@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'SIGPAEHistorico'
+    'SIGPAEHistorico',
+    'widget_tweaks'
 
 )
 
@@ -86,6 +87,14 @@ DATABASES = {
         'PASSWORD': 'admin',
         'HOST': 'localhost',
         'POST': '',
+    },
+    'gestionPae': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gestionpae',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'POST': ''
     }
 }
 
