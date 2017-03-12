@@ -78,16 +78,27 @@ y vuelven a hacer todos los pasos anteriores.
   sudo apt-get install postgresql postgresql-contrib
 
 conectarse al terminal local de postgres
+
   sudo -u postgres psql postgres
 
 crear la base de datos
-  postgres=# CREATE DATABASE sigpae_hist_db;
-  
+
+  postgres=# CREATE DATABASE sigpae_hist;
+
+  postgres=# CREATE DATABASE sigpae_hist_admin;
+
 crear usuario de postgres y alterarlo para que funcione con django
+
   postgres=# CREATE USER cmusb WITH PASSWORD 'admin';
+
   postgres=# ALTER ROLE cmusb SET client_encoding TO 'utf8';
+
   postgres=# ALTER ROLE cmusb SET default_transaction_isolation TO 'read committed';
+
   postgres=# ALTER ROLE cmusb SET timezone TO 'UTC';
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist_db TO cmusb;
+
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist TO cmusb;
+
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist_admin TO cmusb;
 
 en caso de ser necesario hacer makemigrations y migrate para corregir cualquier error

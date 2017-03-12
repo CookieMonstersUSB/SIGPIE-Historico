@@ -20,3 +20,5 @@ class TextForm(ModelForm):
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
+
+# class RequestForm(ModelForm):
