@@ -81,21 +81,12 @@ WSGI_APPLICATION = 'ProyectoIngenieria.wsgi.application'
 
 DATABASE_ROUTERS = ['ProyectoIngenieria.routers.DatabaseAppsRouter',]
 DATABASE_APPS_MAPPING = {'default': 'default',
-                         'sigpae_hist': 'sigpae_hist',
                          'gestionpae': 'gestionpae'}
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sigpae_hist_admin',
-        'USER': 'cmusb',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '',
-    },
-    'sigpae_hist': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sigpae_hist',
+        'NAME': 'admin',
         'USER': 'cmusb',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

@@ -1,10 +1,11 @@
 from django.shortcuts import render_to_response
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, FormView
+# from django.views.generic.edit import BaseFormView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import UploadFileForm, TextForm
+from .forms import UploadFileForm, TextForm, RequestForm
 from .models import Document
 # from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
@@ -64,3 +65,10 @@ class listar(ListView):
     model = Document
     queryset = Document.objects.all()
     template_name = 'SIGPAEHistorico/listar.html'
+
+class consultarpae(FormView):
+    """docstring for consultarpae."""
+    form_class = RequestForm
+    # context_object_name = 'form'
+    success_url = 'index'
+    template_name = 'SIGPAEHistorico/consultarpae.html'
