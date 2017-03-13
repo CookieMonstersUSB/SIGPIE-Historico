@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import UploadFileForm
 from .models import Document
-from ctypes.test.test_pickling import name
+#from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
 # Create your views here.
