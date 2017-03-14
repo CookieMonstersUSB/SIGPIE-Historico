@@ -48,7 +48,7 @@ class upload(CreateView):
     context_object_name = 'form'
     form_class = UploadFileForm
     model = Document
-    queryset = Document.objects.all()
+    queryset = Document.objects.name
     template_name = 'SIGPAEHistorico/upload.html'
 
     def form_valid(self, form):
