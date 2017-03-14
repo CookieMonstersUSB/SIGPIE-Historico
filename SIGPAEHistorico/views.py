@@ -92,12 +92,13 @@ class mostrarpae(TemplateView):
 
     def get_context_data(self, **kwargs):
         # print('get_context_data', self.kwargs)
-        solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lt=self.kwargs['year'])[0]
-        if (not solicitud):
+        lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lt=self.kwargs['year'])
+        if (not lista_solicitud):
             print ('')
         else:
             #print(solicitud.pk)
             #link = RProgPl.objects.all().filter(planilla__exact=solicitud.pk)[0]
+            solicitud = lista_solicitud[0]
             programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
             #print (programa.h_teoria)
 
