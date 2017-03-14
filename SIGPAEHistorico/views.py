@@ -92,7 +92,7 @@ class mostrarpae(TemplateView):
 
     def get_context_data(self, **kwargs):
         # print('get_context_data', self.kwargs)
-        lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lt=self.kwargs['year'])
+        lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
         if (not lista_solicitud):
             print ('')
         else:
