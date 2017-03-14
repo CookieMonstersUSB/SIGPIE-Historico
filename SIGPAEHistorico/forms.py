@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 from .validators import validate_file_extension
 
 from .models import Document, Consultapae
@@ -12,9 +12,6 @@ class UploadFileForm(ModelForm):
         exclude = ['doctext']
 
 
-# class TextForm(forms.Form):
-#     text = forms.CharField(label = "Texto del programa", widget=forms.Textarea())
-
 class TextForm(ModelForm):
     """docstring for TextForm."""
     class Meta:
@@ -26,3 +23,7 @@ class RequestForm(ModelForm):
     class Meta:
         model = Consultapae
         exclude = []
+
+class ConsultaPaeForm(Form):
+    code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
+    year = forms.IntegerField(label='Año del programa')

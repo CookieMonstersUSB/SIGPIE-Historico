@@ -77,15 +77,19 @@ y vuelven a hacer todos los pasos anteriores.
 
   sudo apt-get install postgresql postgresql-contrib
 
+instalar libreria necesaria para la integracion de postgres con django
+
+  sudo -H pip3.4 install psycopg2
+
 conectarse al terminal local de postgres
 
   sudo -u postgres psql postgres
 
 crear la base de datos
 
-  postgres=# CREATE DATABASE sigpae_hist;
+  postgres=# CREATE DATABASE admin;
 
-  postgres=# CREATE DATABASE sigpae_hist_admin;
+  postgres=# CREATE DATABASE gestionpae;
 
 crear usuario de postgres y alterarlo para que funcione con django
 
@@ -97,8 +101,14 @@ crear usuario de postgres y alterarlo para que funcione con django
 
   postgres=# ALTER ROLE cmusb SET timezone TO 'UTC';
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist TO cmusb;
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE admin TO cmusb;
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist_admin TO cmusb;
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
 
-en caso de ser necesario hacer makemigrations y migrate para corregir cualquier error
+  Finalmente conectarse a la base gestionpae y cambiar al usuario cmusb con el comando
+
+  postgres=# SET ROLE cmusb;
+
+  y crear las tablas en el archivo SIGPAEschema.sql
+
+  opcional: Insertar datos en gestionpae con los archivos SIGPAEdatos.sql o SIGPAEdatos2.sql

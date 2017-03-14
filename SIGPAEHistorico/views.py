@@ -1,12 +1,12 @@
 from django.shortcuts import render_to_response
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView, CreateView, UpdateView, FormView
+from django.views.generic import ListView, CreateView, UpdateView, FormView, DetailView
 # from django.views.generic.edit import BaseFormView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import UploadFileForm, TextForm, RequestForm
-from .models import Document
+from .forms import *
+from .models import *
 # from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
@@ -28,7 +28,7 @@ class editar(UpdateView):
         """
         Insert the form into the context dict.
         """
-        print(self.kwargs)
+        #print(self.kwargs)
         document = Document.objects.filter(pk__exact=self.kwargs['pkdoc'])[0]
         kwargs['document'] = document
         kwargs['textform'] = self.get_form()
@@ -40,6 +40,7 @@ class editar(UpdateView):
         """
         self.object = form.save()
         self.success_url = reverse('index')
+        # print(self.success_url)
         return super(editar, self).form_valid(form)
 
 class upload(CreateView):
@@ -67,8 +68,31 @@ class listar(ListView):
     template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
-    """docstring for consultarpae."""
-    form_class = RequestForm
-    # context_object_name = 'form'
-    success_url = 'index'
+    form_class = ConsultaPaeForm
     template_name = 'SIGPAEHistorico/consultarpae.html'
+
+    def form_valid(self, form):
+        # self.object = form.save()
+        print(form.cleaned_data.get('code'))
+        print(form.cleaned_data.get('year'))
+        self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
+                                                         'year': form.cleaned_data.get('year')})
+        print(self.success_url)
+        return super(consultarpae, self).form_valid(form)
+
+# class consultarpae(TemplateView):
+#     """docstring for ."""
+#     def get(self,)
+
+class mostrarpae(DetailView):
+    context_object_name = 'form'
+    model = Solicitud
+    pk_url_kwarg = 'year'
+    queryset = Solicitud.objects.all()
+    template_name = 'SIGPAEHistorico/mostrarpae.html'
+
+    # def get_context_data(self, **kwargs):
+    #     if 'view' not in kwargs:
+    #         kwargs['view'] = self
+    #     solitude = queryset[0]
+    #     return kwargs

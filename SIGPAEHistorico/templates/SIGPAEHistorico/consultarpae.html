@@ -5,5 +5,9 @@
 {% block content %}
 
         <!-- Upload form. Note enctype attribute! -->
-        {{form}}
+        <form method="post">
+          {% csrf_token %}
+          {{form.as_p}}
+          <p><input type="submit" value="Buscar"/></p>
+        </form>
 {% endblock %}

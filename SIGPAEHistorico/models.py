@@ -13,7 +13,7 @@ class Document(models.Model):
 class Consultapae(models.Model):
     _DATABASE = 'default'
     code = models.CharField(max_length = 6)
-    year = models.IntegerField(default=2000)
+    year = models.IntegerField()
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):
