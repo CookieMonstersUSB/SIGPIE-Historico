@@ -23,7 +23,7 @@ class Document(models.Model):
         creditos = models.IntegerField()
         titulo = codigo = models.CharField(max_length = 60)
         fecha = models.IntegerField()
-        periodo = models.ChardField(max_length = 2, choices= ELECCION_PERIODO)
+        periodo = models.CharField(max_length = 2, choices= ELECCION_PERIODO)
         h_teo = models.IntegerField()
         h_prac = models.IntegerField()
         h_lab = models.IntegerField()
