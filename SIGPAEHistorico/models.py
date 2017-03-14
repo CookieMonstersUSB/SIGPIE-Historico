@@ -6,7 +6,6 @@ from .validators import validate_file_extension
 
 class Document(models.Model):
 
-
         EM = "sd"
         AJ = "em"
         SD = "aj"
@@ -18,19 +17,19 @@ class Document(models.Model):
             (VE, 'verano'),
         )
         _DATABASE = 'default'
-        name = models.CharField(max_length = 50)
+        name = models.CharField(max_length = 50,default="")
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
-        codigo_Programa = models.CharField(max_length = 7)
-        creditos = models.IntegerField()
-        tituloP = models.CharField(max_length = 60)
-        fechaP = models.IntegerField()
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO)
-        h_teo = models.IntegerField()
-        h_prac = models.IntegerField()
-        h_lab = models.IntegerField()
-        departamento = models.CharField(max_length = 70)
-        coordinacion = models.CharField(max_length = 70)
+        codigo_Programa = models.CharField(max_length = 7,default="")
+        creditos = models.IntegerField(default=0)
+        tituloP = models.CharField(max_length = 60,default="")
+        fechaP = models.IntegerField(default=2000)
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="")
+        h_teo = models.IntegerField(default=0)
+        h_prac = models.IntegerField(default=0)
+        h_lab = models.IntegerField(default=0)
+        departamento = models.CharField(max_length = 70,default="")
+        coordinacion = models.CharField(max_length = 70,default="")
         contSinop = models.TextField(default="")
         FuenteInfo = models.TextField(default="")
         objetivos = models.TextField(default="")
@@ -41,7 +40,7 @@ class Document(models.Model):
 class adicional(object):
     _DATABASE = 'default'
     pertenece = models.ForeignKey('Document')
-    titulo = models.CharField(max_length = 50)
+    titulo = models.CharField(max_length = 50, default="")
     contenido = models.TextField(default="")
 
 
