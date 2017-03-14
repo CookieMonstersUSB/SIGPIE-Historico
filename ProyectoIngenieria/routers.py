@@ -15,18 +15,18 @@ class DatabaseAppsRouter(object):
 
     def db_for_read(self, model, **hints):
         """"Point all read operations to the specific database."""
-        database = getattr(model, "_DATABASE", None)
+        database = getattr(model, '_DATABASE', 'default')
         return database
 
     def db_for_write(self, model, **hints):
         """Point all write operations to the specific database."""
-        database = getattr(model, "_DATABASE", None)
+        database = getattr(model, '_DATABASE', 'default')
         return database
 
     def allow_relation(self, obj1, obj2, **hints):
         """Allow any relation between apps that use the same database."""
-        database1 = getattr(obj1, "_DATABASE", None)
-        database2 = getattr(obj2, "_DATABASE", None)
+        database1 = getattr(obj1, '_DATABASE', 'default')
+        database2 = getattr(obj2, '_DATABASE', 'default')
         db_obj1 = settings.DATABASE_APPS_MAPPING.get(database1)
         db_obj2 = settings.DATABASE_APPS_MAPPING.get(database2)
         if db_obj1 and db_obj2:

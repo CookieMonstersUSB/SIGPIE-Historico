@@ -72,24 +72,28 @@ class consultarpae(FormView):
     template_name = 'SIGPAEHistorico/consultarpae.html'
 
     def form_valid(self, form):
-        # self.object = form.save()
-        print(form.cleaned_data.get('code'))
-        print(form.cleaned_data.get('year'))
         self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
                                                          'year': form.cleaned_data.get('year')})
         print(self.success_url)
         return super(consultarpae, self).form_valid(form)
 
-# class consultarpae(TemplateView):
-#     """docstring for ."""
-#     def get(self,)
+# class mostrarpae(DetailView):
+#     context_object_name = 'form'
+#     model = Solicitud
+#     pk_url_kwarg = 'year'
+#     queryset = Solicitud.objects.all()
+#     template_name = 'SIGPAEHistorico/mostrarpae.html'
 
-class mostrarpae(DetailView):
-    context_object_name = 'form'
-    model = Solicitud
-    pk_url_kwarg = 'year'
-    queryset = Solicitud.objects.all()
-    template_name = 'SIGPAEHistorico/mostrarpae.html'
+class mostrarpae(TemplateView):
+    def get(self , request , *args , **kwargs):
+        print ("code:",kwargs['code'])
+        context = self.get_context_data(**kwargs)
+        return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
+
+    def get_context_data(self, **kwargs):
+        print ('entro')
+        print('get_context_data', self.kwargs)
+        return super(mostrarpae, self).get_context_data(**kwargs)
 
     # def get_context_data(self, **kwargs):
     #     if 'view' not in kwargs:
