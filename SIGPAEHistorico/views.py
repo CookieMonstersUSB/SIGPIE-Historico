@@ -6,13 +6,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import UploadFileForm, TextForm
 from .models import Document
-<<<<<<< HEAD
+
 #from ctypes.test.test_pickling import name
-||||||| merged common ancestors
-from ctypes.test.test_pickling import name
-=======
-# from ctypes.test.test_pickling import name
->>>>>>> postgres
+
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
 # Create your views here.

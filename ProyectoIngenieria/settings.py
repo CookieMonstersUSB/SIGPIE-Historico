@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'SIGPAEHistorico',
-    'widget_tweaks'
+    'SIGPAEHistorico'
+    #'widget_tweaks'
 
 )
 
