@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>SIGPAE | Editar archivos</title>
 <script language="javascript" type="text/javascript">
-	
+
 	function seleccionEncargado(sel) {
 	      if (sel.value=="Departamento"){
 	           divC = document.getElementById("Edep");
@@ -55,7 +55,6 @@
 		</div>
 		<div class="item">
 			<div class="cuadro_atributos">
-				<form name="datos_tabla"> </form>
 				<br />
 				<div id="containerI">
 					<input id="tab-1" type="radio" name="tab-group" checked="checked" />
@@ -67,7 +66,7 @@
 			  		<div id="content" >
 					   <!--Contenido de la Pestaña 1-->
 					   <div id="content-1" style="position: absolute;
-							  top:  5px; 
+							  top:  5px;
 							  left: -120px;"
 						>
 
@@ -75,6 +74,7 @@
 								<tr>
 									<td class="dato">Código</td>
 									<td class="dato1">
+										
 										<input type="text" name="codigo" />
 									</td>
 								</tr>
@@ -83,7 +83,7 @@
 									<td class="dato1">
 										<form name="creditos" method="POST">
 											<input type="number" name="creditos" min="0" max="16" />
-										</form> 
+										</form>
 									</td>
 								</tr>
 								<tr>
@@ -102,7 +102,7 @@
 										<form name="fecha" method="POST">
 										    <td valign ="top" class="dato">Fecha</td>
 										    <td class="dato1"> <input type="number"  name="fecha" min="1969" max="2019" /> </td>
-										</form> 
+										</form>
 								</tr>
 								<tr>
 
@@ -123,7 +123,7 @@
 								<tr>
 									<td colspan="2" class="dato">Horas semanales</td>
 								</tr>
-								
+
 									<tr>
 										<td  class="dato">Teoría</td>
 										<td class="dato1">
@@ -150,7 +150,7 @@
 											</form>
 										</td>
 									</tr>
-									
+
 								<tr>
 									<td colspan="2" class="dato" style="border: double blue"> </td>
 								</tr>
@@ -161,9 +161,9 @@
 								<div class="dato1">
 									<tr><SELECT NAME="encargado" onChange="seleccionEncargado(this)">
 							              <OPTION VALUE="Departamento" >Departamento</OPTION>
-							              <OPTION VALUE="Coordinación">Coordinación</OPTION> 
+							              <OPTION VALUE="Coordinación">Coordinación</OPTION>
 							           </SELECT>
-										
+
 									</tr>
 								</div>
 
@@ -257,7 +257,7 @@
 													<option value="11" class="2">Ingeniería de Producción y Organización Empresarial</option>
 													<option value="12" class="2">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniera de Mantenimiento</option>
 
-							
+
 													<option value="13" class="2">Ingeniería de telecomunicaciones</option>
 													<option value="14" class="2">Arquitectura</option>
 													<option value="15" class="2">Estudios Generales</option>
@@ -272,7 +272,7 @@
 													<option value="24" class="3">Administración del Transporte y Organización Empresarial</option>
 													<option value="25" class="3">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniería de Mantenimiento</option>
 
-							
+
 													<option value="26" class="4">Ciencias Básicas y Aplicadas</option>
 													<option value="26" class="4">Ciencias Sociales y Humanidades</option>
 													<option value="26" class="4">Ingeniería y Tecnología</option>
@@ -288,11 +288,11 @@
 						  		</div>
 
 							</div>
-							
+
 							<table border="0" style="border:1 hidden; margin: 0 auto;">
 								<tr>
 									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>	
+								</tr>
 								<td colspan="2" class="dato">Contenido sinoptico</td>
 							</table>
 							<div class="item col-md-offset-3">
@@ -300,13 +300,13 @@
 
 								</textarea>
 							</div>
-								
-							
-							
+
+
+
 								<table border="0" style="border:1 hidden; margin: 0 auto;">
 									<tr>
 										<td colspan="3" class="dato" style="border: double blue"> </td>
-									</tr>		
+									</tr>
 									<td colspan="2" class="dato">Fuentes de informacion recomendadas</td>
 								</table>
 										<div class="item col-md-offset-3">
@@ -314,13 +314,13 @@
 
 											</textarea>
 										</div>
-								
-							
+
+
 						</div>
 
 						<!--Contenido de la Pestaña 2-->
 				   		<div id="content-2" style="position: absolute;
-							  top:  5px; 
+							  top:  5px;
 							  left: -60px;">
 
 							<table border="0" style="border:1 hidden; margin: 0 auto;">
@@ -338,12 +338,12 @@
 								</textarea>
 							</div>
 
-							
+
 							<table border="0" style="border:1 hidden; margin: 0 auto;">
 								<tr>
 									<td colspan="2" class="dato" style="border: double blue"> </td>
 								</tr>
-							
+
 								<td colspan="2" class="dato">Requisitos</td>
 							</table>
 							<div class="item col-md-offset-3">
@@ -379,7 +379,7 @@
 
 						<!--Contenido de la Pestaña 3-->
 						<div id="content-3" >
-							
+
 							<td class="dato1">
 								<input type="text" name="codigo" placeholder="Nombre del campo" />
 							</td>
@@ -387,7 +387,7 @@
 								<input type="text" name="codigo" placeholder="contenido del campo" />
 							</td>
 						</div>
-					
+
 
 					</div>
 
@@ -403,12 +403,3 @@
 
 {% endblock %}
 </body>
-
-
-
-
-
-
-
-
-
