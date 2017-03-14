@@ -5,7 +5,7 @@ from .validators import validate_file_extension
 #         text = models.TextField()
 
 class Document(models.Model):
-        _DATABASE = 'default'
+
 
         EM = "sd"
         AJ = "em"
@@ -17,20 +17,20 @@ class Document(models.Model):
             (AJ, 'abr-jul'),
             (VE, 'verano'),
         )
-
+        _DATABASE = 'default'
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
-        codigo_Programa = models.CharField(max_length = 7, default="")
-        creditos = models.IntegerField(default=1)
+        codigo_Programa = models.CharField(max_length = 7)
+        creditos = models.IntegerField()
         tituloP = models.CharField(max_length = 60)
-        fechaP = models.IntegerField(default=2000)
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default ="")
-        h_teo = models.IntegerField(default=0)
-        h_prac = models.IntegerField(default=0)
-        h_lab = models.IntegerField(default=0)
-        departamento = models.CharField(max_length = 70, default="")
-        coordinacion = models.CharField(max_length = 70, default="")
+        fechaP = models.IntegerField()
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO)
+        h_teo = models.IntegerField()
+        h_prac = models.IntegerField()
+        h_lab = models.IntegerField()
+        departamento = models.CharField(max_length = 70)
+        coordinacion = models.CharField(max_length = 70)
         contSinop = models.TextField(default="")
         FuenteInfo = models.TextField(default="")
         objetivos = models.TextField(default="")
@@ -39,6 +39,7 @@ class Document(models.Model):
         estrategias_eval = models.TextField(default="")
 
 class adicional(object):
+    _DATABASE = 'default'
     pertenece = models.ForeignKey('Document')
     titulo = models.CharField(max_length = 50)
     contenido = models.TextField(default="")
