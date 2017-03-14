@@ -42,11 +42,13 @@ body{
 }
 
 #content {
+ height:100%;
+ width: 100%;
  background: #f1f1f1; /* Fondo del contenido */
  border-radius: 0 .25em .25em .25em;
  min-height: 60em; /* Alto del contenido */
  position: relative;
- width: 100%;
+ 
  z-index: 5;
 }
 
@@ -92,10 +94,13 @@ table{
     margin-top: 5%;
 }
 .cuadro_atributos{
-	background:#000;
-	float:left;
-	display:block;
-	margin: 5px 0px 5px 5px;
+	height:530px;
+	width: 450px;
+	background:#f1f1f1;
+	display: flex;
+	margin: 5px 5px 5px 5px;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	overflow-y: scroll;
 }
 
