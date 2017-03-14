@@ -23,7 +23,7 @@ class Document(models.Model):
         doctext = models.TextField(default="")
         codigo_Programa = models.CharField(max_length = 7)
         creditos = models.IntegerField()
-        tituloP = codigo = models.CharField(max_length = 60)
+        tituloP = models.CharField(max_length = 60)
         fechaP = models.IntegerField()
         periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO)
         h_teo = models.IntegerField()
