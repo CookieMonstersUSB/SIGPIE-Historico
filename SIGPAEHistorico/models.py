@@ -81,13 +81,13 @@ class Programa(models.Model):
 
 class RProgPl(models.Model):
     _DATABASE = 'gestionpae'
-    idplanilla = models.IntegerField()
-    idprograma = models.IntegerField()
+    planilla = models.IntegerField(db_column='idplanilla')
+    programa = models.IntegerField(db_column='idprograma')
 
     class Meta:
         managed = False
         db_table = 'r_prog_pl'
-        unique_together = (('idplanilla', 'idprograma'),)
+        unique_together = (('planilla', 'programa'),)
 
 class EsRequisito(models.Model):
     _DATABASE = 'gestionpae'

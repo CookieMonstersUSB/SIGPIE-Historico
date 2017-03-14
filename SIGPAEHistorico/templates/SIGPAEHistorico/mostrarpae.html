@@ -1,16 +1,19 @@
 {% extends "SIGPAEHistorico/base.html" %}
 {% block content %}
 
-	{% if programa %}
+	{% if solicitud %}
 		    <ul>
-
-		        <li>Denominacion: {{programa.denominacion}}</li>
+		        <li>Denominacion: {{solicitud.denominacion}}</li>
 						<br>
-						<li>Codigo: {{programa.cod}}</li>
+						<li>Codigo: {{solicitud.cod}}</li>
 						<br>
-						<li>Creditos: {{programa.creditos}}</li>
+						<li>Creditos: {{solicitud.creditos}}</li>
 						<br>
-						<li>Horas Teoria: {{programa.hteoria}}</li>
+						<li>Coordinación: {{solicitud.nomcoord}}</li>
+						<br>
+						{% if programa %}
+						<li>Horas de teoria: {{programa.h_teoria}}</li>
+						{% endif %}
 
 		    </ul>
 	{% else %}
