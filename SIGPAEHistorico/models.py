@@ -25,7 +25,7 @@ class Document(models.Model):
         creditos = models.IntegerField(default=1)
         tituloP = models.CharField(max_length = 60)
         fechaP = models.IntegerField(default=2000)
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO)
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default ="")
         h_teo = models.IntegerField(default=0)
         h_prac = models.IntegerField(default=0)
         h_lab = models.IntegerField(default=0)
