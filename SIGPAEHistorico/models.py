@@ -5,10 +5,42 @@ from .validators import validate_file_extension
 #         text = models.TextField()
 
 class Document(models.Model):
+        EM = "sd"
+        AJ = "em"
+        SD = "aj"
+        VE = "verano"
+        ELECCION_PERIODO = (
+            (SD, 'sep-dic'),
+            (EM,'ene-mar'),
+            (AJ, 'abr-jul'),
+            (VE, 'verano'),
+        )
         _DATABASE = 'default'
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
+        codigo = models.CharField(max_length = 7)
+        creditos = models.IntegerField()
+        titulo = codigo = models.CharField(max_length = 60)
+        fecha = models.IntegerField()
+        periodo = models.ChardField(max_length = 2, choices= ELECCION_PERIODO)
+        h_teo = models.IntegerField()
+        h_prac = models.IntegerField()
+        h_lab = models.IntegerField()
+        departamento = models.CharField(max_length = 70)
+        coordinacion = models.CharField(max_length = 70)
+        contSinop = models.TextField(default="")
+        FuenteInfo = models.TextField(default="")
+        objetivos = models.TextField(default="")
+        requisito = models.TextField(default="")
+        estrategias_meto = models.TextField(default="")
+        estrategias_eval = models.TextField(default="")
+
+class adicional(object):
+    pertenece = models.ForeignKey('Document')
+    titulo = models.CharField(max_length = 50)
+    contenido = models.TextField(default="")
+
 
 class Consultapae(models.Model):
     _DATABASE = 'default'
