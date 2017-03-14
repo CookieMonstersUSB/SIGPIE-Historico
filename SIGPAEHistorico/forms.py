@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .validators import validate_file_extension
 
-from .models import Document
+from .models import Document, Consultapae
 
 class UploadFileForm(ModelForm):
     #name = forms.CharField(max_length = 50 , label = "Nombre del archivo")
@@ -21,4 +21,8 @@ class TextForm(ModelForm):
         model = Document
         exclude = ['name', 'docfile']
 
-# class RequestForm(ModelForm):
+class RequestForm(ModelForm):
+
+    class Meta:
+        model = Consultapae
+        exclude = []

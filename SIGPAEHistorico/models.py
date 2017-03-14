@@ -5,11 +5,15 @@ from .validators import validate_file_extension
 #         text = models.TextField()
 
 class Document(models.Model):
-        _DATABASE = 'sigpae_hist'
+        _DATABASE = 'default'
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
 
+class Consultapae(models.Model):
+    _DATABASE = 'default'
+    code = models.CharField(max_length = 6)
+    year = models.IntegerField(default=2000)
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):
