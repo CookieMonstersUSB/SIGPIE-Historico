@@ -9,7 +9,8 @@ class UploadFileForm(ModelForm):
     #docfile = forms.FileField(label="Selecciona un archivo" ,  validators=[validate_file_extension])
     class Meta:
         model = Document
-        exclude = ['doctext']
+        include = ['name', 'docfile']
+        exclude = []
 
 
 class TextForm(ModelForm):
@@ -17,6 +18,7 @@ class TextForm(ModelForm):
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
+        widgets = []
 
 class RequestForm(ModelForm):
 

@@ -29,7 +29,8 @@ class editar(UpdateView):
         Insert the form into the context dict.
         """
         #print(self.kwargs)
-        document = Document.objects.filter(pk__exact=self.kwargs['pkdoc'])[0]
+        # document = Document.objects.filter(pk__exact=self.kwargs['pkdoc'])[0]
+        document = Document.objects.get(pk=self.kwargs['pkdoc'])
         kwargs['document'] = document
         kwargs['textform'] = self.get_form()
         return super(editar, self).get_context_data(**kwargs)
@@ -74,7 +75,6 @@ class consultarpae(FormView):
     def form_valid(self, form):
         self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
                                                          'year': form.cleaned_data.get('year')})
-        print(self.success_url)
         return super(consultarpae, self).form_valid(form)
 
 # class mostrarpae(DetailView):
@@ -86,17 +86,19 @@ class consultarpae(FormView):
 
 class mostrarpae(TemplateView):
     def get(self , request , *args , **kwargs):
-        print ("code:",kwargs['code'])
+        # print ("code:",kwargs['code'])
         context = self.get_context_data(**kwargs)
         return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
 
     def get_context_data(self, **kwargs):
-        print ('entro')
-        print('get_context_data', self.kwargs)
-        return super(mostrarpae, self).get_context_data(**kwargs)
+        # print('get_context_data', self.kwargs)
+        solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lt=self.kwargs['year'])
+        if (not solicitud):
+            print ('')
+        else:
+            # link = RProgPl.objects.all().filter(idplanilla__exact=solicitud.cod)[0]
 
-    # def get_context_data(self, **kwargs):
-    #     if 'view' not in kwargs:
-    #         kwargs['view'] = self
-    #     solitude = queryset[0]
-    #     return kwargs
+            print('lista no vacia:', solicitud[0].denominacion)
+            kwargs['programa'] = solicitud[0]
+
+        return super(mostrarpae, self).get_context_data(**kwargs)

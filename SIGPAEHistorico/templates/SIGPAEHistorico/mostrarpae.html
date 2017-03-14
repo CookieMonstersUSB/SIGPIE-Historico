@@ -1,9 +1,21 @@
 {% extends "SIGPAEHistorico/base.html" %}
 {% block content %}
-	<h1>Holi</h1>
-	<div class="">
-		<p>Codigo: {{code}}</p>
-		<p>Ano: {{year}}</p>
-	</div>
+
+	{% if programa %}
+		    <ul>
+
+		        <li>Denominacion: {{programa.denominacion}}</li>
+						<br>
+						<li>Codigo: {{programa.cod}}</li>
+						<br>
+						<li>Creditos: {{programa.creditos}}</li>
+						<br>
+						<li>Horas Teoria: {{programa.hteoria}}</li>
+
+		    </ul>
+	{% else %}
+	    <h3 align="center">No hay archivos almacenados.</h3>
+	{% endif %}
+
 
 {% endblock %}
