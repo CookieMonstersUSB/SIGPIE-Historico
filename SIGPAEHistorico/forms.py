@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
 from .validators import validate_file_extension
-
 from .models import Document, Consultapae
 
 class UploadFileForm(ModelForm):
@@ -9,7 +8,22 @@ class UploadFileForm(ModelForm):
     #docfile = forms.FileField(label="Selecciona un archivo" ,  validators=[validate_file_extension])
     class Meta:
         model = Document
-        exclude = ['doctext']
+        exclude = ['doctext', 'codigo_programa',
+                'creditos',
+                'tituloP',
+                'fechaP',
+                'periodoP',
+                'h_teo',
+                'h_prac',
+                'h_lab',
+                'departamento',
+                'coordinacion',
+                'contSinop',
+                'FuenteInfo',
+                'objetivos',
+                'requisito',
+                'estrategias_meto',
+                'estrategias_eval']
 
 
 # class TextForm(forms.Form):
@@ -21,6 +35,13 @@ class TextForm(ModelForm):
         model = Document
         exclude = ['name', 'docfile']
 
+class CodigoForm(ModelForm):
+    """docstring for TextForm."""
+    class Meta:
+        model = Document
+        exclude = []
+        include = ['codigo_programa']
+        
 class RequestForm(ModelForm):
 
     class Meta:

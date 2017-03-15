@@ -5,7 +5,7 @@ from .validators import validate_file_extension
 #         text = models.TextField()
 
 class Document(models.Model):
-
+        _DATABASE = 'default'
         EM = "sd"
         AJ = "em"
         SD = "aj"
@@ -16,11 +16,10 @@ class Document(models.Model):
             (AJ, 'abr-jul'),
             (VE, 'verano'),
         )
-        _DATABASE = 'default'
-        name = models.CharField(max_length = 50,default="")
+        name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
-        codigo_Programa = models.CharField(max_length = 7,default="")
+        codigo_programa = models.CharField(max_length = 8)
         creditos = models.IntegerField(default=0)
         tituloP = models.CharField(max_length = 60,default="")
         fechaP = models.IntegerField(default=2000)
@@ -36,13 +35,6 @@ class Document(models.Model):
         requisito = models.TextField(default="")
         estrategias_meto = models.TextField(default="")
         estrategias_eval = models.TextField(default="")
-
-class adicional(object):
-    _DATABASE = 'default'
-    pertenece = models.ForeignKey('Document')
-    titulo = models.CharField(max_length = 50, default="")
-    contenido = models.TextField(default="")
-
 
 class Consultapae(models.Model):
     _DATABASE = 'default'

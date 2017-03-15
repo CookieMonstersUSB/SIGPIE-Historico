@@ -26,6 +26,8 @@
 	      }
 	}
 </script>
+
+<body>
 {% extends "SIGPAEHistorico/base.html" %}
 {% block title %}SIGPAE | Editar Archivos{% endblock %}
 {% block content %}
@@ -64,18 +66,20 @@
 			  		<input id="tab-3" type="radio" name="tab-group" />
 			  		<label for="tab-3">Adicionales</label>
 			  		<div id="content" >
+
 					   <!--Contenido de la Pestaña 1-->
 					   <div id="content-1" style="position: absolute;
 							  top:  5px;
-							  left: -120px;"
-						>
-
+							  left: -120px;">
 							<table border="0" style="border:1 hidden; margin: 0 auto;" >
 								<tr>
 									<td class="dato">Código</td>
 									<td class="dato1">
-
-										<input type="text" name="codigo" {{form.codigo_Programa}}
+										<form  action="{% url "editar" document.pk %}" method="post">
+												{% csrf_token %}
+												<input type="text" name="codigo" {{form.codigo_programa}}
+												<p><input type="submit" value="Editar"/></p>
+										</form>
 									</td>
 								</tr>
 								<tr>
@@ -389,14 +393,15 @@
 						</div>
 
 
-					</div>
+					  </div>
 
 				</div>
+
 
 			</div>
 		</div>
 </div>
-  <p><input type="submit" value="Upload"/></p>
+
 {% include "SIGPAEHistorico/footer.html" %}
 
 
