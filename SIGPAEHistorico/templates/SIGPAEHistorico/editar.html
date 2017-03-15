@@ -27,7 +27,6 @@
 	}
 </script>
 
-<!--body-->
 {% block title %}SIGPAE | Editar Archivos{% endblock %}
 {% block content %}
 {% load static %}
@@ -38,9 +37,6 @@
 <body>
 	{% include "SIGPAEHistorico/navbar.html" %}
 
-	<!--<div class="titulo" style="margin-top: 5%;">
-		<h2>Datos del programa sinóptico</h2>
-	</div>-->
 	<div class="row" style="margin-top:4%; margin-left:2%;margin-bottom:2%;">
 		<div class="col-md-4" style="
 							  height:540px;
@@ -53,13 +49,9 @@
 						{{ textform.non_field_errors }}
 						<div class="col-md-4" style="height:540px;
 							width: 300px;">
-							<!--textarea name="listo" placeholder="listo" cols="35" rows="26">
-
-							</textarea-->
 							{{ textform.doctext.errors }}
 							{{textform.doctext}}
 						</div>
-					<!--/form-->
 					<div style="flex-grow : 1;">
 						<div class="cuadro_atributos col-md-4">
 							<br />
@@ -76,10 +68,6 @@
 											<tr>
 												<td class="dato">Código</td>
 												<td class="dato1">
-													<!--form  action="{% url "editar" document.pk %}" method="post"-->
-															<!--input type="text" name="codigo" class= "codigo"-->
-															<!--p><input type="submit" value="Editar"/></p-->
-													<!--/form-->
 													{{textform.codigo_programa.errors}}
 													{{textform.codigo_programa}}
 												</td>
@@ -87,9 +75,6 @@
 											<tr>
 												<td  class="dato">Creditos</td>
 												<td class="dato1">
-													<!--form name="creditos" method="POST"-->
-														<!--input type="number" name="creditos" min="0" max="16" /-->
-													<!--/form-->
 													{{textform.creditos.errors}}
 													{{textform.creditos}}
 												</td>
@@ -97,7 +82,6 @@
 											<tr>
 												<td class="dato">Título</td>
 												<td class="dato1">
-													<!--input type="text" name="titulo"/-->
 													{{textform.tituloP.errors}}
 													{{textform.tituloP}}
 												</td>
@@ -109,10 +93,11 @@
 												<td colspan="2" class="dato">Entrada en  vigencia</td>
 											</tr>
 												<tr>
-													<!--form name="fecha" method="POST"-->
-													    <td valign ="top" class="dato">Año</td>
-													    <td class="dato1"> <input type="number"  name="fecha" min="1969" max="2019" /> </td>
-													<!--/form-->
+													  <td valign ="top" class="dato">Año</td>
+													  <td class="dato1">
+                              {{textform.fechaP.errors}}
+                              {{textform.fechaP}}
+                            </td>
 											</tr>
 											<tr>
 
@@ -137,9 +122,6 @@
 												<tr>
 													<td  class="dato">Teoría</td>
 													<td class="dato1">
-														<!--form name="h_teoria" method="POST"-->
-															<!--input type="number" name="h_teoria" min="0" max="40"/-->
-														<!--/form-->
 														{{textform.h_teo.errors}}
 														{{textform.h_teo}}
 													</td>
@@ -148,9 +130,6 @@
 												<tr>
 													<td  class="dato">Práctica</td>
 													<td class="dato1">
-														<!--form name="h_teoria" method="POST"-->
-															<!--input type="number" name="h_practica" min="0" max="40"/-->
-														<!--/form-->
 														{{textform.h_prac.errors}}
 														{{textform.h_prac}}
 													</td>
@@ -159,9 +138,6 @@
 												<tr>
 													<td  class="dato">Laboratorio</td>
 													<td class="dato1">
-														<!--form name="h_lab" method="POST"-->
-															<!--input type="number" name="h_lab" min="0" max="40"/-->
-														<!--/form-->
 														{{textform.h_lab.errors}}
 														{{textform.h_lab}}
 													</td>
@@ -312,9 +288,10 @@
 											<td colspan="2" class="dato">Contenido sinoptico</td>
 										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
-
-											</textarea>
+                      <td class="dato1">
+                        {{textform.contSinop.errors}}
+                        {{textform.contSinop}}
+                      </td>
 										</div>
 
 
@@ -326,9 +303,11 @@
 												<td colspan="2" class="dato">Fuentes de informacion recomendadas</td>
 											</table>
 													<div class="item col-md-offset-3">
-														<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
+														<!--textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
 
-														</textarea>
+														</textarea-->
+                            {{textform.FuenteInfo.errors}}
+                            {{textform.FuenteInfo}}
 													</div>
 
 
@@ -341,7 +320,7 @@
 
 										<table border="0" style="border:1 hidden; margin: 0 auto;">
 											<tr>
-												<td colspan="2" class="dato" style="border: double blue"> </td>
+												<td colspan="4" class="dato" style="border: double blue"> </td>
 											</tr>
 											<tr>
 												<td colspan="2" class="dato">Objetivos</td>
@@ -349,9 +328,8 @@
 											</tr>
 										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
-
-											</textarea>
+                      {{textform.objetivos.errors}}
+                      {{textform.objetivos}}
 										</div>
 
 
@@ -363,9 +341,8 @@
 											<td colspan="2" class="dato">Requisitos</td>
 										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="20" rows="5" style="overflow-y: scroll">
-
-											</textarea>
+                      {{textform.requisito.errors}}
+                      {{textform.requisito}}
 										</div>
 
 										<table border="0" style="border:1 hidden; margin: 0 auto;">
@@ -376,9 +353,8 @@
 											<td colspan="2" class="dato">Estrategias metodologicas</td>
 										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
-
-											</textarea>
+                      {{textform.estrategias_meto.errors}}
+                      {{textform.estrategias_meto}}
 										</div>
 										<table border="0" style="border:1 hidden; margin: 0 auto;">
 											<tr>
@@ -387,9 +363,8 @@
 											<td colspan="2" class="dato">Estrategias de evaluacion</td>
 										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
-
-											</textarea>
+                      {{textform.estrategias_eval.errors}}
+                      {{textform.estrategias_eval}}
 										</div>
 									</div>
 
@@ -400,7 +375,9 @@
 
 						</div>
 					</div>
-					<p><input type="submit" value="Guardar"/></p>
+          <div class="container">
+					       <p><input type="submit" value="Guardar"/></p>
+          </div>
 				</form>
 		</div>
 

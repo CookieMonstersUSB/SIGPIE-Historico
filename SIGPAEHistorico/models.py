@@ -1,9 +1,6 @@
 from django.db import models
 from .validators import *
 
-# class ventana(models.Model):
-#         text = models.TextField()
-
 class Document(models.Model):
         _DATABASE = 'default'
         EM = "sd"
@@ -22,11 +19,11 @@ class Document(models.Model):
         codigo_programa = models.CharField(max_length = 8, default="", blank = True)
         creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
         tituloP = models.CharField(max_length = 60, default="", blank = True)
-        fechaP = models.IntegerField(blank = True, null = True)
+        fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
         periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
-        h_teo = models.IntegerField(default=0, null = True)
-        h_prac = models.IntegerField(default=0, null = True)
-        h_lab = models.IntegerField(default=0, null = True)
+        h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
+        h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
+        h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
         departamento = models.CharField(max_length=70, default="", blank = True)
         coordinacion = models.CharField(max_length=70, default="", blank = True)
         contSinop = models.TextField(default="", blank = True)

@@ -141,3 +141,7 @@ table{
 	flex-basis : 40vw;
 	min-width: 550px;
 }
+
+#id_doctext {
+	height: 540px;
+}

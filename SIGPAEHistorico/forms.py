@@ -35,11 +35,15 @@ class codigo(ModelForm):
         model = Document
         field = ('codigo_programa')
         widget = {'codigo_programa': widgets.Select(attrs= {'class': 'codigo'}),}
+
 class TextForm(ModelForm):
     """docstring for TextForm."""
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
+        widget = {'doctext': widgets.Select(attrs={'class': 'textbox',
+                                                   'col': 10,
+                                                   'row': 500 })}
 
 class CodigoForm(ModelForm):
     """docstring for TextForm."""
