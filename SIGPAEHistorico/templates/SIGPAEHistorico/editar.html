@@ -27,8 +27,7 @@
 	}
 </script>
 
-<body>
-{% extends "SIGPAEHistorico/base.html" %}
+<!--body-->
 {% block title %}SIGPAE | Editar Archivos{% endblock %}
 {% block content %}
 {% load static %}
@@ -37,375 +36,377 @@
 </head>
 
 <body>
-{% include "SIGPAEHistorico/navbar.html" %}
+	{% include "SIGPAEHistorico/navbar.html" %}
 
-<!--<div class="titulo" style="margin-top: 5%;">
-	<h2>Datos del programa sinóptico</h2>
-</div>-->
-<div class="container">
-		<div class="col-md-9" style="
-							  left: -80px;
+	<!--<div class="titulo" style="margin-top: 5%;">
+		<h2>Datos del programa sinóptico</h2>
+	</div>-->
+	<div class="row" style="margin-top:4%; margin-left:2%;margin-bottom:2%;">
+		<div class="col-md-4" style="
 							  height:540px;
-							  width: 480px;
+							  width: 500px;
+								padding-left:0px !important;
+								margin-left:0px !important;
 							  " >
 		  <embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
 		</div>
-		<div class="item" style="margin-bottom:2%;">
-			<textarea name="listo" placeholder="listo" cols="35" rows="26">
-				{{document.doctext}}
-			</textarea>
-		</div>
-		<div class="item">
-			<div class="cuadro_atributos">
-				<br />
-				<div id="containerI">
-					<input id="tab-1" type="radio" name="tab-group" checked="checked" />
-			  		<label for="tab-1">Obligatorios</label>
-			  		<input id="tab-2" type="radio" name="tab-group" />
-			  		<label for="tab-2">Normados</label>
-			  		<input id="tab-3" type="radio" name="tab-group" />
-			  		<label for="tab-3">Adicionales</label>
-			  		<div id="content" >
+				<form  action="{% url "editar" document.pk %}" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ textform.non_field_errors }}
+						<div class="col-md-4" style="height:540px;
+							width: 300px;">
+							<!--textarea name="listo" placeholder="listo" cols="35" rows="26">
 
-					   <!--Contenido de la Pestaña 1-->
-					   <div id="content-1" style="position: absolute;
-							  top:  5px;
-							  left: -120px;">
-							<table border="0" style="border:1 hidden; margin: 0 auto;" >
-								<tr>
-									<td class="dato">Código</td>
-									<td class="dato1">
-										<form  action="{% url "editar" document.pk %}" method="post">
-												{% csrf_token %}
-												<input type="text" name="codigo" {{form.codigo_programa}}
-												<p><input type="submit" value="Editar"/></p>
-										</form>
-									</td>
-								</tr>
-								<tr>
-									<td  class="dato">Creditos</td>
-									<td class="dato1">
-										<form name="creditos" method="POST">
-											<input type="number" name="creditos" min="0" max="16" />
-										</form>
-									</td>
-								</tr>
-								<tr>
-									<td class="dato">Título</td>
-									<td class="dato1">
-										<input type="text" name="titulo"/>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-								<tr>
-									<td colspan="2" class="dato">Entrada en  vigencia</td>
-								</tr>
-									<tr>
-										<form name="fecha" method="POST">
-										    <td valign ="top" class="dato">Fecha</td>
-										    <td class="dato1"> <input type="number"  name="fecha" min="1969" max="2019" /> </td>
-										</form>
-								</tr>
-								<tr>
+							</textarea-->
+							{{ textform.doctext.errors }}
+							{{textform.doctext}}
+						</div>
+					<!--/form-->
+					<div style="flex-grow : 1;">
+						<div class="cuadro_atributos col-md-4">
+							<br />
+							<div id="containerI">
+								<input id="tab-1" type="radio" name="tab-group" checked="checked" />
+						  		<label for="tab-1">Obligatorios</label>
+						  		<input id="tab-2" type="radio" name="tab-group" />
+						  		<label for="tab-2">Normados</label>
+						  		<div id="content" >
 
-									<td valign ="top" class="dato">Periodo</td>
-									<td class="dato1">
-										<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic
-										<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar
-										<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul<br />
-										<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano
-									</td>
+								   <!--Contenido de la Pestaña 1-->
+								   <div id="content-1" style="">
+										<table border="0" style="border:1 hidden; margin: 0 auto;" >
+											<tr>
+												<td class="dato">Código</td>
+												<td class="dato1">
+													<!--form  action="{% url "editar" document.pk %}" method="post"-->
+															<!--input type="text" name="codigo" class= "codigo"-->
+															<!--p><input type="submit" value="Editar"/></p-->
+													<!--/form-->
+													{{textform.codigo_programa.errors}}
+													{{textform.codigo_programa}}
+												</td>
+											</tr>
+											<tr>
+												<td  class="dato">Creditos</td>
+												<td class="dato1">
+													<!--form name="creditos" method="POST"-->
+														<!--input type="number" name="creditos" min="0" max="16" /-->
+													<!--/form-->
+													{{textform.creditos.errors}}
+													{{textform.creditos}}
+												</td>
+											</tr>
+											<tr>
+												<td class="dato">Título</td>
+												<td class="dato1">
+													<!--input type="text" name="titulo"/-->
+													{{textform.tituloP.errors}}
+													{{textform.tituloP}}
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
+											<tr>
+												<td colspan="2" class="dato">Entrada en  vigencia</td>
+											</tr>
+												<tr>
+													<!--form name="fecha" method="POST"-->
+													    <td valign ="top" class="dato">Año</td>
+													    <td class="dato1"> <input type="number"  name="fecha" min="1969" max="2019" /> </td>
+													<!--/form-->
+											</tr>
+											<tr>
 
-								</tr>
-							</table>
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>
-								<tr>
-									<td colspan="2" class="dato">Horas semanales</td>
-								</tr>
+												<td valign ="top" class="dato">Periodo</td>
+												<td class="dato1">
+													<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic
+													<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar
+													<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul<br />
+													<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano
+												</td>
 
-									<tr>
-										<td  class="dato">Teoría</td>
-										<td class="dato1">
-											<form name="h_teoria" method="POST">
-												<input type="number" name="h_teoria" min="0" max="40"/>
-											</form>
-										</td>
-									</tr>
+											</tr>
+										</table>
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="3" class="dato" style="border: double blue"> </td>
+											</tr>
+											<tr>
+												<td colspan="2" class="dato">Horas semanales</td>
+											</tr>
 
-									<tr>
-										<td  class="dato">Práctica</td>
-										<td class="dato1">
-											<form name="h_teoria" method="POST">
-												<input type="number" name="h_practica" min="0" max="40"/>
-											</form>
-										</td>
-									</tr>
+												<tr>
+													<td  class="dato">Teoría</td>
+													<td class="dato1">
+														<!--form name="h_teoria" method="POST"-->
+															<!--input type="number" name="h_teoria" min="0" max="40"/-->
+														<!--/form-->
+														{{textform.h_teo.errors}}
+														{{textform.h_teo}}
+													</td>
+												</tr>
 
-									<tr>
-										<td  class="dato">Laboratorio</td>
-										<td class="dato1">
-											<form name="h_lab" method="POST">
-												<input type="number" name="h_lab" min="0" max="40"/>
-											</form>
-										</td>
-									</tr>
+												<tr>
+													<td  class="dato">Práctica</td>
+													<td class="dato1">
+														<!--form name="h_teoria" method="POST"-->
+															<!--input type="number" name="h_practica" min="0" max="40"/-->
+														<!--/form-->
+														{{textform.h_prac.errors}}
+														{{textform.h_prac}}
+													</td>
+												</tr>
 
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
+												<tr>
+													<td  class="dato">Laboratorio</td>
+													<td class="dato1">
+														<!--form name="h_lab" method="POST"-->
+															<!--input type="number" name="h_lab" min="0" max="40"/-->
+														<!--/form-->
+														{{textform.h_lab.errors}}
+														{{textform.h_lab}}
+													</td>
+												</tr>
 
-								<td colspan="2" class="dato">Entidad Encargada</td>
-							</table>
-							<div>
-								<div class="dato1">
-									<tr><SELECT NAME="encargado" onChange="seleccionEncargado(this)">
-							              <OPTION VALUE="Departamento" >Departamento</OPTION>
-							              <OPTION VALUE="Coordinación">Coordinación</OPTION>
-							           </SELECT>
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
 
-									</tr>
-								</div>
+											<td colspan="2" class="dato">Entidad Encargada</td>
+										</table>
+										<div>
+											<div class="dato1">
+												<tr><SELECT NAME="encargado" onChange="seleccionEncargado(this)">
+										              <OPTION VALUE="Departamento" >Departamento</OPTION>
+										              <OPTION VALUE="Coordinación">Coordinación</OPTION>
+										           </SELECT>
 
-								<div id="Edep" class="dato1" style="display:none;">
-									<form>
-										<tr>
-											<td colspan="2" class="dato1">
-												<select name="area_dep" id="area_dep">
-													<option value="0" selected="selected">---------</option>
-							                		<option value="1">División Ciencias Físicas y Matemáticas</option>
-													<option value="2">División Ciencias Sociales y Humanidades</option>
-													<option value="3">División Ciencias Biológicas</option>
-													<option value="4">División Ciencias y Tecnologías Administrativas e Industriales</option>
-							    				</select>
-											</td>
-										</tr>
-										<tr>
+												</tr>
+											</div>
 
-											<td colspan="2" class="dato1">
-												<select name="dep" id="dep">
-													<option value="0" selected="selected">---------</option>
-													<option value="1" class="1">Física</option>
-													<option value="2" class="1">Química</option>
-													<option value="3" class="1">Mecánica</option>
-													<option value="4" class="1">Matemáticas Puras y Aplicadas</option>
-													<option value="5" class="1">Computo Científico y Estadística</option>
-													<option value="6" class="1">Electrónica y Circuitos</option>
-													<option value="7" class="1">Termodinámica y Fenómenos de Transferencia</option>
-													<option value="8" class="1">Conversión y Transporte de Energía</option>
-													<option value="9" class="1">Procesos y Sistemas</option>
-													<option value="10" class="1">Ciencias de los Materiales</option>
-													<option value="11" class="1">Ciencias de la Tierra</option>
-													<option value="12" class="2">Ciencia y Tecnología del Comportamiento</option>
-													<option value="13" class="2">Lengua y Literatura</option>
-													<option value="14" class="2">Ciencias Económicas y Administrativas</option>
-													<option value="15" class="2">Idiomas</option>
-													<option value="16" class="2">Filosofía</option>
-													<option value="17" class="2">Ciencias Sociales</option>
-													<option value="18" class="2">Arquitectura y Artes Plásticas</option>
-													<option value="19" class="2">Planificación Urbana</option>
-													<option value="20" class="3">Biología Celular</option>
-													<option value="21" class="3">Estudios Ambientales</option>
-													<option value="22" class="3">Biología de Organismos</option>
-													<option value="23" class="3">Tecnología de Procesos Biológicos y Bioquímicos</option>
-													<option value="24" class="4">Tecnología de Servicios</option>
-													<option value="25" class="4">Tecnología Industrial</option>
-													<option value="26" class="4">Formación General y Ciencias Básicas</option>
-							    				</select>
-											</td>
-										</tr>
-									</form>
-									<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
-									  $(function(){
-									      $("#dep").chained("#area_dep");
-									  });
-								  	</script>
-					  			</div>
+											<div id="Edep" class="dato1" style="display:none;">
+												<!--form-->
+													<tr>
+														<td colspan="2" class="dato1">
+															<select name="area_dep" id="area_dep">
+																<option value="0" selected="selected">---------</option>
+										                		<option value="1">División Ciencias Físicas y Matemáticas</option>
+																<option value="2">División Ciencias Sociales y Humanidades</option>
+																<option value="3">División Ciencias Biológicas</option>
+																<option value="4">División Ciencias y Tecnologías Administrativas e Industriales</option>
+										    				</select>
+														</td>
+													</tr>
+													<tr>
 
-								<div id="ECoor" class="dato1" style="display:;">
-									<form>
-										<tr>
-											<td colspan="2" class="dato1">
-												<select name="area_coor" id="area_coor">
-							                		<option value="0" selected="selected">---------</option>
-							                		<option value="1">Estudios Generales</option>
-													<option value="2">Estudios Profesionales</option>
-													<option value="3">Estudios Tecnológicos</option>
-													<option value="4">Estudios de Postgrado</option>
-							    				</select>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2" class="dato1">
-												<select name="coor" id="coor">
-							                		<option value="0" selected="selected">---------</option>
-							                		<option value="1" class="1">Ciclo Básico</option>
-													<option value="2" class="1">Ciclo Profesional</option>
-													<option value="3" class="1">Formación General</option>
-													<option value="4" class="1">Ciclo de Iniciación Universitaria</option>
-													<option value="5" class="2">Física</option>
-													<option value="6" class="2">Química</option>
-													<option value="6" class="2">Biología</option>
-													<option value="7" class="2">Ingenieria Mecánica</option>
-													<option value="8" class="2">Matemática</option>
-													<option value="5" class="2">Tecnología e Ingeniería Eléctrica</option>
-													<option value="6" class="2">Tecnología e Ingeniería Electrónica</option>
-													<option value="7" class="2">Ingeniera Química</option>
-													<option value="8" class="2">Ingeniera de Computación</option>
-													<option value="9" class="2">Ingeniería Geofísica</option>
-													<option value="10" class="2">Ingeniería de Materiales</option>
-													<option value="11" class="2">Ingeniería de Producción y Organización Empresarial</option>
-													<option value="12" class="2">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniera de Mantenimiento</option>
+														<td colspan="2" class="dato1">
+															<select name="dep" id="dep">
+																<option value="0" selected="selected">---------</option>
+																<option value="1" class="1">Física</option>
+																<option value="2" class="1">Química</option>
+																<option value="3" class="1">Mecánica</option>
+																<option value="4" class="1">Matemáticas Puras y Aplicadas</option>
+																<option value="5" class="1">Computo Científico y Estadística</option>
+																<option value="6" class="1">Electrónica y Circuitos</option>
+																<option value="7" class="1">Termodinámica y Fenómenos de Transferencia</option>
+																<option value="8" class="1">Conversión y Transporte de Energía</option>
+																<option value="9" class="1">Procesos y Sistemas</option>
+																<option value="10" class="1">Ciencias de los Materiales</option>
+																<option value="11" class="1">Ciencias de la Tierra</option>
+																<option value="12" class="2">Ciencia y Tecnología del Comportamiento</option>
+																<option value="13" class="2">Lengua y Literatura</option>
+																<option value="14" class="2">Ciencias Económicas y Administrativas</option>
+																<option value="15" class="2">Idiomas</option>
+																<option value="16" class="2">Filosofía</option>
+																<option value="17" class="2">Ciencias Sociales</option>
+																<option value="18" class="2">Arquitectura y Artes Plásticas</option>
+																<option value="19" class="2">Planificación Urbana</option>
+																<option value="20" class="3">Biología Celular</option>
+																<option value="21" class="3">Estudios Ambientales</option>
+																<option value="22" class="3">Biología de Organismos</option>
+																<option value="23" class="3">Tecnología de Procesos Biológicos y Bioquímicos</option>
+																<option value="24" class="4">Tecnología de Servicios</option>
+																<option value="25" class="4">Tecnología Industrial</option>
+																<option value="26" class="4">Formación General y Ciencias Básicas</option>
+										    				</select>
+														</td>
+													</tr>
+												<!--/form-->
+												<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
+												  $(function(){
+												      $("#dep").chained("#area_dep");
+												  });
+											  	</script>
+								  			</div>
 
-
-													<option value="13" class="2">Ingeniería de telecomunicaciones</option>
-													<option value="14" class="2">Arquitectura</option>
-													<option value="15" class="2">Estudios Generales</option>
-													<option value="16" class="2">Turismo, Hotelería y Hospitalidad</option>
-													<option value="17" class="2">Comercio Exterior y Licenciatura en Comercio Internacional</option>
-													<option value="18" class="3">Tecnología e Ingeniería Eléctrica</option>
-													<option value="19" class="3">Tecnología Eléctrica y Electrónica</option>
-													<option value="20" class="3">Ingeniería de Producción y Organización Empresarial</option>
-													<option value="21" class="3">Turismo, Hotelería y Hospitalidad</option>
-													<option value="22" class="3">Administración Aduanera</option>
-													<option value="23" class="3">Comercio Exterior y Licenciatura en Comercio Internacional</option>
-													<option value="24" class="3">Administración del Transporte y Organización Empresarial</option>
-													<option value="25" class="3">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniería de Mantenimiento</option>
-
-
-													<option value="26" class="4">Ciencias Básicas y Aplicadas</option>
-													<option value="26" class="4">Ciencias Sociales y Humanidades</option>
-													<option value="26" class="4">Ingeniería y Tecnología</option>
-							    				</select>
-											</td>
-										</tr>
-									</form>
-									<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
-									  $(function(){
-									      $("#coor").chained("#area_coor");
-									  });
-									  </script>
-						  		</div>
-
-							</div>
-
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>
-								<td colspan="2" class="dato">Contenido sinoptico</td>
-							</table>
-							<div class="item col-md-offset-3">
-								<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
-
-								</textarea>
-							</div>
+											<div id="ECoor" class="dato1" style="display:;">
+												<!--form-->
+													<tr>
+														<td colspan="2" class="dato1">
+															<select name="area_coor" id="area_coor">
+										                		<option value="0" selected="selected">---------</option>
+										                		<option value="1">Estudios Generales</option>
+																<option value="2">Estudios Profesionales</option>
+																<option value="3">Estudios Tecnológicos</option>
+																<option value="4">Estudios de Postgrado</option>
+										    				</select>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2" class="dato1">
+															<select name="coor" id="coor">
+										                		<option value="0" selected="selected">---------</option>
+										                		<option value="1" class="1">Ciclo Básico</option>
+																<option value="2" class="1">Ciclo Profesional</option>
+																<option value="3" class="1">Formación General</option>
+																<option value="4" class="1">Ciclo de Iniciación Universitaria</option>
+																<option value="5" class="2">Física</option>
+																<option value="6" class="2">Química</option>
+																<option value="6" class="2">Biología</option>
+																<option value="7" class="2">Ingenieria Mecánica</option>
+																<option value="8" class="2">Matemática</option>
+																<option value="5" class="2">Tecnología e Ingeniería Eléctrica</option>
+																<option value="6" class="2">Tecnología e Ingeniería Electrónica</option>
+																<option value="7" class="2">Ingeniera Química</option>
+																<option value="8" class="2">Ingeniera de Computación</option>
+																<option value="9" class="2">Ingeniería Geofísica</option>
+																<option value="10" class="2">Ingeniería de Materiales</option>
+																<option value="11" class="2">Ingeniería de Producción y Organización Empresarial</option>
+																<option value="12" class="2">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniera de Mantenimiento</option>
 
 
+																<option value="13" class="2">Ingeniería de telecomunicaciones</option>
+																<option value="14" class="2">Arquitectura</option>
+																<option value="15" class="2">Estudios Generales</option>
+																<option value="16" class="2">Turismo, Hotelería y Hospitalidad</option>
+																<option value="17" class="2">Comercio Exterior y Licenciatura en Comercio Internacional</option>
+																<option value="18" class="3">Tecnología e Ingeniería Eléctrica</option>
+																<option value="19" class="3">Tecnología Eléctrica y Electrónica</option>
+																<option value="20" class="3">Ingeniería de Producción y Organización Empresarial</option>
+																<option value="21" class="3">Turismo, Hotelería y Hospitalidad</option>
+																<option value="22" class="3">Administración Aduanera</option>
+																<option value="23" class="3">Comercio Exterior y Licenciatura en Comercio Internacional</option>
+																<option value="24" class="3">Administración del Transporte y Organización Empresarial</option>
+																<option value="25" class="3">Tecnología Mecánica, Mantenimiento Aeronáutico e Ingeniería de Mantenimiento</option>
 
-								<table border="0" style="border:1 hidden; margin: 0 auto;">
-									<tr>
-										<td colspan="3" class="dato" style="border: double blue"> </td>
-									</tr>
-									<td colspan="2" class="dato">Fuentes de informacion recomendadas</td>
-								</table>
+
+																<option value="26" class="4">Ciencias Básicas y Aplicadas</option>
+																<option value="26" class="4">Ciencias Sociales y Humanidades</option>
+																<option value="26" class="4">Ingeniería y Tecnología</option>
+										    				</select>
+														</td>
+													</tr>
+												<!--/form-->
+												<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
+												  $(function(){
+												      $("#coor").chained("#area_coor");
+												  });
+												  </script>
+									  		</div>
+
+										</div>
+
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="3" class="dato" style="border: double blue"> </td>
+											</tr>
+											<td colspan="2" class="dato">Contenido sinoptico</td>
+										</table>
 										<div class="item col-md-offset-3">
-											<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
+											<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
 
 											</textarea>
 										</div>
 
 
+
+											<table border="0" style="border:1 hidden; margin: 0 auto;">
+												<tr>
+													<td colspan="3" class="dato" style="border: double blue"> </td>
+												</tr>
+												<td colspan="2" class="dato">Fuentes de informacion recomendadas</td>
+											</table>
+													<div class="item col-md-offset-3">
+														<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
+
+														</textarea>
+													</div>
+
+
+									</div>
+
+									<!--Contenido de la Pestaña 2-->
+							   		<div id="content-2" style="position: absolute;
+										  top:  5px;
+										  left: -60px;">
+
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
+											<tr>
+												<td colspan="2" class="dato">Objetivos</td>
+
+											</tr>
+										</table>
+										<div class="item col-md-offset-3">
+											<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
+
+											</textarea>
+										</div>
+
+
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
+
+											<td colspan="2" class="dato">Requisitos</td>
+										</table>
+										<div class="item col-md-offset-3">
+											<textarea name="obj" placeholder="obj" cols="20" rows="5" style="overflow-y: scroll">
+
+											</textarea>
+										</div>
+
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
+
+											<td colspan="2" class="dato">Estrategias metodologicas</td>
+										</table>
+										<div class="item col-md-offset-3">
+											<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
+
+											</textarea>
+										</div>
+										<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<tr>
+												<td colspan="2" class="dato" style="border: double blue"> </td>
+											</tr>
+											<td colspan="2" class="dato">Estrategias de evaluacion</td>
+										</table>
+										<div class="item col-md-offset-3">
+											<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
+
+											</textarea>
+										</div>
+									</div>
+
+								  </div>
+
+							</div>
+
+
 						</div>
-
-						<!--Contenido de la Pestaña 2-->
-				   		<div id="content-2" style="position: absolute;
-							  top:  5px;
-							  left: -60px;">
-
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-								<tr>
-									<td colspan="2" class="dato">Objetivos</td>
-
-								</tr>
-							</table>
-							<div class="item col-md-offset-3">
-								<textarea name="obj" placeholder="obj" cols="35" rows="20" style="overflow-y: scroll">
-
-								</textarea>
-							</div>
-
-
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<td colspan="2" class="dato">Requisitos</td>
-							</table>
-							<div class="item col-md-offset-3">
-								<textarea name="obj" placeholder="obj" cols="20" rows="5" style="overflow-y: scroll">
-
-								</textarea>
-							</div>
-
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<td colspan="2" class="dato">Estrategias metodologicas</td>
-							</table>
-							<div class="item col-md-offset-3">
-								<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
-
-								</textarea>
-							</div>
-							<table border="0" style="border:1 hidden; margin: 0 auto;">
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-								<td colspan="2" class="dato">Estrategias de evaluacion</td>
-							</table>
-							<div class="item col-md-offset-3">
-								<textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
-
-								</textarea>
-							</div>
-						</div>
-
-						<!--Contenido de la Pestaña 3-->
-						<div id="content-3" >
-
-							<td class="dato1">
-								<input type="text" name="codigo" placeholder="Nombre del campo" />
-							</td>
-							<td class="dato1">
-								<input type="text" name="codigo" placeholder="contenido del campo" />
-							</td>
-						</div>
-
-
-					  </div>
-
-				</div>
-
-
-			</div>
+					</div>
+					<p><input type="submit" value="Guardar"/></p>
+				</form>
 		</div>
-</div>
 
-{% include "SIGPAEHistorico/footer.html" %}
+	{% include "SIGPAEHistorico/footer.html" %}
 
-
-
-
-{% endblock %}
+	{% endblock %}
 </body>

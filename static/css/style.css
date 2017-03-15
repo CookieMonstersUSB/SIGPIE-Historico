@@ -11,7 +11,7 @@ body{
 
 #tab-1,#tab-2,#tab-3 {
  height: 1.5em;
- visibility: hidden;	
+ visibility: hidden;
 }
 
 #containerI label {
@@ -48,7 +48,7 @@ body{
  border-radius: 0 .25em .25em .25em;
  min-height: 60em; /* Alto del contenido */
  position: relative;
- 
+
  z-index: 5;
 }
 
@@ -127,6 +127,11 @@ table{
 
 .item {
 	flex-grow : 1;
+
+ 						left: 800px;
+ 						height:540px;
+ 						width: 500px;
+
 }
 
 .pdfitem {

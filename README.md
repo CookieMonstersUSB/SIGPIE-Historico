@@ -97,8 +97,8 @@ crear usuario de postgres y alterarlo para que funcione con django
 
   postgres=# ALTER ROLE cmusb SET timezone TO 'UTC';
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist TO cmusb;
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE sigpae_hist_admin TO cmusb;
+  postgres=# GRANT ALL PRIVILEGES ON DATABASE admin TO cmusb;
 
 en caso de ser necesario hacer makemigrations y migrate para corregir cualquier error

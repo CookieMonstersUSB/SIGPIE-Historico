@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import validate_file_extension
+from .validators import *
 
 # class ventana(models.Model):
 #         text = models.TextField()
@@ -18,28 +18,23 @@ class Document(models.Model):
         )
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
-        doctext = models.TextField(default="")
-        codigo_programa = models.CharField(max_length = 8)
-        creditos = models.IntegerField(default=0)
-        tituloP = models.CharField(max_length = 60,default="")
-        fechaP = models.IntegerField(default=2000)
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="")
-        h_teo = models.IntegerField(default=0)
-        h_prac = models.IntegerField(default=0)
-        h_lab = models.IntegerField(default=0)
-        departamento = models.CharField(max_length = 70,default="")
-        coordinacion = models.CharField(max_length = 70,default="")
-        contSinop = models.TextField(default="")
-        FuenteInfo = models.TextField(default="")
-        objetivos = models.TextField(default="")
-        requisito = models.TextField(default="")
-        estrategias_meto = models.TextField(default="")
-        estrategias_eval = models.TextField(default="")
-
-class Consultapae(models.Model):
-    _DATABASE = 'default'
-    code = models.CharField(max_length = 6)
-    year = models.IntegerField(default=2000)
+        doctext = models.TextField(default="", blank = True)
+        codigo_programa = models.CharField(max_length = 8, default="", blank = True)
+        creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
+        tituloP = models.CharField(max_length = 60, default="", blank = True)
+        fechaP = models.IntegerField(blank = True, null = True)
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
+        h_teo = models.IntegerField(default=0, null = True)
+        h_prac = models.IntegerField(default=0, null = True)
+        h_lab = models.IntegerField(default=0, null = True)
+        departamento = models.CharField(max_length=70, default="", blank = True)
+        coordinacion = models.CharField(max_length=70, default="", blank = True)
+        contSinop = models.TextField(default="", blank = True)
+        FuenteInfo = models.TextField(default="", blank = True)
+        objetivos = models.TextField(default="", blank = True)
+        requisito = models.TextField(default="", blank = True)
+        estrategias_meto = models.TextField(default="", blank = True)
+        estrategias_eval = models.TextField(default="", blank = True)
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):
