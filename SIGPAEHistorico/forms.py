@@ -10,7 +10,7 @@ class UploadFileForm(ModelForm):
     class Meta:
         model = Document
         include = ['name', 'docfile']
-        exclude = []
+        exclude = ['doctext']
 
 
 class TextForm(ModelForm):
