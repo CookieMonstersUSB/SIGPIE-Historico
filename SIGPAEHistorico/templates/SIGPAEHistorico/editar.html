@@ -9,7 +9,8 @@
 <script language="javascript" type="text/javascript">
 
 	function seleccionEncargado(sel) {
-	      if (sel.value=="Departamento"){
+
+	       if (sel.value=="Departamento"){
 	           divC = document.getElementById("Edep");
 	           divC.style.display = "";
 
@@ -65,7 +66,8 @@
 
 								   <!--Contenido de la Pestaña 1-->
 								   <div id="content-1" style="">
-										<table border="0" style="border:1 hidden; margin: 0 auto;" >
+
+										<table border="0" >
 											<tr>
 												<td class="dato">Código</td>
 												<td class="dato1">
@@ -103,14 +105,13 @@
 											<tr>
 												<td valign ="top" class="dato">Periodo</td>
 												<td class="dato1">
-													<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic
-													<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar
-													<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul<br />
-													<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano
+													{{textform.periodoP.errors}}
+													{{textform.periodoP}}
+													
 												</td>
 											</tr>
 										</table>
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0">
 											<tr>
 												<td colspan="3" class="dato" style="border: double blue"> </td>
 											</tr>
@@ -149,9 +150,10 @@
 											<td colspan="2" class="dato">Entidad Encargada</td>
 										</table>
 										<div>
-											<div class="dato1">
+											<div  >
 												<tr>
 														<SELECT NAME="encargado" onChange="seleccionEncargado(this)">
+																	<OPTION VALUE="default">Seleccione</OPTION>
 										              <OPTION VALUE="Departamento" >Departamento</OPTION>
 										              <OPTION VALUE="Coordinación">Coordinación</OPTION>
 										        </SELECT>
@@ -159,10 +161,10 @@
 												</tr>
 											</div>
 
-											<div id="Edep" class="dato1" style="display:none;">
+											<div id="Edep"  style="display:none;">
 												<!--form-->
 													<tr>
-														<td colspan="2" class="dato1">
+														<td colspan="2" >
 															<select name="area_dep" id="area_dep">
 																<option value="0" selected="selected">---------</option>
 										            <option value="1">División Ciencias Físicas y Matemáticas</option>
@@ -173,8 +175,8 @@
 														</td>
 													</tr>
 													<tr>
-
-														<td colspan="2" class="dato1">
+													</br>
+														<td colspan="2">
 															<select name="dep" id="dep">
 																<option value="0" selected="selected">---------</option>
 																<option value="1" class="1">Física</option>
@@ -214,10 +216,10 @@
 											  </script>
 								  		</div>
 
-											<div id="ECoor" class="dato1" style="display:;">
+											<div id="ECoor" style="display:;">
 												<!--form-->
 													<tr>
-														<td colspan="2" class="dato1">
+														<td  class="dato1">
 															<select name="area_coor" id="area_coor">
 										            <option value="0" selected="selected">---------</option>
 										         		<option value="1">Estudios Generales</option>
@@ -228,7 +230,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td colspan="2" class="dato1">
+														<td class="dato1">
 															<select name="coor" id="coor">
 										            <option value="0" selected="selected">---------</option>
 										        		<option value="1" class="1">Ciclo Básico</option>
@@ -277,25 +279,25 @@
 
 										</div>
 
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0" >
 											<tr>
 												<td colspan="3" class="dato" style="border: double blue"> </td>
 											</tr>
 											<td colspan="2" class="dato">Contenido sinoptico</td>
 										</table>
-										<div class="item col-md-offset-3">
+										<div class="area">
                       <td class="dato1">
                         {{textform.contSinop.errors}}
                         {{textform.contSinop}}
                       </td>
 										</div>
-											<table border="0" style="border:1 hidden; margin: 0 auto;">
+											<table border="0" >
 												<tr>
 													<td colspan="3" class="dato" style="border: double blue"> </td>
 												</tr>
-												<td colspan="2" class="dato">Fuentes de informacion recomendadas</td>
+												<td  class="dato">Fuentes de informacion recomendadas</td>
 											</table>
-													<div class="item col-md-offset-3">
+													<div class="item">
 														<!--textarea name="obj" placeholder="obj" cols="35" rows="10" style="overflow-y: scroll">
 
 														</textarea-->
@@ -307,9 +309,9 @@
 									<!--Contenido de la Pestaña 2-->
 							   		<div id="content-2" style="position: absolute;
 										  top:  5px;
-										  left: -60px;">
+										  left: 0px;">
 
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0" >
 											<tr>
 												<td colspan="4" class="dato" style="border: double blue"> </td>
 											</tr>
@@ -318,42 +320,42 @@
 
 											</tr>
 										</table>
-										<div class="item col-md-offset-3">
+										<div class="area" >
                       {{textform.objetivos.errors}}
                       {{textform.objetivos}}
 										</div>
 
 
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0" >
 											<tr>
 												<td colspan="2" class="dato" style="border: double blue"> </td>
 											</tr>
 
 											<td colspan="2" class="dato">Requisitos</td>
 										</table>
-										<div class="item col-md-offset-3">
+										<div class="area">
                       {{textform.requisito.errors}}
                       {{textform.requisito}}
 										</div>
 
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0" >
 											<tr>
 												<td colspan="2" class="dato" style="border: double blue"> </td>
 											</tr>
 
 											<td colspan="2" class="dato">Estrategias metodologicas</td>
 										</table>
-										<div class="item col-md-offset-3">
+										<div class="area ">
                       {{textform.estrategias_meto.errors}}
                       {{textform.estrategias_meto}}
 										</div>
-										<table border="0" style="border:1 hidden; margin: 0 auto;">
+										<table border="0">
 											<tr>
 												<td colspan="2" class="dato" style="border: double blue"> </td>
 											</tr>
 											<td colspan="2" class="dato">Estrategias de evaluacion</td>
 										</table>
-										<div class="item col-md-offset-3">
+										<div class="area ">
                       {{textform.estrategias_eval.errors}}
                       {{textform.estrategias_eval}}
 										</div>

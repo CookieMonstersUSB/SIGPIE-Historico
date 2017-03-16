@@ -30,20 +30,28 @@ class UploadFileForm(ModelForm):
 
 # class TextForm(forms.Form):
 #     text = forms.CharField(label = "Texto del programa", widget=forms.Textarea())
-class codigo(ModelForm):
-    class meta:
-        model = Document
-        field = ('codigo_programa')
-        widget = {'codigo_programa': widgets.Select(attrs= {'class': 'codigo'}),}
+
 
 class TextForm(ModelForm):
     """docstring for TextForm."""
+    EM = "sd"
+    AJ = "em"
+    SD = "aj"
+    VE = "verano"
+    ELECCION_PERIODO = (
+        (SD, 'sep-dic'),
+        (EM,'ene-mar'),
+        (AJ, 'abr-jul'),
+        (VE, 'verano'),
+    )
+    periodoP = forms.ChoiceField(choices=ELECCION_PERIODO, widget=forms.RadioSelect(attrs={'class':'radio_1', 'name': 'name2'}))
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
-        widget = {'doctext': widgets.Select(attrs={'class': 'textbox',
-                                                   'col': 10,
-                                                   'row': 500 })}
+        widget = {'doctext': widgets.Select(attrs={'class': 'textbox','col': 10,
+                                                   'row': 500 }),
+                                                   }
+
 
 class CodigoForm(ModelForm):
     """docstring for TextForm."""

@@ -20,7 +20,7 @@ class Document(models.Model):
         creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
         tituloP = models.CharField(max_length = 60, default="", blank = True)
         fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
+        periodoP = models.CharField(choices= ELECCION_PERIODO, default="", blank = True)
         h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
         h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
         h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
