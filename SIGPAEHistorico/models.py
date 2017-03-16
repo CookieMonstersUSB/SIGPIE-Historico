@@ -27,7 +27,7 @@ class Document(models.Model):
         departamento = models.CharField(max_length=70, default="", blank = True)
         coordinacion = models.CharField(max_length=70, default="", blank = True)
         contSinop = models.TextField(default="", blank = True)
-        
+        FuenteInfo = models.TextField(default="", blank = True)
         objetivos = models.TextField(default="", blank = True)
         requisito = models.TextField(default="", blank = True)
         estrategias_meto = models.TextField(default="", blank = True)
