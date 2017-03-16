@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import *
 from .models import *
-# from ctypes.test.test_pickling import name
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
 # Create your views here.
@@ -39,6 +38,7 @@ class editar(UpdateView):
         """
         If the form is valid, save the associated model.
         """
+        print('valido')
         self.object = form.save()
         self.success_url = reverse('index')
         # print(self.success_url)
@@ -48,7 +48,7 @@ class upload(CreateView):
     context_object_name = 'form'
     form_class = UploadFileForm
     model = Document
-    queryset = Document.objects.all()
+    queryset = Document.objects.name
     template_name = 'SIGPAEHistorico/upload.html'
 
     def form_valid(self, form):
