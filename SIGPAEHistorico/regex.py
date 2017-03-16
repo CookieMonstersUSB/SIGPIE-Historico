@@ -1,9 +1,9 @@
 import re
 
 def Regex(String):
-	img=re.search('[A-Z]{3}[0-9]{3} | [a-z]{3}[0-9]{3} | [a-z]{2}[0-9]{4} | [A-Z]{2}[0-9]{4}',String)
-    img2=re.search('[A-Z]{3}-[0-9]{3} | [a-z]{3}-[0-9]{3} | [a-z]{2}-[0-9]{4} | [A-Z]{2}-[0-9]{4}',String)
-    img3=re.search('[A-Z]{3}\B[0-9]{3} | [a-z]{3}\B[0-9]{3} | [a-z]{2}\B[0-9]{4} | [A-Z]{2}\B[0-9]{4}',String)
+	img=re.search('[A-Z]{2}([A-Z]|[1-9])[1-9]{3} | [a-z]{2}([a-z]|[1-9])[1-9]{3}',String)
+    img2=re.search('[A-Z]{2}([A-Z]|[1-9])-[1-9]{3} | [a-z]{2}([a-z]|[1-9])-[1-9]{3}',String)
+    img3=re.search('[A-Z]{2}([A-Z]|[1-9])\B[1-9]{3} | [a-z]{2}([a-z]|[1-9])\B[1-9]{3}',String)
 
 	if img:
 		return format(img.group(0))

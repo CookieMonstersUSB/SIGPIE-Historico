@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, CreateView, UpdateView, FormView, DetailView
-# from django.views.generic.edit import BaseFormView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
