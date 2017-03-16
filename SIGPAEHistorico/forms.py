@@ -1,8 +1,9 @@
 from django import forms
-from django.forms import ModelForm, Form
+from django.forms import ModelForm, Form, ModelChoiceField
 from .validators import validate_file_extension
-from .models import Document
+from .models import Document, Divisiones
 from django.forms import widgets
+from django.forms.fields import ChoiceField
 
 class UploadFileForm(ModelForm):
     #name = forms.CharField(max_length = 50 , label = "Nombre del archivo")
@@ -32,11 +33,10 @@ class UploadFileForm(ModelForm):
 #     text = forms.CharField(label = "Texto del programa", widget=forms.Textarea())
 
 class TextForm(ModelForm):
-    """docstring for TextForm."""
     EM = "sd"
     AJ = "em"
     SD = "aj"
-    VE = "verano"
+    VE = "ve"
     ELECCION_PERIODO = (
         (SD, 'sep-dic'),
         (EM,'ene-mar'),
@@ -44,19 +44,17 @@ class TextForm(ModelForm):
         (VE, 'verano'),
     )
     periodoP = forms.ChoiceField(choices=ELECCION_PERIODO, widget=forms.RadioSelect(attrs={'class':'radio_1', 'name': 'name2'}))
+    divisiones = ModelChoiceField(queryset=Divisiones.objects.all())
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
-        widget = {'doctext': widgets.Select(attrs={'class': 'textbox','col': 10,
-                                                   'row': 500 }),
-                                                   }
 
 '''class CodigoForm(ModelForm):
     """docstring for TextForm."""
     class Meta:
         model = Document
         exclude = []'''
-        #'''include = ['codigo_programa']'''        
+        #'''include = ['codigo_programa']'''
 
 class ConsultaPaeForm(Form):
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')

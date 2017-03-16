@@ -107,7 +107,6 @@
 												<td class="dato1">
 													{{textform.periodoP.errors}}
 													{{textform.periodoP}}
-
 												</td>
 											</tr>
 										</table>
@@ -149,8 +148,33 @@
 
 											<td colspan="2" class="dato">Entidad Encargada</td>
 										</table>
+
 										<div>
-											<div  >
+											<!--select id="id_divisiones" name="divisiones">
+												<option value="0" selected="selected">-----------</option>
+												<option value="1">División Ciencias Físicas y Matemáticas</option>
+												<option value="2">División Ciencias Sociales y Humanidades</option>
+												<option value="3">División Ciencias Biológicas</option>
+												<option value="4">División Ciencias y Tecnologías Administrativas e Industriales</option>
+											</select>
+											<select id="id_dependencias" name="dependencias">
+												<option value="0" class="0" selected="selected">-----------</option>
+												<option value="1" class="1">Física</option>
+												<option value="2" class="1">Química</option>
+												<option value="3" class="1">Mecánica</option>
+												<option value="12" class="2">Ciencia y Tecnología del Comportamiento</option>
+												<option value="13" class="2">Lengua y Literatura</option>
+												<option value="15" class="2">Idiomas</option>
+											</select>
+											$(function(){
+												$("#id_dependencias").chained("#id_divisiones");
+											});-->
+											{{textform.divisiones}}
+											{{textform.dependencias}}
+										</div>
+
+										<!--div>
+											<div>
 												<tr>
 														<SELECT NAME="encargado" onChange="seleccionEncargado(this)">
 																	<OPTION VALUE="default">Seleccione</OPTION>
@@ -162,10 +186,9 @@
 											</div>
 
 											<div id="Edep"  style="display:none;">
-												<!--form-->
 													<tr>
 														<td colspan="2" >
-															<select name="area_dep" id="area_dep">
+															<select id="id_divisiones" name="divisiones">
 																<option value="0" selected="selected">---------</option>
 										            <option value="1">División Ciencias Físicas y Matemáticas</option>
 																<option value="2">División Ciencias Sociales y Humanidades</option>
@@ -177,7 +200,7 @@
 													<tr>
 													</br>
 														<td colspan="2">
-																<select name="dep" id="dep">
+																<select id="id_dependencias" name="dependencias">
 																	<option value="0" selected="selected">---------</option>
 																	<option value="1" class="1">Física</option>
 																	<option value="2" class="1">Química</option>
@@ -208,17 +231,15 @@
 											    			</select>
 														</td>
 													</tr>
-												<!--/form-->
 												<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
 												  $(function(){
-												      $("#dep").chained("#area_dep");
+												      $("#id_dependencias").chained("#id_divisiones");
 												  });
 											  </script>
-												
+
 								  		</div>
 
 											<div id="ECoor" style="display:;">
-												<!--form-->
 													<tr>
 														<td  class="dato1">
 															<select name="area_coor" id="area_coor">
@@ -270,7 +291,6 @@
 										    			</select>
 														</td>
 													</tr>
-												<!--/form-->
 												<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
 												  $(function(){
 												      $("#coor").chained("#area_coor");
@@ -278,7 +298,7 @@
 												</script>
 									  	</div>
 
-										</div>
+										</div-->
 
 										<table border="0" >
 											<tr>
@@ -289,6 +309,7 @@
 										<div class="area">
                       <td class="dato1">
                         {{textform.contSinop.errors}}
+												<br>
                         {{textform.contSinop}}
                       </td>
 										</div>
