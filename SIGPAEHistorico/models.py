@@ -13,6 +13,46 @@ class Document(models.Model):
             (AJ, 'abr-jul'),
             (VE, 'verano'),
         )
+        AREA_DEP =(
+            ('---------'),
+            ('División Ciencias Físicas y Matemáticas'),
+            ('División Ciencias Sociales y Humanidades'),
+            ('División Ciencias Biológicas'),
+            ('División Ciencias y Tecnologías Administrativas e Industriales'),
+        )
+
+        DEP=(
+            ('---------'),
+            ('Física'),
+            ('Química'),
+            ('Mecánica'),
+            ('Matemáticas Puras y Aplicadas'),
+            ('Computo Científico y Estadística'),
+            ('Electrónica y Circuitos'),
+            ('Termodinámica y Fenómenos de Transferencia'),
+            ('Conversión y Transporte de Energía'),
+            ('Procesos y Sistemas'),
+            ('Ciencias de los Materiales'),
+            ('Ciencias de la Tierra'),
+            ('Ciencia y Tecnología del Comportamiento'),
+            ('Lengua y Literatura'),
+            ('Ciencias Económicas y Administrativas'),
+            ('Idiomas'),
+            ('Filosofía'),
+            ('Ciencias Sociales'),
+            ('Arquitectura y Artes Plásticas'),
+            ('Planificación Urbana'),
+            ('Biología Celular'),
+            ('Estudios Ambientales'),
+            ('Biología de Organismos'),
+            ('Tecnología de Procesos Biológicos y Bioquímicos'),
+            ('Tecnología de Servicios'),
+            ('Tecnología Industrial'),
+            ('Formación General y Ciencias Básicas')
+        )
+
+
+
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="", blank = True)
@@ -20,11 +60,12 @@ class Document(models.Model):
         creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
         tituloP = models.CharField(max_length = 60, default="", blank = True)
         fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
-        periodoP = models.CharField(choices= ELECCION_PERIODO, default="", blank = True)
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
         h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
         h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
         h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
-        departamento = models.CharField(max_length=70, default="", blank = True)
+        Adepartamento = models.CharField(max_length=70, choices=AREA_DEP, default="", blank = True)
+        departamento = models.CharField(max_length=70, choices=DEP, default="", blank = True)
         coordinacion = models.CharField(max_length=70, default="", blank = True)
         contSinop = models.TextField(default="", blank = True)
         FuenteInfo = models.TextField(default="", blank = True)
