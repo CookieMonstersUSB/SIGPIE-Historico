@@ -75,10 +75,10 @@
 								<tr>
 									<td class="dato">Código</td>
 									<td class="dato1">
-										<form  action="{% url "editar" document.pk %}" method="post">
+										<form  action="{% url "editar" document.pk %}" method="POST">
 												{% csrf_token %}
 												<input type="text" name="codigo" {{form.codigo_programa}}
-												<p><input type="submit" value="Editar"/></p>
+
 										</form>
 									</td>
 								</tr>
@@ -86,14 +86,16 @@
 									<td  class="dato">Creditos</td>
 									<td class="dato1">
 										<form name="creditos" method="POST">
-											<input type="number" name="creditos" min="0" max="16" />
+											<input type="number" name="creditos" min="0" max="16" {{TextForm.creditos}}/>
 										</form>
 									</td>
 								</tr>
 								<tr>
 									<td class="dato">Título</td>
 									<td class="dato1">
+										<form name="titulo" method="POST">
 										<input type="text" name="titulo"/>
+									</form>
 									</td>
 								</tr>
 								<tr>
@@ -112,10 +114,12 @@
 
 									<td valign ="top" class="dato">Periodo</td>
 									<td class="dato1">
+										<form name="periodo" method="POST">
 										<input type="radio" style="vertical-align: middle" name="Periodo" value="sd"/> sep-dic
 										<input type="radio" style="vertical-align: middle" name="Periodo" value="em"/> ene-mar
 										<input type="radio" style="vertical-align: middle" name="Periodo" value="aj"/> abr-jul<br />
 										<input type="radio" style="vertical-align: middle" name="Periodo" value="verano"/> verano
+									</form>
 									</td>
 
 								</tr>

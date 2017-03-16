@@ -19,7 +19,7 @@ class Document(models.Model):
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="")
-        codigo_programa = models.CharField(max_length = 8)
+        codigo_programa = models.CharField(max_length = 8, default="")
         creditos = models.IntegerField(default=0)
         tituloP = models.CharField(max_length = 60,default="")
         fechaP = models.IntegerField(default=2000)
