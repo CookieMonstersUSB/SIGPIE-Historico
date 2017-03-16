@@ -5,7 +5,7 @@ from django.views.generic import ListView, CreateView, UpdateView, FormView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import UploadFileForm, TextForm, RequestForm
+from .forms import UploadFileForm, TextForm
 from .models import Document
 
 #from ctypes.test.test_pickling import name
@@ -40,6 +40,7 @@ class editar(UpdateView):
         """
         If the form is valid, save the associated model.
         """
+        print('valido')
         self.object = form.save()
         self.success_url = reverse('index')
         return super(editar, self).form_valid(form)
@@ -67,10 +68,3 @@ class listar(ListView):
     model = Document
     queryset = Document.objects.all()
     template_name = 'SIGPAEHistorico/listar.html'
-
-class consultarpae(FormView):
-    """docstring for consultarpae."""
-    form_class = RequestForm
-    # context_object_name = 'form'
-    success_url = 'index'
-    template_name = 'SIGPAEHistorico/consultarpae.html'

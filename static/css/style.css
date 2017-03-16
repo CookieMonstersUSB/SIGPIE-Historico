@@ -11,7 +11,7 @@ body{
 
 #tab-1,#tab-2,#tab-3 {
  height: 1.5em;
- visibility: hidden;	
+ visibility: hidden;
 }
 
 #containerI label {
@@ -48,7 +48,7 @@ body{
  border-radius: 0 .25em .25em .25em;
  min-height: 60em; /* Alto del contenido */
  position: relative;
- 
+
  z-index: 5;
 }
 
@@ -94,6 +94,8 @@ table{
     margin-top: 5%;
 }
 .cuadro_atributos{
+	position: absolute;
+	left:5%;
 	height:530px;
 	width: 450px;
 	background:#f1f1f1;
@@ -127,10 +129,19 @@ table{
 
 .item {
 	flex-grow : 1;
+
+ 						left: 800px;
+ 						height:540px;
+ 						width: 500px;
+
 }
 
 .pdfitem {
 	flex-grow : 1;
 	flex-basis : 40vw;
 	min-width: 550px;
+}
+
+#id_doctext {
+	height: 540px;
 }
