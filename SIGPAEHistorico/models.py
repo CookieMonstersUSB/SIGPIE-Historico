@@ -1,14 +1,74 @@
 from django.db import models
-from .validators import validate_file_extension
-
-# class ventana(models.Model):
-#         text = models.TextField()
+from .validators import *
 
 class Document(models.Model):
         _DATABASE = 'default'
+        EM = "sd"
+        AJ = "em"
+        SD = "aj"
+        VE = "verano"
+        ELECCION_PERIODO = (
+            (SD, 'sep-dic'),
+            (EM,'ene-mar'),
+            (AJ, 'abr-jul'),
+            (VE, 'verano'),
+        )
+        AREA_DEP =(
+            ('2','División Ciencias Físicas y Matemáticas'),
+            ('3','División Ciencias Sociales y Humanidades'),
+            ('4','División Ciencias Biológicas'),
+            ('5','División Ciencias y Tecnologías Administrativas e Industriales'),
+        )
+
+
+        DEP=(
+            ('1','Física'),
+            ('2','Química'),
+            ('3','Mecánica'),
+            ('4','Matemáticas Puras y Aplicadas'),
+            ('5','Computo Científico y Estadística'),
+            ('6','Electrónica y Circuitos'),
+            ('7','Termodinámica y Fenómenos de Transferencia'),
+            ('8','Conversión y Transporte de Energía'),
+            ('9','Procesos y Sistemas'),
+            ('10','Ciencias de los Materiales'),
+            ('11','Ciencias de la Tierra'),
+            ('12','Ciencia y Tecnología del Comportamiento'),
+            ('13','Lengua y Literatura'),
+            ('14','Ciencias Económicas y Administrativas'),
+            ('15','Idiomas'),
+            ('16','Filosofía'),
+            ('17','Ciencias Sociales'),
+            ('18','Arquitectura y Artes Plásticas'),
+            ('19','Planificación Urbana'),
+            ('20','Biología Celular'),
+            ('21','Estudios Ambientales'),
+            ('22','Biología de Organismos'),
+            ('23','Tecnología de Procesos Biológicos y Bioquímicos'),
+            ('24','Tecnología de Servicios'),
+            ('25','Tecnología Industrial'),
+            ('26','Formación General y Ciencias Básicas')
+        )
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
-        doctext = models.TextField(default="")
+        doctext = models.TextField(default="", blank = True)
+        codigo_programa = models.CharField(max_length = 8, default="", blank = True)
+        creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
+        tituloP = models.CharField(max_length = 60, default="", blank = True)
+        fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
+        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
+        h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
+        h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
+        h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
+        Adepartamento = models.CharField(max_length=70, choices=AREA_DEP, default="", blank = True)
+        departamento = models.CharField(max_length=70, choices=DEP, default="", blank = True)
+        coordinacion = models.CharField(max_length=70, default="", blank = True)
+        contSinop = models.TextField(default="", blank = True)
+        FuenteInfo = models.TextField(default="", blank = True)
+        objetivos = models.TextField(default="", blank = True)
+        requisito = models.TextField(default="", blank = True)
+        estrategias_meto = models.TextField(default="", blank = True)
+        estrategias_eval = models.TextField(default="", blank = True)
 
 class Consultapae(models.Model):
     _DATABASE = 'default'
