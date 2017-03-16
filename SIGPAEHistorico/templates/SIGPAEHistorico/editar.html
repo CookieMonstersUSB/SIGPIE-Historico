@@ -62,6 +62,8 @@
 						  		<label for="tab-1">Obligatorios</label>
 						  		<input id="tab-2" type="radio" name="tab-group" />
 						  		<label for="tab-2">Normados</label>
+						  		<input id="tab-3" type="radio" name="tab-group" />
+						  		<label for="tab-3">Adicionales</label>						  		
 						  		<div id="content" >
 
 								   <!--Contenido de la Pestaña 1-->
@@ -361,6 +363,27 @@
                       {{textform.estrategias_eval}}
 										</div>
 									</div>
+
+									<!--Contenido de la Pestaña 3-->
+							   		<div id="content-3" style="position: absolute;
+										  top:  5px;
+										  left: 0px;">
+
+										<table border="0" >
+											<tr>
+												<td colspan="4" class="dato" style="border: double blue"> </td>
+											</tr>
+											<tr>
+												<td colspan="2" class="dato">Objetivos</td>
+
+											</tr>
+										</table>
+										<div class="area" >
+			            		          {{textform.objetivos.errors}}
+            			        		  {{textform.objetivos}}
+										</div>
+
+									</div>									
 
 								  </div>
 
