@@ -165,25 +165,56 @@
 												<!--form-->
 													<tr>
 														<td colspan="2" >
-															{{ textform.Adepartamento.errors }}
-															{{textform.Adepartamento}}
+															<select name="area_dep" id="area_dep">
+																<option value="0" selected="selected">---------</option>
+										            <option value="1">División Ciencias Físicas y Matemáticas</option>
+																<option value="2">División Ciencias Sociales y Humanidades</option>
+																<option value="3">División Ciencias Biológicas</option>
+																<option value="4">División Ciencias y Tecnologías Administrativas e Industriales</option>
+										    			</select>
 														</td>
 													</tr>
 													<tr>
 													</br>
 														<td colspan="2">
-															{{ textform.departamento.errors }}
-															{{textform.departamento}}
+																<select name="dep" id="dep">
+																	<option value="0" selected="selected">---------</option>
+																	<option value="1" class="1">Física</option>
+																	<option value="2" class="1">Química</option>
+																	<option value="3" class="1">Mecánica</option>
+																	<option value="4" class="1">Matemáticas Puras y Aplicadas</option>
+																	<option value="5" class="1">Computo Científico y Estadística</option>
+																	<option value="6" class="1">Electrónica y Circuitos</option>
+																	<option value="7" class="1">Termodinámica y Fenómenos de Transferencia</option>
+																	<option value="8" class="1">Conversión y Transporte de Energía</option>
+																	<option value="9" class="1">Procesos y Sistemas</option>
+																	<option value="10" class="1">Ciencias de los Materiales</option>
+																	<option value="11" class="1">Ciencias de la Tierra</option>
+																	<option value="12" class="2">Ciencia y Tecnología del Comportamiento</option>
+																	<option value="13" class="2">Lengua y Literatura</option>
+																	<option value="14" class="2">Ciencias Económicas y Administrativas</option>
+																	<option value="15" class="2">Idiomas</option>
+																	<option value="16" class="2">Filosofía</option>
+																	<option value="17" class="2">Ciencias Sociales</option>
+																	<option value="18" class="2">Arquitectura y Artes Plásticas</option>
+																	<option value="19" class="2">Planificación Urbana</option>
+																	<option value="20" class="3">Biología Celular</option>
+																	<option value="21" class="3">Estudios Ambientales</option>
+																	<option value="22" class="3">Biología de Organismos</option>
+																	<option value="23" class="3">Tecnología de Procesos Biológicos y Bioquímicos</option>
+																	<option value="24" class="4">Tecnología de Servicios</option>
+																	<option value="25" class="4">Tecnología Industrial</option>
+																	<option value="26" class="4">Formación General y Ciencias Básicas</option>
+											    			</select>
 														</td>
 													</tr>
 												<!--/form-->
 												<script src="//www.appelsiini.net/projects/chained/jquery.chained.min.js" charset=utf-8></script> <script charset=utf-8>
 												  $(function(){
-												      $("#id_departamento").chained("#id_departamento");
+												      $("#dep").chained("#area_dep");
 												  });
 											  </script>
-												{{ textform.departamento.errors }}
-												{{textform.departamento}}
+												
 								  		</div>
 
 											<div id="ECoor" style="display:;">

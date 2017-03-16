@@ -14,45 +14,41 @@ class Document(models.Model):
             (VE, 'verano'),
         )
         AREA_DEP =(
-            ('1', '---------'),
             ('2','División Ciencias Físicas y Matemáticas'),
             ('3','División Ciencias Sociales y Humanidades'),
             ('4','División Ciencias Biológicas'),
             ('5','División Ciencias y Tecnologías Administrativas e Industriales'),
         )
 
+
         DEP=(
-            ('1','---------'),
-            ('2','Física'),
-            ('3','Química'),
-            ('4','Mecánica'),
-            ('5','Matemáticas Puras y Aplicadas'),
-            ('6','Computo Científico y Estadística'),
-            ('7','Electrónica y Circuitos'),
-            ('8','Termodinámica y Fenómenos de Transferencia'),
-            ('9','Conversión y Transporte de Energía'),
-            ('10','Procesos y Sistemas'),
-            ('11','Ciencias de los Materiales'),
-            ('12','Ciencias de la Tierra'),
-            ('13','Ciencia y Tecnología del Comportamiento'),
-            ('14','Lengua y Literatura'),
-            ('15','Ciencias Económicas y Administrativas'),
-            ('16','Idiomas'),
-            ('17','Filosofía'),
-            ('18','Ciencias Sociales'),
-            ('19','Arquitectura y Artes Plásticas'),
-            ('20','Planificación Urbana'),
-            ('21','Biología Celular'),
-            ('22','Estudios Ambientales'),
-            ('23','Biología de Organismos'),
-            ('24','Tecnología de Procesos Biológicos y Bioquímicos'),
-            ('25','Tecnología de Servicios'),
-            ('26','Tecnología Industrial'),
-            ('27','Formación General y Ciencias Básicas')
+            ('1','Física'),
+            ('2','Química'),
+            ('3','Mecánica'),
+            ('4','Matemáticas Puras y Aplicadas'),
+            ('5','Computo Científico y Estadística'),
+            ('6','Electrónica y Circuitos'),
+            ('7','Termodinámica y Fenómenos de Transferencia'),
+            ('8','Conversión y Transporte de Energía'),
+            ('9','Procesos y Sistemas'),
+            ('10','Ciencias de los Materiales'),
+            ('11','Ciencias de la Tierra'),
+            ('12','Ciencia y Tecnología del Comportamiento'),
+            ('13','Lengua y Literatura'),
+            ('14','Ciencias Económicas y Administrativas'),
+            ('15','Idiomas'),
+            ('16','Filosofía'),
+            ('17','Ciencias Sociales'),
+            ('18','Arquitectura y Artes Plásticas'),
+            ('19','Planificación Urbana'),
+            ('20','Biología Celular'),
+            ('21','Estudios Ambientales'),
+            ('22','Biología de Organismos'),
+            ('23','Tecnología de Procesos Biológicos y Bioquímicos'),
+            ('24','Tecnología de Servicios'),
+            ('25','Tecnología Industrial'),
+            ('26','Formación General y Ciencias Básicas')
         )
-
-
-
         name = models.CharField(max_length = 50)
         docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
         doctext = models.TextField(default="", blank = True)
