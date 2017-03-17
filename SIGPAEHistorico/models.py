@@ -72,10 +72,9 @@ class camposAdds(models.Model):
     docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
     nameAdd = models.CharField(max_length = 50)
     contentAdd = models.TextField(default = "")
-    
+
     class Meta:
-        db_table = 'camposAdds'
-        unique_together = (('docfk', 'nameAdd'))    
+        unique_together = (('docfk', 'nameAdd'))
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):

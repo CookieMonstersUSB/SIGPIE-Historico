@@ -1,8 +1,9 @@
 from django.core.exceptions import ValidationError
+from .regex import Regex
 
 def validate_file_extension(value):
     import os
-    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    ext = os.path.splitext(value.name)[1]
     valid_extensions = ['.pdf']
     if not ext.lower() in valid_extensions:
         raise ValidationError(u'Extensión de archivo no soportada')
@@ -18,3 +19,7 @@ def validate_year(value):
 def validate_hours(value):
     if (value < 0 or value > 16):
         raise ValidationError(u'Hora Inválido')
+
+def validate_code(value):
+    if (Regex(value) == ""):
+        raise ValidationError(u'Código Inválido')

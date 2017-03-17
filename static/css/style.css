@@ -144,7 +144,7 @@ table{
 }
 
 #id_doctext {
-	height: 540px;
+	height: 500px;
 }
 
 #id_periodoP{
@@ -154,4 +154,10 @@ table{
 #id_contSinop, #id_FuenteInfo, #id_objetivos {
 	height: 200px;
 	overflow-y: scroll;
+}
+
+#submitTextForm {
+	position: absolute;
+	left:45%;
+	bottom: 7%;
 }
