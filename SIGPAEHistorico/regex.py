@@ -2,9 +2,9 @@ import re
 
 def Regex(cadena):
 	img=re.search('[A-Z][A-Z]-[0-9][0-9][0-9][0-9]',cadena)
-	img2=re.search('[A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9]',cadena)
+	img2=re.search('[A-Z][A-Z][A-Z]-[0-9][0-9][0-9]',cadena)
 	img3=re.search('[A-Z][A-Z][0-9][0-9][0-9][0-9]',cadena)
-	img4=re.search('[A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9]',cadena)
+	img4=re.search('[A-Z][A-Z][A-Z][0-9][0-9][0-9]',cadena)
 	img5=re.search('[A-Z][A-Z]\B[0-9][0-9][0-9][0-9]',cadena)
 	img6=re.search('[A-Z][A-Z][A-Z]\B[0-9][0-9][0-9][0-9]',cadena)
 	if img:

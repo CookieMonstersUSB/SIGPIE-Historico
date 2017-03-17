@@ -31,11 +31,12 @@ class editar(UpdateView):
         return super(editar, self).get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        print('posteo')
+        #print('posteo')
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
+        print(request.POST)
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
-        print('posteo2')
+        #print('posteo2')
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
             if (self.object.divisiones_id == None):
@@ -43,12 +44,16 @@ class editar(UpdateView):
             if (self.object.dependencias_id == None or self.object.divisiones_id == 0):
                 self.object.dependencias_id = Dependencias.objects.all().filter(id=0)[0]
             self.object.save()
+        else:
+            return self.form_invalid(textForm)
 
         if camposForm.is_valid():
             campoNuevo = camposForm.save(commit=False)
             campoNuevo.docfk = self.object
             campoNuevo.save()
-        print('posteo3')
+        else:
+            return self.form_invalid(textForm)
+
         return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
 
 

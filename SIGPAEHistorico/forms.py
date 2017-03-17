@@ -39,7 +39,7 @@ class TextForm(ModelForm):
         (AJ, 'abr-jul'),
         (VE, 'verano'),
     )
-    periodoP = forms.ChoiceField(choices=ELECCION_PERIODO, widget=forms.RadioSelect(attrs={'class':'radio_1', 'name': 'name2'}))
+    # periodoP = forms.ChoiceField(choices=ELECCION_PERIODO, widget=forms.RadioSelect(attrs={'class':'radio_1', 'name': 'name2'}))
     class Meta:
         model = Document
         exclude = ['name', 'docfile']

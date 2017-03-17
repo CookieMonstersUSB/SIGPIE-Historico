@@ -42,7 +42,8 @@
 
 		    </ul>
 	{% else %}
-	    <h3 align="center">No hay archivos almacenados.</h3>
+	    <h3 align="center">No existe archivo que cumpla los criterios de búsqueda.</h3>
+			<a class="btn btn-default" href="{% url 'consultarpae' %}">Regresar</a>
 	{% endif %}
 
 
