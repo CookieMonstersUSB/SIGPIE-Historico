@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, Form
 from .validators import validate_file_extension
-from .models import Document
+from .models import *
 from django.forms import widgets
 
 class UploadFileForm(ModelForm):
@@ -61,3 +61,8 @@ class TextForm(ModelForm):
 class ConsultaPaeForm(Form):
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
     year = forms.IntegerField(label='Año del programa')
+
+class camposAddsForm(ModelForm):
+    class Meta:
+        model = camposAdds
+        exclude = ['docfk']

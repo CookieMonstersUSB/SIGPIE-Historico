@@ -4,10 +4,10 @@ from django.views.generic import ListView, CreateView, UpdateView, FormView, Det
 # from django.views.generic.edit import BaseFormView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import *
 from .models import *
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from .pdfReaders import LeerPDFaString
 # Create your views here.
 
@@ -32,17 +32,29 @@ class editar(UpdateView):
         document = Document.objects.get(pk=self.kwargs['pkdoc'])
         kwargs['document'] = document
         kwargs['textform'] = self.get_form()
+        kwargs['camposAddsForm'] = camposAddsForm()
+        kwargs['camposAddsList'] = camposAdds.objects.filter(docfk=document.pk)
         return super(editar, self).get_context_data(**kwargs)
 
-    def form_valid(self, form):
+    def post(self, request, *args, **kwargs):
         """
-        If the form is valid, save the associated model.
+        Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity.
         """
-        print('valido')
-        self.object = form.save()
-        self.success_url = reverse('index')
-        # print(self.success_url)
-        return super(editar, self).form_valid(form)
+        self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
+        textForm = TextForm(request.POST, instance=self.object)
+        camposForm = camposAddsForm(request.POST)
+
+        if textForm.is_valid():
+            textForm.save()
+
+        if camposForm.is_valid():
+            campoNuevo = camposForm.save(commit=False)
+            campoNuevo.docfk = self.object
+            campoNuevo.save()
+
+        return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
+
 
 class upload(CreateView):
     context_object_name = 'form'

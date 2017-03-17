@@ -75,6 +75,16 @@ class Consultapae(models.Model):
     code = models.CharField(max_length = 6)
     year = models.IntegerField()
 
+class camposAdds(models.Model):
+    _DATABASE = 'default'
+    docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
+    nameAdd = models.CharField(max_length = 50)
+    contentAdd = models.TextField(default = "")
+    
+    class Meta:
+        db_table = 'camposAdds'
+        unique_together = (('docfk', 'nameAdd'))    
+
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):
     _DATABASE = 'gestionpae'

@@ -46,7 +46,7 @@
 		  <embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
 		</div>
 
-				<form  action="{% url "editar" document.pk %}" method="post" enctype="multipart/form-data">
+				<form id="textForm" method="post" enctype="multipart/form-data">
 						{% csrf_token %}
 						{{ textform.non_field_errors }}
 						<div class="col-md-4" style="height:540px;
@@ -363,25 +363,43 @@
                       {{textform.estrategias_eval}}
 										</div>
 									</div>
+				</form> <!-- fin del form textForm -->
 
 									<!--Contenido de la Pestaña 3-->
 							   		<div id="content-3" style="position: absolute;
 										  top:  5px;
 										  left: 0px;">
-
-										<table border="0" >
-											<tr>
-												<td colspan="4" class="dato" style="border: double blue"> </td>
-											</tr>
-											<tr>
-												<td colspan="2" class="dato">Objetivos</td>
-
-											</tr>
-										</table>
+										{% if camposAddsList %}
+										  <ul>
+										  {% for campoadd in camposAddsList %}
+										  <li>
+										  	<p><b>{{campoadd.nameAdd}}:</b></p>
+										  	<p>{{campoadd.contentAdd}}</p>
+										  </li>
+										  </br>
+										  {% endfor %}
+										  </ul>
+							  
+										{% endif %}
 										<div class="area" >
-			            		          {{textform.objetivos.errors}}
-            			        		  {{textform.objetivos}}
+											<form id="addForm" method="post">
+												{% csrf_token %}
+												<p><b>Nombre:</b></p>
+												<p>
+												{{camposAddsForm.nameAdd.errors}}
+												{{camposAddsForm.nameAdd}}
+												</p>
+
+												<p><b>Contenido:</b></p>
+												<p>
+												{{camposAddsForm.contentAdd.errors}}
+												{{camposAddsForm.contentAdd}}
+												</p>
+
+												<input type="submit" name="addFormSubmit" value="Agregar Adicional" class="btn btn-primary">
+											</form>
 										</div>
+										
 
 									</div>									
 
@@ -390,13 +408,24 @@
 							</div>
 						</div>
 					</div>
-          <div class="container">
-					       <p><input type="submit" value="Guardar"/></p>
-          </div>
-				</form>
+		<div class="container">
+			<button class="btn btn-default" id="submitTextForm">
+				Guardar
+			</button>
+		</div>
 		</div>
 
 	{% include "SIGPAEHistorico/footer.html" %}
 
 	{% endblock %}
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#submitTextForm").on('click', function(){
+				$("#textForm").submit();
+			});
+		});
+
+
+	</script>
 </body>
