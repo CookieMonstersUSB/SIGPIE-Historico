@@ -169,7 +169,10 @@
 											$(function(){
 												$("#id_dependencias").chained("#id_divisiones");
 											});-->
+											<script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
 											{{textform.divisiones}}
+											<br>
+											<br>
 											{{textform.dependencias}}
 										</div>
 
@@ -309,7 +312,6 @@
 										<div class="area">
                       <td class="dato1">
                         {{textform.contSinop.errors}}
-												<br>
                         {{textform.contSinop}}
                       </td>
 										</div>

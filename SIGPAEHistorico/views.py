@@ -29,7 +29,12 @@ class editar(UpdateView):
         return super(editar, self).get_context_data(**kwargs)
 
     def form_valid(self, form):
-        self.object = form.save()
+        self.object = form.save(commit=False)
+        if(self.object.divisiones_id == None):
+            self.object.divisiones_id = Divisiones.objects.all().filter(id=0)[0]
+        if(self.object.dependencias_id == None or self.object.divisiones_id == 0):
+            self.object.dependencias = Dependencias.objects.all().filter(id=0)[0]
+        self.object.save()
         self.success_url = reverse('index')
         return super(editar, self).form_valid(form)
 
@@ -41,6 +46,7 @@ class upload(CreateView):
     template_name = 'SIGPAEHistorico/upload.html'
 
     def form_valid(self, form):
+        print('valido')
         self.object = form.save()
         text = LeerPDFaString(self.object.docfile)
         self.object.doctext = text
