@@ -3,6 +3,7 @@ from django.forms import ModelForm, Form
 from .validators import *
 from .models import *
 from django.forms import widgets
+from django.forms.fields import ChoiceField
 
 class UploadFileForm(ModelForm):
     #name = forms.CharField(max_length = 50 , label = "Nombre del archivo")
@@ -18,7 +19,8 @@ class UploadFileForm(ModelForm):
                 'h_teo',
                 'h_prac',
                 'h_lab',
-                'departamento',
+                'divisiones',
+                'dependencias',
                 'coordinacion',
                 'contSinop',
                 'FuenteInfo',
@@ -36,7 +38,7 @@ class TextForm(ModelForm):
     EM = "sd"
     AJ = "em"
     SD = "aj"
-    VE = "verano"
+    VE = "ve"
     ELECCION_PERIODO = (
         (SD, 'sep-dic'),
         (EM,'ene-mar'),
@@ -44,6 +46,7 @@ class TextForm(ModelForm):
         (VE, 'verano'),
     )
     periodoP = forms.ChoiceField(choices=ELECCION_PERIODO, widget=forms.RadioSelect(attrs={'class':'radio_1', 'name': 'name2'}))
+    divisiones = ModelChoiceField(queryset=Divisiones.objects.all())
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
