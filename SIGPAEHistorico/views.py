@@ -8,6 +8,7 @@ from .forms import *
 from .models import *
 from django.core.urlresolvers import reverse
 from .pdfReaders import LeerPDFaString
+from .regex import Regex
 # Create your views here.
 
 class index(TemplateView):
@@ -47,9 +48,10 @@ class upload(CreateView):
 
     def form_valid(self, form):
         print('valido')
-        self.object = form.save()
+        self.object = form.save(commit=False)
         text = LeerPDFaString(self.object.docfile)
         self.object.doctext = text
+        self.object.codigo_programa = Regex(text)
         self.object.save()
         self.success_url = reverse('editar', kwargs={'pkdoc':self.object.pk})
         return super(upload, self).form_valid(form)
