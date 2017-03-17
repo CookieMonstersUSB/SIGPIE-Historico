@@ -1,0 +1,49 @@
+{% extends "SIGPAEHistorico/base.html" %}
+{% block content %}
+
+	{% if solicitud %}
+		    <ul>
+		        <li><b>Denominacion:</b> 							{{solicitud.denominacion}}</li>
+						<br>
+						<li><b>Codigo:</b> 										{{solicitud.cod}}</li>
+						<br>
+						<li><b>Creditos:</b> 									{{solicitud.creditos}}</li>
+						<br>
+						<li><b>Coordinación:</b> 							{{solicitud.nomcoord}}</li>
+						<br>
+						{% if programa %}
+						<li><b>Horas de teoria:</b> 						{{programa.h_teoria}}</li>
+						<br>
+						<li><b>Horas de práctica:</b> 					{{programa.h_prac}}</li>
+						<br>
+						<li><b>Horas de Laboratorio:</b> 			{{programa.h_lab}}</li>
+						<br>
+						<li><b>Trimestre:</b> 									{{programa.fecha_vigtrim}}</li>
+						<br>
+						<li><b>Año:</b>												{{programa.fecha_vigano}}</li>
+						<br>
+						<li><b>Objetivos Generales:</b>				{{programa.obj_g}}</li>
+						<br>
+						<li><b>Objetivos Específicos:</b>			{{programa.obj_e}}</li>
+						<br>
+						<li><b>Contenidos:</b>									{{programa.contenidos}}</li>
+						<br>
+						<li><b>Estrategias Metodológicas:</b>	{{programa.estrategias}}</li>
+						<br>
+						<li><b>Estrategias Evaluativas:</b>		{{programa.estrat_eval}}</li>
+						<br>
+						<li><b>Fuentes de Información:</b>			{{programa.fuentes}}</li>
+						<br>
+						<li><b>Cronograma:</b>									{{programa.cronograma}}</li>
+						<br>
+						<li><b>Programa Sinóptico:</b>					{{programa.sinoptico}}</li>
+
+						{% endif %}
+
+		    </ul>
+	{% else %}
+	    <h3 align="center">No hay archivos almacenados.</h3>
+	{% endif %}
+
+
+{% endblock %}

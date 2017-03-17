@@ -4,18 +4,80 @@ body{
 +tr {
   border: #000 5px solid;
 }
+#containerI {
+ margin: 0 auto;
+ width: 100%; /* Ancho del contenedor */
+}
+
+#tab-1,#tab-2,#tab-3 {
+ height: 1.5em;
+ visibility: hidden;
+}
+
+#containerI label {
+ background: #f9f9f9; /* Fondo de las pestañas */
+ border-radius: .25em .25em 0 0;
+ color: #888; /* Color del texto de las pestañas */
+ cursor: pointer;
+ display: block;
+ float: left;
+ font-size: 1em; /* Tamaño del texto de las pestañas */
+ height: 2.5em;
+ line-height: 2.5em;
+ margin-right: .25em;
+ padding: 0;
+ text-align: center;
+}
+
+#containerI input:hover + label {
+ background: #ddd; /* Fondo de las pestañas al pasar el cursor por encima */
+ color: #666; /* Color del texto de las pestañas al pasar el cursor por encima */
+}
+
+#containerI input:checked + label {
+ background: #f1f1f1; /* Fondo de las pestañas al presionar */
+ color: #444; /* Color de las pestañas al presionar */
+ position: relative;
+ z-index: 6;
+}
+
+#content {
+ height:100%;
+ width: 100%;
+ background: #f1f1f1; /* Fondo del contenido */
+ border-radius: 0 .25em .25em .25em;
+ min-height: 60em; /* Alto del contenido */
+ position: relative;
+
+ z-index: 5;
+}
+
+#content-1, #content-2, #content-3 {
+ opacity: 0;
+ padding: 1.5em;
+ position: absolute;
+ z-index: -100;
+}
+
+#containerI input#tab-1:checked ~ #content #content-1,
+#containerI input#tab-2:checked ~ #content #content-2,
+#containerI input#tab-3:checked ~ #content #content-3 {
+ opacity: 1;
+ z-index: 100;
+}
+
 .dato{
 	font-family:Comic Sans;
-	font-size:22px;
+	font-size:20px;
 	text-align:center;
 }
 .dato1{
 	text-align:center;
-	font-size:18px;
+	font-size:16px;
 }
 
 table{
-	border-spacing:  5px 10px;
+	border-spacing:  5px 5px;
 }
 
 .titulo{
@@ -29,13 +91,16 @@ table{
 	font-size:12px;
 	font-family: verdana;
 	text-align: center;
-    margin-top: 5%;
+  margin-top: 5%;
 }
 .cuadro_atributos{
-	background:#CAAFF5;
-	float:left;
-	display:block;
-	margin: 5px 0px 5px 5px;
+
+	left:5%;
+	height:530px;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	overflow-y: scroll;
 }
 
@@ -62,10 +127,37 @@ table{
 
 .item {
 	flex-grow : 1;
+ 						left: 800px;
+ 						height:540px;
+ 						width: 500px;
 }
-
+.area{
+	flex-grow : 1;
+	left: 800px;"
+	height: 200px;
+	overflow-y: scroll;
+}
 .pdfitem {
 	flex-grow : 1;
 	flex-basis : 40vw;
 	min-width: 550px;
+}
+
+#id_doctext {
+	height: 500px;
+}
+
+#id_periodoP{
+	display: inline-block;
+}
+
+#id_contSinop, #id_FuenteInfo, #id_objetivos {
+	height: 200px;
+	overflow-y: scroll;
+}
+
+#submitTextForm {
+	position: absolute;
+	left:45%;
+	bottom: 7%;
 }

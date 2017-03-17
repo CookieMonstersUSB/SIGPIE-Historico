@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'SIGPAEHistorico'
-
+    'SIGPAEHistorico',
+    'smart_selects'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,13 +78,28 @@ WSGI_APPLICATION = 'ProyectoIngenieria.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+DATABASE_ROUTERS = ['ProyectoIngenieria.routers.DatabaseAppsRouter',]
+DATABASE_APPS_MAPPING = {'default': 'default',
+                         'gestionpae': 'gestionpae'}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'admin',
+        'USER': 'cmusb',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+    'gestionpae': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gestionpae',
+        'USER': 'cmusb',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': ''
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

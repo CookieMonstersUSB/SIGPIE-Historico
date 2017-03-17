@@ -1,0 +1,13 @@
+{% extends "SIGPAEHistorico/base.html" %}
+
+{% block title %}SIGPAE | Consultar SIGPAE{% endblock %}
+
+{% block content %}
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form method="post">
+          {% csrf_token %}
+          {{form.as_p}}
+          <p><input type="submit" value="Buscar"/></p>
+        </form>
+{% endblock %}
