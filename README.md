@@ -55,15 +55,20 @@ En los pasos siguientes se asumirá que su python3 es el alias de python3.4.4 y 
 ### Iniciar en django
 
 Para instalar:
-  pip3 install Django
+
+    pip3 install Django
+
   Depende del alias del pip para tu python
 
 La primera vez y cada vez que se agreguen librerias o se creen nuevos modelos se deben correr:
-  - python3 manage.py makemigrations 
-  - python3 manage.py migrate
+
+    python3 manage.py makemigrations 
+    
+    python3 manage.py migrate
 
 Luego para arrancar el servidor:
-  - python3 manage.py runserver
+
+    python3 manage.py runserver
 
 ### Instalar pdfminersix
 
@@ -71,17 +76,17 @@ Luego para arrancar el servidor:
 
   Descomprimir, ubicarse en la carpeta y correr:
 
-  python3 setup.py install
+    python3 setup.py install
 
   Para más información: https://github.com/pdfminer/pdfminer.six
 	
 ### Unipath
   
-  pip3 install unipath
+    pip3 install unipath
 
 ### Smart Selects
 
-  pip3 install Django_smart_selects
+    pip3 install Django_smart_selects
 
 ### PostgreSQL
   
