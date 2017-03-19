@@ -1,85 +1,117 @@
 # SIGPAE
 
-### Iniciar django
+Para correr SIGPAE correctamente es necesario cumplir con los siguientes requisitos:
+  - Python 3.4.4 o superior
+  - Django 1.10.6
+  - PostgreSQL 9.6
+  - PDFMinersix
+  - Unipath
+  - Django_smart_selects
+  - psycopg2
 
-La primera vez y cada vez que se agreguen librerias o se creen nuevos modelos se debe correr #./migrations.sh
+### Obtener Python 3.4.4
 
-Luego para arrancar el servidor usen ./runserver (esto por que tiene opciones para que se pueda acceder desde fuera)
+Instalar Python 3.4. Si se esta en ubuntu y no se provee la version correcta puedes usar este tutorial
+http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
-### Instalando depencias
 
-1. Instalar Python 3.4 . Si se esta en ubuntu y no se provee la version correcta puedes usar este tutorial
-  http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
+### Ubuntu virtualenv Python3.4.4
 
- - O Intalar virtual env
+  mkdir ~/src
 
- ### Getting python 3.4.4 para el virtualenv
- mkdir ~/src
+  wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
 
- wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
- tar -zxvf Python-3.4.4.tgz
+  tar -zxvf Python-3.4.4.tgz
 
- cd Python-3.4.4
+  cd Python-3.4.4
 
- mkdir ~/.localpython
+  mkdir ~/.localpython
 
- ./configure --prefix=$HOME/.localpython
+  ./configure --prefix=$HOME/.localpython
 
- make
+  make
 
- make install
+  make install
 
- ### Virtual env
+  cd ~/src
 
- cd ~/src
+  wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
 
- wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
+  tar -zxvf virtualenv-15.0.2.tar.gz
 
- tar -zxvf virtualenv-15.0.2.tar.gz
+  cd virtualenv-15.0.2/
 
- cd virtualenv-15.0.2/
+  ~/.localpython/bin/python setup.py install
 
- ~/.localpython/bin/python setup.py install
+  virtualenv ve -p $HOME/.localpython/bin/python3.4
 
- virtualenv ve -p $HOME/.localpython/bin/python3.4
+  source ve/bin/activate  
 
- source ve/bin/activate  
+- Se tendrá entonces una virtual env llamada ve en la cual se puede trabajar
+- Es importante notar que en este virtualenv debemos instalar las librerías necesarias
 
- - Se tendrá entonces una virtual env llamada ve en la cual se puede trabajar
- - Es importante notar que en este virtualenv debemos instalar las librerías necesarias
+En los pasos siguientes se asumirá que su python3 es el alias de python3.4.4 y que el pip3 es el alias de su pip correspondiente
 
-2. Instalar pdfminer.six
-	https://github.com/pdfminer/pdfminer.six
+### Iniciar en django
 
-	Seguir pasos 'How to install'
+Para instalar:
+  pip3 install Django
+  Depende del alias del pip para tu python
 
-3. Tener en cuenta librería unipath requerida por Django/python, se puede instalar via pip
+La primera vez y cada vez que se agreguen librerias o se creen nuevos modelos se deben correr:
+  - python3 manage.py makemigrations 
+  - python3 manage.py migrate
 
-4. Tener instalado postgresql
+Luego para arrancar el servidor:
+  - python3 manage.py runserver
 
-5. Instalar Django vía pip
+### Instalar pdfminersix
+
+  Descargar en https://pypi.python.org/pypi/pdfminer.six/20160614
+
+  Descomprimir, ubicarse en la carpeta y correr:
+
+  python3 setup.py install
+
+  Para más información: https://github.com/pdfminer/pdfminer.six
+	
+### Unipath
+  
+  pip3 install unipath
+
+### Smart Selects
+
+  pip3 install Django_smart_selects
+
+### PostgreSQL
+  
+  Para instalar en caso de no tenerlo:
+
+    sudo apt-get install postgresql postgresql-contrib
+
+  Es necesario instalar la librería psycopg2 para integrar con django:
+
+    sudo -H pip3.4 install psycopg2
+
 
 # NOTA!!!
 
 si al hacer merge falla intenten
 
-python3.4 manage.py makemigrations --merge
+python3 manage.py makemigrations --merge
 
-python3.4 manage.py makemigrations
+python3 manage.py makemigrations
 
-python3.4 manage.py migrate
+python3 manage.py migrate
 
-si da error de tabla no encontrada borren el archivo de mysql lite (db.sqlite3)
-
-y vuelven a hacer todos los pasos anteriores.
 
 ### Instalar postgresql
 
-  sudo apt-get install postgresql postgresql-contrib
+  
 
 instalar libreria necesaria para la integracion de postgres con django
 
-  sudo -H pip3.4 install psycopg2
+  
 
 conectarse al terminal local de postgres
 
