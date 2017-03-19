@@ -99,6 +99,8 @@ Luego para arrancar el servidor:
 
     sudo apt-get install postgresql postgresql-contrib
 
+  [Importante](#base-de-datos)
+
   #### psycopg2
   Es necesario instalar la librería **psycopg2** para integrar con django:
 
@@ -116,42 +118,38 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 
 
-### Instalar postgresql
+#### Base de datos
 
-  
+  Cuando se trabaja con PostgreSQL es necesario crear las Bases de datos, para esto nos conectamos a postgres:
 
-instalar libreria necesaria para la integracion de postgres con django
+    sudo -u postgres psql postgres
 
-  
+  Se crean las bases de datos necesarias:
 
-conectarse al terminal local de postgres
+    CREATE DATABASE admin;
 
-  sudo -u postgres psql postgres
+    CREATE DATABASE gestionpae;
 
-crear la base de datos
+  Se crea el usuario Owner de las bases creadas, y se altera para funcionar con django:
 
-  postgres=# CREATE DATABASE admin;
+    CREATE USER cmusb WITH PASSWORD 'admin';
 
-  postgres=# CREATE DATABASE gestionpae;
+    ALTER ROLE cmusb SET client_encoding TO 'utf8';
 
-crear usuario de postgres y alterarlo para que funcione con django
+    ALTER ROLE cmusb SET default_transaction_isolation TO 'read committed';
 
-  postgres=# CREATE USER cmusb WITH PASSWORD 'admin';
+    ALTER ROLE cmusb SET timezone TO 'UTC';
 
-  postgres=# ALTER ROLE cmusb SET client_encoding TO 'utf8';
+    GRANT ALL PRIVILEGES ON DATABASE admin TO cmusb;
 
-  postgres=# ALTER ROLE cmusb SET default_transaction_isolation TO 'read committed';
+    GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
 
-  postgres=# ALTER ROLE cmusb SET timezone TO 'UTC';
+  Finalmente nos conectamos a la base **gestionpae** y cambiar el usuario a **cmusb**:
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE admin TO cmusb;
+    sudo -u postgres psql postgres  
 
-  postgres=# GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
+    SET ROLE cmusb;
 
-  Finalmente conectarse a la base gestionpae y cambiar al usuario cmusb con el comando
+  Crear las tablas en el archivo SIGPAEschema.sql
 
-  postgres=# SET ROLE cmusb;
-
-  y crear las tablas en el archivo SIGPAEschema.sql
-
-  opcional: Insertar datos en gestionpae con los archivos SIGPAEdatos.sql o SIGPAEdatos2.sql
+  Opcional: Insertar datos en gestionpae con los archivos SIGPAEdatos.sql o SIGPAEdatos2.sql
