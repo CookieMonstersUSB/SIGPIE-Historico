@@ -106,18 +106,6 @@ Luego para arrancar el servidor:
 
     sudo -H pip3.4 install psycopg2
 
-
-# NOTA!!!
-
-si al hacer merge falla intenten
-
-python3 manage.py makemigrations --merge
-
-python3 manage.py makemigrations
-
-python3 manage.py migrate
-
-
 #### Base de datos
 
   Cuando se trabaja con PostgreSQL es necesario crear las Bases de datos, para esto nos conectamos a postgres:
@@ -144,12 +132,22 @@ python3 manage.py migrate
 
     GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
 
-  Finalmente nos conectamos a la base **gestionpae** y cambiar el usuario a **cmusb**:
+  Nos conectamos a la base **gestionpae** y cambiar el usuario a **cmusb**:
 
-    sudo -u postgres psql postgres  
+    sudo -u gestionpae psql postgres  
 
     SET ROLE cmusb;
 
-  Crear las tablas en el archivo SIGPAEschema.sql
+  Crear las tablas en el archivo: **SIGPAEschema.sql**
 
-  Opcional: Insertar datos en gestionpae con los archivos SIGPAEdatos.sql o SIGPAEdatos2.sql
+  Insertar datos en gestionpae con los scripts **SIGPAEdatos.sql** o **SIGPAEdatos2.sql** (Opcional)
+
+  Nótese que **gestionpae** es una base de datos que se usa para simular la conexión del SIGPAE-Histórico con SIGPAE
+
+  Finalmente, se debe poblar una parte de **admin**, así que nos conectamos a esta base:
+
+    sudo -u admin psql postgres  
+
+    SET ROLE cmusb;  
+
+  Insertar datos en admin con el script **divisiones y dependecias.sql**
