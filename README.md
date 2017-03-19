@@ -4,13 +4,13 @@ Para correr SIGPAE correctamente es necesario cumplir con los siguientes requisi
 
   Alias a usar python3 y pip3
 
-  - [Python 3.4.4 o superior](### Obtener Python 3.4.4)
-  - [Django 1.10.6](### Iniciar en django)
-  - [PDFMinersix](### Instalar pdfminersix)
-  - [Unipath](### Unipath)
-  - [Django_smart_selects](### Smart Selects)
-  - [PostgreSQL 9.6](### PostgreSQL)
-  - [psycopg2](#### psycopg2)
+  - [Python 3.4.4 o superior](#Obtener-Python-3.4.4)
+  - [Django 1.10.6](#Iniciar-en-django)
+  - [PDFMinersix](#Instalar-pdfminersix)
+  - [Unipath](#Unipath)
+  - [Django_smart_selects](#Smart-Selects)
+  - [PostgreSQL 9.6](#PostgreSQL)
+  - [psycopg2](#psycopg2)
 
 ### Obtener Python 3.4.4
 
