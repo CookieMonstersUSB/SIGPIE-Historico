@@ -1,13 +1,16 @@
 # SIGPAE
 
 Para correr SIGPAE correctamente es necesario cumplir con los siguientes requisitos:
-  - Python 3.4.4 o superior
-  - Django 1.10.6
-  - PostgreSQL 9.6
-  - PDFMinersix
-  - Unipath
-  - Django_smart_selects
-  - psycopg2
+
+  Alias a usar python3 y pip3
+
+  - [Python 3.4.4 o superior](### Obtener Python 3.4.4)
+  - [Django 1.10.6](### Iniciar en django)
+  - [PDFMinersix](### Instalar pdfminersix)
+  - [Unipath](### Unipath)
+  - [Django_smart_selects](### Smart Selects)
+  - [PostgreSQL 9.6](### PostgreSQL)
+  - [psycopg2](#### psycopg2)
 
 ### Obtener Python 3.4.4
 
@@ -51,10 +54,8 @@ http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
     source ve/bin/activate  
 
-- Nótese que ve sería el nombre del nuevo virtualenv
+- Nótese que **ve** sería el nombre del nuevo virtualenv
 - Es importante notar que en este virtualenv debemos instalar las librerías necesarias
-
-## Alias a usar python3 y pip3
 
 ### Iniciar en django
 
@@ -98,7 +99,8 @@ Luego para arrancar el servidor:
 
     sudo apt-get install postgresql postgresql-contrib
 
-  Es necesario instalar la librería psycopg2 para integrar con django:
+  #### psycopg2
+  Es necesario instalar la librería **psycopg2** para integrar con django:
 
     sudo -H pip3.4 install psycopg2
 
