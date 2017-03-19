@@ -2,14 +2,14 @@
 
 Para correr SIGPAE correctamente es necesario cumplir con los siguientes requisitos:
 
-  Alias a usar python3 y pip3
+  Alias a usar **python3** y **pip3**
 
-  - [Python 3.4.4 o superior](#Obtener-Python-3.4.4)
-  - [Django 1.10.6](#Iniciar-en-django)
-  - [PDFMinersix](#Instalar-pdfminersix)
-  - [Unipath](#Unipath)
-  - [Django_smart_selects](#Smart-Selects)
-  - [PostgreSQL 9.6](#PostgreSQL)
+  - [Python 3.4.4 o superior](#obtener-python-344)
+  - [Django 1.10.6](#iniciar-en-django)
+  - [PDFMinersix](#instalar-pdfminersix)
+  - [Unipath](#unipath)
+  - [Django_smart_selects](#smart-selects)
+  - [PostgreSQL 9.6](#postgreSQL)
   - [psycopg2](#psycopg2)
 
 ### Obtener Python 3.4.4
@@ -18,44 +18,44 @@ Instalar Python 3.4. Si se esta en ubuntu y no se provee la version correcta pue
 http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
 
-### Ubuntu virtualenv Python3.4.4
+  #### Ubuntu virtualenv Python3.4.4
 
-  Primero obtenemos el python3.4 con el que se creará el virtualenv
+    Primero obtenemos el python3.4 con el que se creará el virtualenv
 
-    mkdir ~/src
+      mkdir ~/src
 
-    wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
+      wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
 
-    tar -zxvf Python-3.4.4.tgz
+      tar -zxvf Python-3.4.4.tgz
 
-    cd Python-3.4.4
+      cd Python-3.4.4
 
-    mkdir ~/.localpython
+      mkdir ~/.localpython
 
-    ./configure --prefix=$HOME/.localpython
+      ./configure --prefix=$HOME/.localpython
 
-    make
+      make
 
-    make install
+      make install
 
-  Ahora se crea el virtualenv con python3.4
+    Ahora se crea el virtualenv con python3.4
 
-    cd ~/src
+      cd ~/src
 
-    wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
+      wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
 
-    tar -zxvf virtualenv-15.0.2.tar.gz
+      tar -zxvf virtualenv-15.0.2.tar.gz
 
-    cd virtualenv-15.0.2/
+      cd virtualenv-15.0.2/
 
-    ~/.localpython/bin/python setup.py install
+      ~/.localpython/bin/python setup.py install
 
-    virtualenv ve -p $HOME/.localpython/bin/python3.4
+      virtualenv ve -p $HOME/.localpython/bin/python3.4
 
-    source ve/bin/activate  
+      source ve/bin/activate  
 
-- Nótese que **ve** sería el nombre del nuevo virtualenv
-- Es importante notar que en este virtualenv debemos instalar las librerías necesarias
+  - Nótese que **ve** sería el nombre del nuevo virtualenv
+  - Es importante notar que en este virtualenv debemos instalar las librerías necesarias
 
 ### Iniciar en django
 
