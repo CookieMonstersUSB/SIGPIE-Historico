@@ -9,7 +9,7 @@ Para correr SIGPAE correctamente es necesario cumplir con los siguientes requisi
   - [PDFMinersix](#instalar-pdfminersix)
   - [Unipath](#unipath)
   - [Django_smart_selects](#smart-selects)
-  - [PostgreSQL 9.6](#postgreSQL)
+  - [PostgreSQL 9.6](#postgresql)
   - [psycopg2](#psycopg2)
 
 ### Obtener Python 3.4.4
@@ -20,7 +20,7 @@ http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
   #### Ubuntu virtualenv Python3.4.4
 
-    Primero obtenemos el python3.4 con el que se creará el virtualenv
+Primero obtenemos el python3.4 con el que se creará el virtualenv
 
       mkdir ~/src
 
@@ -38,7 +38,7 @@ http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
       make install
 
-    Ahora se crea el virtualenv con python3.4
+Ahora se crea el virtualenv con python3.4
 
       cd ~/src
 
