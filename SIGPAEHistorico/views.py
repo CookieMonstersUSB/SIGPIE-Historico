@@ -31,12 +31,12 @@ class editar(UpdateView):
         return super(editar, self).get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        #print('posteo')
+        
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
-        print(request.POST)
+        
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
-        #print('posteo2')
+        
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
             if (self.object.divisiones_id == None):
