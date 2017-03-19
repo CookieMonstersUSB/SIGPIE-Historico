@@ -150,4 +150,4 @@ Luego para arrancar el servidor:
 
     SET ROLE cmusb;  
 
-  Insertar datos en admin con el script **divisiones y dependecias.sql**
+  Insertar datos en admin con los scripts **divisionesUSB** y **dependeciasUSB.sql**
