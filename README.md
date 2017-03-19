@@ -17,40 +17,44 @@ http://www.tutorialspoint.com/articles/how-to-install-python-3-4-4-on-ubuntu
 
 ### Ubuntu virtualenv Python3.4.4
 
-  mkdir ~/src
+  Primero obtenemos el python3.4 con el que se creará el virtualenv
 
-  wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
+    mkdir ~/src
 
-  tar -zxvf Python-3.4.4.tgz
+    wget http://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
 
-  cd Python-3.4.4
+    tar -zxvf Python-3.4.4.tgz
 
-  mkdir ~/.localpython
+    cd Python-3.4.4
 
-  ./configure --prefix=$HOME/.localpython
+    mkdir ~/.localpython
 
-  make
+    ./configure --prefix=$HOME/.localpython
 
-  make install
+    make
 
-  cd ~/src
+    make install
 
-  wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
+  Ahora se crea el virtualenv con python3.4
 
-  tar -zxvf virtualenv-15.0.2.tar.gz
+    cd ~/src
 
-  cd virtualenv-15.0.2/
+    wget https://pypi.python.org/packages/5c/79/5dae7494b9f5ed061cff9a8ab8d6e1f02db352f3facf907d9eb614fb80e9/virtualenv-15.0.2.tar.gz#md5=0ed59863994daf1292827ffdbba80a63
 
-  ~/.localpython/bin/python setup.py install
+    tar -zxvf virtualenv-15.0.2.tar.gz
 
-  virtualenv ve -p $HOME/.localpython/bin/python3.4
+    cd virtualenv-15.0.2/
 
-  source ve/bin/activate  
+    ~/.localpython/bin/python setup.py install
 
-- Se tendrá entonces una virtual env llamada ve en la cual se puede trabajar
+    virtualenv ve -p $HOME/.localpython/bin/python3.4
+
+    source ve/bin/activate  
+
+- Nótese que ve sería el nombre del nuevo virtualenv
 - Es importante notar que en este virtualenv debemos instalar las librerías necesarias
 
-En los pasos siguientes se asumirá que su python3 es el alias de python3.4.4 y que el pip3 es el alias de su pip correspondiente
+## Alias a usar python3 y pip3
 
 ### Iniciar en django
 
