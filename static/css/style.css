@@ -60,6 +60,7 @@ body{
  flex-grow : 1;
  overflow-y: scroll;
  height: 500px;
+ width: 100%;
 }
 
 #containerI input#tab-1:checked ~ #content #content-1,
@@ -145,6 +146,14 @@ table{
 
 #id_periodoP{
 	display: inline-block;
+}
+
+#id_divisiones{
+	width: 100%;
+}
+
+#id_dependencias{
+	width: 100%;
 }
 
 #id_contSinop, #id_FuenteInfo, #id_objetivos {

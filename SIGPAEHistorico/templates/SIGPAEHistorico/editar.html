@@ -45,9 +45,9 @@
 					<input id="tab-1" type="radio" name="tab-group" checked="checked" />
 					<label for="tab-1">Obligatorios</label>
 					<input id="tab-2" type="radio" name="tab-group" />
-					<label for="tab-2">Normados</label>
+					<label for="tab-2">Adicionales</label>
 				  	<input id="tab-3" type="radio" name="tab-group" />
-				  	<label for="tab-3">Adicionales</label>
+				  	<label for="tab-3">Fuentes recomendadas</label>
 
 				  	<!-- Contenido de las pestañas -->
 				  	<div id="content" >
@@ -179,17 +179,13 @@
 									<td  class="dato">Fuentes de informacion recomendadas</td>
 							</table>
 							
-							<div class="item">
+							<div class="area">
 
 	                			{{textform.FuenteInfo.errors}}
 	                			{{textform.FuenteInfo}}
 							</div>
-						</div>
-						<!-- Fin de la Pestaña 1-->
 
-						<!--Contenido de la Pestaña 2-->
-					   	<div id="content-2" style="position: absolute;top:  5px;left: 0px;">
-
+							<!-- Normados -->
 							<table border="0" >
 
 								<tr>
@@ -245,12 +241,13 @@
 					          {{textform.estrategias_eval}}
 							</div>
 
+
+
 						</div>
-						<!-- Fin de la Pestaña 2-->
+						<!-- Fin de la Pestaña 1-->
 
-						<!--Contenido de la Pestaña 3-->
-				   		<div id="content-3" style="position: absolute;top:  5px;left: 0px;">
-
+						<!--Contenido de la Pestaña 2-->
+					   	<div id="content-2" style="position: absolute;top:  5px;left: 0px;">
 							{% if camposAddsList %}
 							  <ul>
 							  {% for campoadd in camposAddsList %}
@@ -281,6 +278,13 @@
 									Agregar adicional
 								</button></a>
 							</div>
+						</div>
+						<!-- Fin de la Pestaña 2-->
+
+						<!--Contenido de la Pestaña 3-->
+				   		<div id="content-3" style="position: absolute;top:  5px;left: 0px;">
+
+
 						</div>
 						<!-- Fin de la Pestaña 3-->
 

@@ -49,8 +49,12 @@ class editar(UpdateView):
 
         if camposForm.is_valid():
             campoNuevo = camposForm.save(commit=False)
-            campoNuevo.docfk = self.object
-            campoNuevo.save()
+            verify = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
+            if (not verify):
+                campoNuevo.docfk = self.object
+                campoNuevo.save()
+            else:
+                print("El campo expecificado ya existe")
         else:
             return self.form_invalid(textForm)
 
