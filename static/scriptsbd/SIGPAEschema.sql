@@ -1,6 +1,8 @@
-DROP database GestionPAE;
+DROP DATABASE gestionpae;
+SET ROLE cmusb;
 CREATE DATABASE gestionpae;
 \c gestionpae;
+SET ROLE cmusb;
 
 ------------------ USUARIOS -----------------------------
 -- Crea tabla usuario que es el papa de los usuarios
@@ -10,7 +12,7 @@ CREATE TABLE USUARIO(
     nombre		VARCHAR(60)	NOT NULL,
     email       	VARCHAR(50)     NOT NULL,
     tipo 		VARCHAR(50) 	NOT NULL,
-    
+
     CONSTRAINT PK_USUARIO PRIMARY KEY(usbid)
 );
 
@@ -48,7 +50,7 @@ CREATE TABLE PROGRAMA(
 	id 		SERIAL 		NOT NULL,
 	h_teoria	NUMERIC(2,0)		,
 	h_prac		NUMERIC(2,0)		,
-	h_lab		NUMERIC(2,0)		,				
+	h_lab		NUMERIC(2,0)		,
 	fecha_vigTrim	VARCHAR(8)		,
 	fecha_vigAno	INT			,
    	obj_g 		VARCHAR			,
@@ -67,12 +69,12 @@ CREATE TABLE PROGRAMA(
 -- Crea solicitud que es debil de programa
 CREATE TABLE SOLICITUD(
     nomcoord		VARCHAR(50)	NOT NULL,
-    
+
 -- Datos (flags) para manejo de validaciones
     porasignar		BOOLEAN		NOT NULL, -- En un principio es true para que el departamento asigne profesor
     porvalidarD		BOOLEAN 	NOT NULL, -- Por validar en dpto
     porrevisarP		BOOLEAN 	NOT NULL, -- Por re-asignar profesor
-    rechazadoC		BOOLEAN 	NOT NULL, -- Rechazado por coordinacion 
+    rechazadoC		BOOLEAN 	NOT NULL, -- Rechazado por coordinacion
     validadoC		BOOLEAN		NOT NULL, -- Validado por coordinacion
     enviadoD		BOOLEAN		NOT NULL, -- Enviado por departamento
     devueltoDace	BOOLEAN		NOT NULL,
@@ -93,7 +95,7 @@ CREATE TABLE SOLICITUD(
     ano 		VARCHAR(4)	NOT NULL,
     accion 		VARCHAR(20)	NOT NULL, -- I,M,E
     afecta_carrera	VARCHAR(35)	NOT NULL, -- Nombre de carrera
-    trimestrep		BOOLEAN		NOT NULL, -- True si es trimestre pensum 
+    trimestrep		BOOLEAN		NOT NULL, -- True si es trimestre pensum
     requisito_cre 	BOOLEAN		NOT NULL, -- Necesita creditos de req
     permiso_coord 	BOOLEAN		NOT NULL, -- Necesita permiso coord
     tipo_materia 	VARCHAR(20)	NOT NULL, --Obligatoria, electiva....
@@ -106,14 +108,14 @@ CREATE TABLE SOLICITUD(
     validadodace	BOOLEAN		NOT NULL,
     especial		BOOLEAN		NOT NULL,
     imparticion		VARCHAR(15)	NOT NULL,
-    usbidec		VARCHAR(50)		,  
+    usbidec		VARCHAR(50)		,
     obsanul		VARCHAR			,
-   
+
    -- estado character varying(50),
    -- descripcion text,
    -- objetivog text,
    -- objetivoe text
-    id 			SERIAL 		NOT NULL, -- Este viene de programa se supone que por ser debil creo primero el programa y no existe planilla 
+    id 			SERIAL 		NOT NULL, -- Este viene de programa se supone que por ser debil creo primero el programa y no existe planilla
     CONSTRAINT PK_PLANILLA PRIMARY KEY(id)
 );
 
@@ -150,11 +152,11 @@ CREATE TABLE R_PROG_PL(
 
       CONSTRAINT PK_RPROGPL PRIMARY KEY(idplanilla,idprograma)
 );
--- 
+--
 CREATE TABLE R_DEP_PL(
       idplanilla 	INT		NOT NULL,
       usbidd		VARCHAR(50)	NOT NULL,
-		
+
       CONSTRAINT PK_RDEPPL PRIMARY KEY(idplanilla,usbidd)
 
 );
@@ -167,7 +169,7 @@ CREATE TABLE BITACORA(
 	usbid		VARCHAR(60)		NOT NULL,
 	comentario	VARCHAR			NOT NULL,
 	fecha		TIMESTAMP		NOT NULL,
-	
+
 	CONSTRAINT PK_BITACORA PRIMARY KEY(usbid,id,fecha,comentario)
 
 );
@@ -195,7 +197,7 @@ CREATE TABLE RECHAZADOSP(
 );
 
 CREATE TABLE RECHAZADOSD(
-     
+
       usbidd		VARCHAR(50)		NOT NULL,
       usbidp		VARCHAR(50)		NOT NULL,
       id		INT			NOT NULL,
@@ -207,7 +209,7 @@ CREATE TABLE RECHAZADOSD(
 
 
 CREATE TABLE RECHAZADOSDaC(
-     
+
       usbidd		VARCHAR(50)		NOT NULL,
       usbidc		VARCHAR(50)		NOT NULL,
       id		INT			NOT NULL,
@@ -219,7 +221,7 @@ CREATE TABLE RECHAZADOSDaC(
 
 
 CREATE TABLE DEVUELTOSDACE(
-     
+
       usbidDA		VARCHAR(50)	NOT NULL,
       usbidR		VARCHAR(50)	NOT NULL,
       id		INT		NOT NULL,
@@ -230,7 +232,7 @@ CREATE TABLE DEVUELTOSDACE(
 );
 
 CREATE TABLE RECHAZADOSCaD(
-     
+
       usbidc		VARCHAR(50)	NOT NULL,
       usbidd		VARCHAR(50)	NOT NULL,
       id		INT		NOT NULL,
@@ -263,7 +265,7 @@ CREATE TABLE CARRERA (
 
       codigo		VARCHAR		NOT NULL,
       nombre		VARCHAR		NOT NULL,
-      
+
       CONSTRAINT PK_CARRERA PRIMARY KEY(codigo)
 
 );
@@ -301,7 +303,7 @@ CREATE TABLE PROGRAMAT(
   	id 		SERIAL 		NOT NULL,
 	h_teoria	NUMERIC(2,0)		,
 	h_prac		NUMERIC(2,0)		,
-	h_lab		NUMERIC(2,0)		,				
+	h_lab		NUMERIC(2,0)		,
 	fecha_vigTrim	VARCHAR(8)		,
 	fecha_vigAno	INT			,
    	obj_g 		VARCHAR			,
@@ -313,7 +315,7 @@ CREATE TABLE PROGRAMAT(
 	cronograma	VARCHAR			,
 	sinoptico	VARCHAR			,
   CONSTRAINT PK_PROGRAMAT PRIMARY KEY(id)
-      
+
 
 );
 
@@ -339,7 +341,7 @@ CREATE TABLE DECANATO(
 CREATE TABLE R_DEC_PL(
       idplanilla 	INT		NOT NULL,
       usbiddec		VARCHAR(50)	NOT NULL,
-		
+
       CONSTRAINT PK_RDECPL PRIMARY KEY(idplanilla,usbiddec)
 );
 
@@ -401,7 +403,7 @@ CREATE TABLE TRIMESTRE_VIGENCIA(
 
 -- Programa historico
 CREATE TABLE HISTORICO(
-    
+
 	id 		SERIAL 		NOT NULL,
 	codasig		VARCHAR(8)	NOT NULL,
 	nomasig		VARCHAR		NOT NULL,
@@ -410,7 +412,7 @@ CREATE TABLE HISTORICO(
 	trimestref	VARCHAR(8)		,
 	anof		INT 			,
 	ruta		VARCHAR		NOT NULL,
-  
+
 	CONSTRAINT PK_HISTORICO PRIMARY KEY(id)
 );
 
@@ -420,7 +422,7 @@ CREATE TABLE R_EST_HIST(
       id		INT 		NOT NULL,
 
       CONSTRAINT PK_RESTHIST PRIMARY KEY(usbid,id)
-    
+
 );
 
 
@@ -430,6 +432,6 @@ CREATE TABLE GENERADOS(
 	fecha		DATE		NOT NULL,
 	nro_pag		INT		NOT NULL,
 	nro_prog	INT		NOT NULL,
-	
+
 	CONSTRAINT PK_GENERADOS PRIMARY KEY(id)
 );
