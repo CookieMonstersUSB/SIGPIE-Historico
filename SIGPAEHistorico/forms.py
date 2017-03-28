@@ -43,6 +43,7 @@ class TextForm(ModelForm):
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
+        
 class ConsultaPaeForm(Form):
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
     year = forms.IntegerField(label='Año del programa', validators=[validate_year])
