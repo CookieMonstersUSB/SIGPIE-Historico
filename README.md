@@ -143,9 +143,10 @@ Luego para arrancar el servidor:
 
   Finalmente, se debe poblar una parte de **admin**, así que nos conectamos a esta base:
 
-    sudo -u admin psql postgres  
+    sudo -u postgres psql admin  
 
     SET ROLE cmusb;  
 
   Insertar los datos en admin con el script **divisionesUSB.sql**
+  
   luego insertar los datos del scrip **dependeciasUSB.sql**
