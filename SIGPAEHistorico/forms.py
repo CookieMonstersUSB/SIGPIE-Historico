@@ -51,3 +51,8 @@ class camposAddsForm(ModelForm):
     class Meta:
         model = camposAdds
         exclude = ['docfk']
+        widgets = {
+            'nameAdd': forms.TextInput(attrs={'placeholder': 'nombre nuevo campo'}),
+            'contentAdd': forms.Textarea(
+                attrs={'placeholder': 'Contenido del nuevo campo'}),
+        }
