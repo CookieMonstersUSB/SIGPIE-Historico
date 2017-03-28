@@ -131,14 +131,11 @@ Luego para arrancar el servidor:
     GRANT ALL PRIVILEGES ON DATABASE admin TO cmusb;
 
     GRANT ALL PRIVILEGES ON DATABASE gestionpae TO cmusb;
+    
+    ALTER USER cmusb WITH createdb;
+    
 
-  Nos conectamos a la base **gestionpae** y cambiar el usuario a **cmusb**:
-
-    sudo -u gestionpae psql postgres  
-
-    SET ROLE cmusb;
-
-  Crear las tablas en el archivo: **SIGPAEschema.sql**
+  copiamos el archivo en el terminal: **SIGPAEschema.sql** esto creara todas las tablas de la base de datos
 
   Insertar datos en gestionpae con los scripts **SIGPAEdatos.sql** o **SIGPAEdatos2.sql** (Opcional)
 
@@ -150,4 +147,5 @@ Luego para arrancar el servidor:
 
     SET ROLE cmusb;  
 
-  Insertar datos en admin con los scripts **divisionesUSB.sql** y **dependeciasUSB.sql**
+  Insertar los datos en admin con el script **divisionesUSB.sql**
+  luego insertar los datos del scrip **dependeciasUSB.sql**
