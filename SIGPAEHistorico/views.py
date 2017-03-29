@@ -11,8 +11,8 @@ from .pdfReaders import LeerPDFaString
 from .regex import Regex
 
 class index(TemplateView):
-    def get(self , request , *args , **kwargs):
-        return render_to_response('SIGPAEHistorico/index.html')
+	def get(self , request , *args , **kwargs):
+		return render_to_response('SIGPAEHistorico/index.html')
 
 class editar(UpdateView):
     context_object_name = 'textform'
@@ -31,12 +31,12 @@ class editar(UpdateView):
         return super(editar, self).get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        
+
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
-        
+
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
-        
+
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
             if (self.object.divisiones_id == None):
@@ -62,50 +62,69 @@ class editar(UpdateView):
 
 
 class upload(CreateView):
-    context_object_name = 'form'
-    form_class = UploadFileForm
-    model = Document
-    queryset = Document.objects.name
-    template_name = 'SIGPAEHistorico/upload.html'
+	context_object_name = 'form'
+	form_class = UploadFileForm
+	model = Document
+	queryset = Document.objects.name
+	template_name = 'SIGPAEHistorico/upload.html'
 
-    def form_valid(self, form):
-        self.object = form.save()
-        text = LeerPDFaString(self.object.docfile)
-        self.object.doctext = text
-        self.object.codigo_programa = Regex(text)
-        self.object.save()
-        self.success_url = reverse('editar', kwargs={'pkdoc':self.object.pk})
-        return super(upload, self).form_valid(form)
+	def form_valid(self, form):
+		self.object = form.save()
+		text = LeerPDFaString(self.object.docfile)
+		self.object.doctext = text
+		self.object.codigo_programa = Regex(text)
+		self.object.codigo_programa = self.object.codigo_programa.replace(' ','')
+		self.object.codigo_programa = self.object.codigo_programa.replace('-','')
+		print ('---------->',self.object.codigo_programa)
+		if (not self.object.codigo_programa in [None,'']):
+			# if (self.object.codigo_programa[3].isalpha()):
+			# 	siglas = self.object.codigo_programa[:3]
+			# else:
+			# 	siglas = self.object.codigo_programa[:2]
+			siglas = self.object.codigo_programa[:2]
+			print (siglas)
+			dependencia = Dependencias.objects.all().filter(siglas__exact=siglas)[0]
+			if (dependencia):
+				print ('hay dependencia', dependencia.name)
+				self.object.divisiones = dependencia.division
+				self.object.dependencias = dependencia
+			else:
+				print('no hay dependencia')
+		else:
+			print('no hay codigo')
+		self.object.save()
+		self.success_url = reverse('editar', kwargs={'pkdoc':self.object.pk})
+		return super(upload, self).form_valid(form)
 
 class listar(ListView):
-    context_object_name = 'files'
-    model = Document
-    queryset = Document.objects.all()
-    template_name = 'SIGPAEHistorico/listar.html'
+	context_object_name = 'files'
+	model = Document
+	queryset = Document.objects.all()
+	template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
-    form_class = ConsultaPaeForm
-    template_name = 'SIGPAEHistorico/consultarpae.html'
+	form_class = ConsultaPaeForm
+	template_name = 'SIGPAEHistorico/consultarpae.html'
 
-    def form_valid(self, form):
-        self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
-                                                         'year': form.cleaned_data.get('year')})
-        return super(consultarpae, self).form_valid(form)
+	def form_valid(self, form):
+		self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
+														 'year': form.cleaned_data.get('year')})
+		return super(consultarpae, self).form_valid(form)
 
 class mostrarpae(TemplateView):
-    def get(self , request , *args , **kwargs):
-        context = self.get_context_data(**kwargs)
-        return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
+	def get(self , request , *args , **kwargs):
+		context = self.get_context_data(**kwargs)
+		return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
 
-    def get_context_data(self, **kwargs):
-        lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
-        if (not lista_solicitud):
-            print ('')
-        else:
-            solicitud = lista_solicitud[0]
-            programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
+	def get_context_data(self, **kwargs):
+		lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
+		if (not lista_solicitud):
+			print ('')
+		else:
+			solicitud = lista_solicitud[0]
+			programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
 
-            kwargs['solicitud'] = solicitud
-            kwargs['programa'] = programa
+			kwargs['solicitud'] = solicitud
+			kwargs['programa'] = programa
 
-        return super(mostrarpae, self).get_context_data(**kwargs)
+		return super(mostrarpae, self).get_context_data(**kwargs)

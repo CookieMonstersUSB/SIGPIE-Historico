@@ -13,14 +13,15 @@ class Divisiones(models.Model):
 
 
 class Dependencias(models.Model):
-    name = models.CharField(blank=True, max_length=100)
-    division = models.ForeignKey(Divisiones)
-    class Meta:
-        _DATABASE = 'default'
-        ordering = ['id']
+	name = models.CharField(blank=True, max_length=100)
+	division = models.ForeignKey(Divisiones)
+	siglas = models.CharField(blank=False, max_length=3)
+	class Meta:
+		_DATABASE = 'default'
+		ordering = ['id']
 
-    def __str__(self):
-        return "%s" % (self.name)
+	def __str__(self):
+		return "%s" % (self.name)
 
 class Document(models.Model):
         _DATABASE = 'default'
