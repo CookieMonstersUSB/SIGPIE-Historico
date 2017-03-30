@@ -47,9 +47,6 @@ class editar(UpdateView):
         
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
-        print()
-        print(camposForm)
-        print()
 
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
@@ -64,8 +61,9 @@ class editar(UpdateView):
         if camposForm.is_valid():
 
             campoNuevo = camposForm.save(commit=False)
-            verify = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
-            if (not verify):
+            verify1 = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
+            verify2 = existeCampo.objects.filter(nombrecampo = campoNuevo.nameAdd)
+            if (not verify1 and not verify2):
                 campoNuevo.docfk = self.object
                 campoNuevo.save()
             else:

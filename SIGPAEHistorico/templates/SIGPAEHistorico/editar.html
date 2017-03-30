@@ -320,17 +320,9 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#submitTextForm, #submitAdd").on('click', function(){
-				var x = ("#id_nameAdd").value();
-				
-				if (x != ""){
-					var y = ("#id_contentAdd").value();
-					if (y != ""){
-						alert("El contenido del nuevo campo no puede estar vacio");
-						return false;
-					}
-				} else {
+
 					$("#textForm").submit();
-				}				
+
 			});
 		});
 
