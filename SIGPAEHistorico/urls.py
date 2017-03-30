@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import *
 
-
+# Se definen las direcciones para el direccionamiento a las diferentes vistas
 urlpatterns = [
         url(r'^$', index.as_view(), name='index'),
         url(r'^upload/$', upload.as_view(), name ='upload'),

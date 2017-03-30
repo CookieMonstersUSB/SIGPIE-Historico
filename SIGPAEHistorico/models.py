@@ -3,16 +3,19 @@ from .validators import *
 from smart_selects.db_fields import ChainedForeignKey
 
 class Divisiones(models.Model):
+	""" Modelo para las divisiones de la USB """
     name = models.CharField(blank=True, max_length=100)
     class Meta:
         _DATABASE = 'default'
         ordering = ['id']
 
     def __str__(self):
+		""" Función para obtener la representacion como string de una division """
         return "%s" % (self.name)
 
 
 class Dependencias(models.Model):
+	""" Modelo para las dependencias de las divisiones de la USB """
 	name = models.CharField(blank=True, max_length=100)
 	division = models.ForeignKey(Divisiones)
 	siglas = models.CharField(blank=False, max_length=3)
@@ -21,10 +24,13 @@ class Dependencias(models.Model):
 		ordering = ['id']
 
 	def __str__(self):
+		""" Función para obtener la representacion como string de una dependencia """
 		return "%s" % (self.name)
 
 class Document(models.Model):
+	""" Modelo para representar una transcripcion en la base de datos """
         _DATABASE = 'default'
+		# Se definen los posibles periodos (trimestres)
         EM = "sd"
         AJ = "em"
         SD = "aj"
@@ -46,8 +52,7 @@ class Document(models.Model):
         h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
         h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
         h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
-
-        divisiones = models.ForeignKey(Divisiones, blank = True, default=0)
+        divisiones = models.ForeignKey(Divisiones, blank = True, default=1, null=True)
         dependencias = ChainedForeignKey(Dependencias,
                         chained_field="divisiones",
                         chained_model_field="division",
@@ -55,8 +60,8 @@ class Document(models.Model):
                         auto_choose=True,
                         sort=True,
                         blank = True,
-                        default = 0)
-
+                        default = 1,
+                        null = True)
         coordinacion = models.CharField(max_length=70, default="", blank = True)
         contSinop = models.TextField(default="", blank = True)
         FuenteInfo = models.TextField(default="", blank = True)
@@ -64,11 +69,11 @@ class Document(models.Model):
         requisito = models.TextField(default="", blank = True)
         estrategias_meto = models.TextField(default="", blank = True)
         estrategias_eval = models.TextField(default="", blank = True)
-
         class Meta:
             ordering = ['id']
 
 class camposAdds(models.Model):
+	""" Modelo para los campos adicionales de una transcripcion """
     _DATABASE = 'default'
     docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
     nameAdd = models.CharField(max_length = 50)

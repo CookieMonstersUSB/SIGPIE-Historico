@@ -1,6 +1,7 @@
 import re
 
 def Regex(cadena):
+	""" Función para extraer el código de una asignatura de un texto recibido. Se utilizan expresiones regulares """
 	img=re.search('[A-Z][A-Z]-[0-9][0-9][0-9][0-9]',cadena)
 	img2=re.search('[A-Z][A-Z][A-Z]-[0-9][0-9][0-9]',cadena)
 	img3=re.search('[A-Z][A-Z][0-9][0-9][0-9][0-9]',cadena)
