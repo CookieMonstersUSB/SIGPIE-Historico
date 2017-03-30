@@ -17,21 +17,65 @@ class index(TemplateView):
 class editar(UpdateView):
     context_object_name = 'textform'
     form_class = TextForm
+    second_form_class = camposAddsForm
     pk_url_kwarg = 'pkdoc'
     model = Document
     queryset = Document.objects.all()
     template_name = 'SIGPAEHistorico/editar.html'
 
     def get_context_data(self, **kwargs):
+        context = super(editar, self).get_context_data(**kwargs)
+
         document = Document.objects.get(pk=self.kwargs['pkdoc'])
-        kwargs['document'] = document
-        kwargs['textform'] = self.get_form()
-        kwargs['camposAddsForm'] = camposAddsForm()
-        kwargs['camposAddsList'] = camposAdds.objects.filter(docfk=document.pk)
-        return super(editar, self).get_context_data(**kwargs)
+        second_model = camposAdds.objects.filter(docfk=document.pk)
+        nuevoform = []
+        if second_model:
+            largo = len(second_model)
+            for i in range(0, largo):
+                nuevoform.append(camposAddsForm({'nameAdd':second_model[i].nameAdd,'contentAdd':second_model[i].contentAdd}))
+        
+        nuevoform.append(camposAddsForm())
+
+        context['nuevoform'] = nuevoform
+        context['document'] = document
+        context['textform'] = self.get_form()
+
+        return context
 
     def post(self, request, *args, **kwargs):
+        self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
         
+        textForm = TextForm(request.POST, instance=self.object)
+        camposForm = camposAddsForm(request.POST)
+        print()
+        print(camposForm)
+        print()
+
+        if textForm.is_valid():
+            self.object = textForm.save(commit=False)
+            if (self.object.divisiones_id == None):
+                self.object.divisiones_id = Divisiones.objects.all().filter(id=0)[0]
+            if (self.object.dependencias_id == None or self.object.divisiones_id == 0):
+                self.object.dependencias_id = Dependencias.objects.all().filter(id=0)[0]
+            self.object.save()
+        else:
+            return self.form_invalid(textForm)
+
+        if camposForm.is_valid():
+
+            campoNuevo = camposForm.save(commit=False)
+            verify = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
+            if (not verify):
+                campoNuevo.docfk = self.object
+                campoNuevo.save()
+            else:
+                print("El campo especificado ya existe")
+        else:
+            return self.form_invalid(camposForm)
+
+        return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
+        
+        '''
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
         
         textForm = TextForm(request.POST, instance=self.object)
@@ -59,7 +103,7 @@ class editar(UpdateView):
             return self.form_invalid(textForm)
 
         return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
-
+'''
 
 class upload(CreateView):
     context_object_name = 'form'
