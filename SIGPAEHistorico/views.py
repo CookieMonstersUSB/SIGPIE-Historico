@@ -11,10 +11,12 @@ from .pdfReaders import LeerPDFaString
 from .regex import Regex
 
 class index(TemplateView):
+    """ Controlador para vista inicial del sistema """
     def get(self , request , *args , **kwargs):
         return render_to_response('SIGPAEHistorico/index.html')
 
 class editar(UpdateView):
+    """ Controlador para la vista de edicion de una transcripcion """
     context_object_name = 'textform'
     form_class = TextForm
     second_form_class = camposAddsForm
@@ -24,6 +26,7 @@ class editar(UpdateView):
     template_name = 'SIGPAEHistorico/editar.html'
 
     def get_context_data(self, **kwargs):
+        """ Función para obtener las variables necesarias para la vista """
         context = super(editar, self).get_context_data(**kwargs)
 
         document = Document.objects.get(pk=self.kwargs['pkdoc'])
@@ -43,6 +46,7 @@ class editar(UpdateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        """ Función para enviar la informacion recolectada en la vista """
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
 
         textForm = TextForm(request.POST, instance=self.object)
@@ -104,6 +108,7 @@ class editar(UpdateView):
 '''
 
 class upload(CreateView):
+    """ Controlador para la vista de cargar una nueva transcripcion al sistema """
     context_object_name = 'form'
     form_class = UploadFileForm
     model = Document
@@ -111,11 +116,31 @@ class upload(CreateView):
     template_name = 'SIGPAEHistorico/upload.html'
 
     def form_valid(self, form):
+        """ Función para cargar la nueva transcripcion en el sistema instanciando una
+        nueva transcripcion y subiendo el archivo pdf suministrado a la base de datos """
         self.object = form.save()
+        #  Se extrae el texto del pdf suminstrado
         text = LeerPDFaString(self.object.docfile)
         self.object.doctext = text
+        # Se extrae el codigo del texto extraido si existe y se elimina el espacio en blanco y el guion
         self.object.codigo_programa = Regex(text)
+        self.object.codigo_programa = self.object.codigo_programa.replace(' ','')
+        self.object.codigo_programa = self.object.codigo_programa.replace('-','')
+        if (not self.object.codigo_programa in [None,'']):
+            # Si se extrajo un codigo de programa se obtienen las siglas del codigo y se busca en la
+            # base de datos la dependencia que tenga esas siglas y se asigna a la transcripcion
+            siglas = self.object.codigo_programa[:2]
+            dependencia = Dependencias.objects.all().filter(siglas__exact=siglas)[0]
+            if (dependencia):
+                # Si existe una transcripcion que tenga las siglas extraidas se le asigna a la nueva
+                # transcripcion y tambien se le asigna la division correspondiente a dicha dependencia
+                self.object.divisiones = dependencia.division
+                self.object.dependencias = dependencia
+        else:
+            d = Dependencias.objects.all().filter(id__exact=0)[0]
+            self.object.dependencia = 0
         self.object.save()
+        # Se redirige a la vista correspondiente a la edicion de transcripcion
         self.success_url = reverse('editar', kwargs={'pkdoc':self.object.pk})
         return super(upload, self).form_valid(form)
 
@@ -126,16 +151,16 @@ class listar(ListView):
     template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
-	form_class = ConsultaPaeForm
-	template_name = 'SIGPAEHistorico/consultarpae.html'
+    form_class = ConsultaPaeForm
+    template_name = 'SIGPAEHistorico/consultarpae.html'
 
-	def form_valid(self, form):
-		if (form.cleaned_data.get('year') != None):
-				self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
-	                                                         'year': form.cleaned_data.get('year')})
-		else:
-			self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code')})
-		return super(consultarpae, self).form_valid(form)
+    def form_valid(self, form):
+        if (form.cleaned_data.get('year') != None):
+                self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
+                                                             'year': form.cleaned_data.get('year')})
+        else:
+            self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code')})
+        return super(consultarpae, self).form_valid(form)
 
 class mostrarpae(TemplateView):
     def get(self , request , *args , **kwargs):

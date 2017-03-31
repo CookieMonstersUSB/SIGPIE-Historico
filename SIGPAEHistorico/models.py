@@ -15,6 +15,7 @@ class Divisiones(models.Model):
 class Dependencias(models.Model):
     name = models.CharField(blank=True, max_length=100)
     division = models.ForeignKey(Divisiones)
+    siglas = models.CharField(blank=False, max_length=3)
     class Meta:
         _DATABASE = 'default'
         ordering = ['id']
