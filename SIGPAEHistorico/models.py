@@ -82,6 +82,10 @@ class camposAdds(models.Model):
 	class Meta:
 		unique_together = (('docfk', 'nameAdd'))
 
+class existeCampo(models.Model):
+    _DATABASE = 'default'
+    nombrecampo = models.CharField(max_length = 100)
+
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):
     _DATABASE = 'gestionpae'

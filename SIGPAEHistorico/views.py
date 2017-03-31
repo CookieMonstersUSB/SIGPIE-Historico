@@ -16,55 +16,61 @@ class index(TemplateView):
 		return render_to_response('SIGPAEHistorico/index.html')
 
 class editar(UpdateView):
-	""" Controlador para la vista de edicion de una transcripcion """
-	context_object_name = 'textform'
-	form_class = TextForm
-	pk_url_kwarg = 'pkdoc'
-	model = Document
-	queryset = Document.objects.all()
-	template_name = 'SIGPAEHistorico/editar.html'
+    """ Controlador para la vista de edicion de una transcripcion """
+    context_object_name = 'textform'
+    form_class = TextForm
+    pk_url_kwarg = 'pkdoc'
+    model = Document
+    queryset = Document.objects.all()
+    template_name = 'SIGPAEHistorico/editar.html'
 
-	def get_context_data(self, **kwargs):
-		""" Función para obtener las variables necesarias para la vista """
-		document = Document.objects.get(pk=self.kwargs['pkdoc'])
-		d = Dependencias.objects.all().filter(pk=document.dependencias.pk)[0]
-		# Se guardan las variables en las kwargs para que puedan ser accedidas en el template
-		kwargs['document'] = document
-		kwargs['textform'] = self.get_form()
-		kwargs['camposAddsForm'] = camposAddsForm()
-		kwargs['camposAddsList'] = camposAdds.objects.filter(docfk=document.pk)
-		return super(editar, self).get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        """ Función para obtener las variables necesarias para la vista """
+        document = Document.objects.get(pk=self.kwargs['pkdoc'])
 
-	def post(self, request, *args, **kwargs):
-		""" Función para enviar la informacion recolectada en la vista """
-		self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
+        d = Dependencias.objects.all().filter(pk=document.dependencias.pk)[0]
 
-		textForm = TextForm(request.POST, instance=self.object)
-		camposForm = camposAddsForm(request.POST)
+        # Se guardan las variables en las kwargs para que puedan ser accedidas en el template
 
-		if textForm.is_valid():
-			self.object = textForm.save(commit=False)
-			if (self.object.divisiones_id == None):
-				self.object.divisiones_id = Divisiones.objects.all().filter(id=0)[0]
-			if (self.object.dependencias_id == None or self.object.divisiones_id == 0):
-				self.object.dependencias_id = Dependencias.objects.all().filter(id=0)[0]
-			self.object.save()
-		else:
-			return self.form_invalid(textForm)
+        kwargs['document'] = document
+        kwargs['textform'] = self.get_form()
+        kwargs['camposAddsForm'] = camposAddsForm()
+        kwargs['camposAddsList'] = camposAdds.objects.filter(docfk=document.pk)
 
-		if camposForm.is_valid():
-			campoNuevo = camposForm.save(commit=False)
-			verify = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
-			if (not verify):
-				campoNuevo.docfk = self.object
-				campoNuevo.save()
-			else:
-				print("El campo expecificado ya existe")
-		else:
-			print('form invalid')
-			return self.form_invalid(textForm)
+        return super(editar, self).get_context_data(**kwargs)
 
-		return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
+    def post(self, request, *args, **kwargs):
+        """ Función para enviar la informacion recolectada en la vista """
+        self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
+
+        textForm = TextForm(request.POST, instance=self.object)
+        camposForm = camposAddsForm(request.POST)
+
+        if textForm.is_valid():
+            self.object = textForm.save(commit=False)
+            if (self.object.divisiones_id == None):
+                self.object.divisiones_id = Divisiones.objects.all().filter(id=0)[0]
+            if (self.object.dependencias_id == None or self.object.divisiones_id == 0):
+                self.object.dependencias_id = Dependencias.objects.all().filter(id=0)[0]
+                self.object.save()
+        else:
+            return self.form_invalid(textForm)
+
+        if camposForm.is_valid():
+
+            campoNuevo = camposForm.save(commit=False)
+            verify1 = camposAdds.objects.filter(nameAdd=campoNuevo.nameAdd)
+            verify2 = existeCampo.objects.filter(nombrecampo = campoNuevo.nameAdd)
+
+            if (not verify1 and not verify2):
+                campoNuevo.docfk = self.object
+                campoNuevo.save()
+            else:
+                print("El campo expecificado ya existe")
+        else:
+            return self.form_invalid(camposForm)
+
+        return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
 
 class upload(CreateView):
 	""" Controlador para la vista de cargar una nueva transcripcion al sistema """

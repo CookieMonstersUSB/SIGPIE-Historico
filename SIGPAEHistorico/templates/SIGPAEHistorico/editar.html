@@ -263,30 +263,27 @@
 
 						<!--Contenido de la Pestaña 2-->
 					  <div id="content-2" style="position: absolute;top:  5px;left: 0px;">
+
 							{% if camposAddsList %}
-							  <ul>
-							  {% for campoadd in camposAddsList %}
-							  <li>
-							  	<p><b>{{campoadd.nameAdd}}:</b></p>
-							  	<p>{{campoadd.contentAdd}}</p>
-							  </li>
-							  </br>
-							  {% endfor %}
-							  </ul>
-							{% endif %}
+						<div class="area" >
+								<ul>
+								{% for ca in camposAddsList%}
+									{% csrf_token %}	
+									{{ca.nameAdd.errors}}
+									<p><b>{{ca.nameAdd}}</b></p>
 
-							<div class="area" >
-								{% csrf_token %}
-								<p><b>Nombre:</b></p>
-									{{camposAddsForm.nameAdd.errors}}
-									{{camposAddsForm.nameAdd}}
-								</p>
-
-								<p><b>Contenido:</b></p>
-								<p>
-									{{camposAddsForm.contentAdd.errors}}
-									{{camposAddsForm.contentAdd}}
-								</p>
+									{{ca.contentAdd.errors}}
+									<p>{{ca.contentAdd}}</p>
+									
+									</br>									
+								{% endfor %}
+								{% csrf_token %}	
+								{{ camposAddsForm.nameAdd }}
+								{{ camposAddsForm.contentAdd}}
+								</ul>
+							{% else %}
+								<h1>HOLA</h1>
+							{% endif%}
 
 								<a href=""><button class="btn btn-default" id="submitAdd">
 									Agregar adicional
@@ -297,9 +294,33 @@
 
 						<!--Contenido de la Pestaña 3-->
 				   	<div id="content-3" style="position: absolute;top:  5px;left: 0px;">
+							{% if camposAddsList %}
+						<div class="area" >
+								<ul>
+								{% for ca in camposAddsList%}
+									{% csrf_token %}	
+									{{ca.nameAdd.errors}}
+									<p><b>{{ca.nameAdd}}</b></p>
 
+									{{ca.contentAdd.errors}}
+									<p>{{ca.contentAdd}}</p>
+									
+									</br>									
+								{% endfor %}
+								{% csrf_token %}	
+								{{ camposAddsForm.nameAdd }}
+								{{ camposAddsForm.contentAdd}}
+								</ul>
+							{% else %}
+								<h1>HOLA</h1>
+							{% endif%}
 
-						</div>
+								<a href=""><button class="btn btn-default" id="submitAdd">
+									Agregar adicional
+								</button></a>
+							</div>
+
+					</div>
 						<!-- Fin de la Pestaña 3-->
 
 					</div>
@@ -326,7 +347,9 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#submitTextForm, #submitAdd").on('click', function(){
-				$("#textForm").submit();
+
+					$("#textForm").submit();
+
 			});
 		});
 
