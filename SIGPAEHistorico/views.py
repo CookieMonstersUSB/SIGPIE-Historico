@@ -111,48 +111,48 @@ class listar(ListView):
 	template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
-	""" Controlador de la vista para consultar la base de datos de SIGPAE """
-	form_class = ConsultaPaeForm
-	template_name = 'SIGPAEHistorico/consultarpae.html'
+    """ Controlador de la vista para consultar la base de datos de SIGPAE """
+    form_class = ConsultaPaeForm
+    template_name = 'SIGPAEHistorico/consultarpae.html'
 
-	def form_valid(self, form):
-        """ Función para redigir a la vista de mostrar la consulta realizada """
-		if (form.cleaned_data.get('year') != None):
-				self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
-	                                                         'year': form.cleaned_data.get('year')})
-		else:
-			self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code')})
-		return super(consultarpae, self).form_valid(form)
+    def form_valid(self, form):
+        """ Función para redigir a la vista de mostrar la consulta realizada"""
+        if (form.cleaned_data.get('year') != None):
+            self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
+                                                            'year': form.cleaned_data.get('year')})
+        else:
+            self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code')})
+        return super(consultarpae, self).form_valid(form)
 
 class mostrarpae(TemplateView):
     """ Controlador de la vista para mostrar el resultado de la consulta realizada a
     la base de datos de SIGPAE """
-	def get(self , request , *args , **kwargs):
+    def get(self , request , *args , **kwargs):
         """ Función para obtener las variables necesarias para la vista """
-		context = self.get_context_data(**kwargs)
-		return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
+        context = self.get_context_data(**kwargs)
+        return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
 
-	def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         """ Función para realizar la consulta a la base de datos de SIGPAE """
-		try:
-			lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
-			if (not lista_solicitud):
-				pass
-			else:
-				solicitud = lista_solicitud[0]
-				lista_programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
-				kwargs['solicitud'] = solicitud
-				kwargs['programa'] = lista_programa
+        try:
+            lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
+            if (not lista_solicitud):
+                pass
+            else:
+                solicitud = lista_solicitud[0]
+                lista_programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
+                kwargs['solicitud'] = solicitud
+                kwargs['programa'] = lista_programa
 
-		except KeyError:
-			lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code'])
-			if (not lista_solicitud):
-				pass
-			else:
-				lista_programa = []
-				for l in lista_solicitud:
-					lista_programa.append(Programa.objects.all().filter(pk__exact=l.pk)[0])
-				kwargs['solicitudes'] = lista_solicitud
-				kwargs['programas'] = lista_programa
+        except KeyError:
+            lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code'])
+            if (not lista_solicitud):
+                pass
+            else:
+                lista_programa = []
+                for l in lista_solicitud:
+                    lista_programa.append(Programa.objects.all().filter(pk__exact=l.pk)[0])
+                kwargs['solicitudes'] = lista_solicitud
+                kwargs['programas'] = lista_programa
 
-		return super(mostrarpae, self).get_context_data(**kwargs)
+        return super(mostrarpae, self).get_context_data(**kwargs)
