@@ -10,7 +10,7 @@ class Divisiones(models.Model):
         ordering = ['id']
 
     def __str__(self):
-    """ Función para obtener la representacion como string de una division """
+        """ Función para obtener la representacion como string de una division """
         return "%s" % (self.name)
 
 
@@ -87,6 +87,15 @@ class existeCampo(models.Model):
     """ Modelo para verificar si un campo adicional a existe """
     _DATABASE = 'default'
     nombrecampo = models.CharField(max_length = 100)
+
+class fuenteDeInformacion(models.Model):
+    """ Modelo para representar una fuente de información recomendada """
+    _DATABASE = 'default'
+    docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
+    titulo = models.CharField(blank=True, max_length=100)
+    subtitulo = models.CharField(blank=True, max_length=100)
+    autor = models.CharField(blank=True, max_length=100)
+    notas = models.CharField(blank=True, max_length=100)
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):

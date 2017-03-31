@@ -57,3 +57,8 @@ class camposAddsForm(ModelForm):
             'contentAdd': forms.Textarea(
                 attrs={'placeholder': 'Contenido del nuevo campo'}),
         }
+
+class fuenteDeInformacionForm(ModelForm):
+    class Meta:
+        model = fuenteDeInformacionForm
+        exclude = ['docfk']
