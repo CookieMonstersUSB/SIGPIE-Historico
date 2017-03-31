@@ -10,6 +10,7 @@ import io
 # PDF_LANG = 'eng'
 
 def LeerPDFaString(archivo):
+    """ Función para extraer el texto de un archivo pdf. Se utiliza la libreria PDFMinerSix """
     scrape = archivo
     pdfFiler = BytesIO(scrape.read())
     rsrcmgr = PDFResourceManager()

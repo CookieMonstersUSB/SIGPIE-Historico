@@ -145,16 +145,19 @@ class upload(CreateView):
         return super(upload, self).form_valid(form)
 
 class listar(ListView):
+    """ Controlador de la vista para listar las transcripciones en proceso que se encuentren en el sistema """
     context_object_name = 'files'
     model = Document
     queryset = Document.objects.all()
     template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
+    """ Controlador de la vista para consultar la base de datos de SIGPAE """
     form_class = ConsultaPaeForm
     template_name = 'SIGPAEHistorico/consultarpae.html'
 
     def form_valid(self, form):
+    """ Función para redigir a la vista de mostrar la consulta realizada """
         if (form.cleaned_data.get('year') != None):
                 self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
                                                              'year': form.cleaned_data.get('year')})
@@ -163,11 +166,15 @@ class consultarpae(FormView):
         return super(consultarpae, self).form_valid(form)
 
 class mostrarpae(TemplateView):
+    """ Controlador de la vista para mostrar el resultado de la consulta realizada a
+    la base de datos de SIGPAE """
     def get(self , request , *args , **kwargs):
+        """ Función para obtener las variables necesarias para la vista """
         context = self.get_context_data(**kwargs)
         return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
 
     def get_context_data(self, **kwargs):
+        """ Función para realizar la consulta a la base de datos de SIGPAE """
         try:
             lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
             if (not lista_solicitud):
