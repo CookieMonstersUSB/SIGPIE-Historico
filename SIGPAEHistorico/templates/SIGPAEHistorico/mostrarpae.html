@@ -1,52 +1,69 @@
 {% extends "SIGPAEHistorico/base.html" %}
 {% block content %}
 
-	{% if solicitud %}
-		    <ul>
-		        <li><b>Denominacion:</b> 							{{solicitud.denominacion}}</li>
-						<br>
-						<li><b>Codigo:</b> 										{{solicitud.cod}}</li>
-						<br>
-						<li><b>Creditos:</b> 									{{solicitud.creditos}}</li>
-						<br>
-						<li><b>Coordinación:</b> 							{{solicitud.nomcoord}}</li>
-						<br>
-						<li><b>Año de solicitud:</b> 							{{solicitud.ano}}</li>
-						<br>						
-						{% if programa %}
-						<li><b>Horas de teoria:</b> 						{{programa.h_teoria}}</li>
-						<br>
-						<li><b>Horas de práctica:</b> 					{{programa.h_prac}}</li>
-						<br>
-						<li><b>Horas de Laboratorio:</b> 			{{programa.h_lab}}</li>
-						<br>
-						<li><b>Trimestre:</b> 									{{programa.fecha_vigtrim}}</li>
-						<br>
-						<li><b>Fecha de entrada en vigencia:</b>												{{programa.fecha_vigano}}</li>
-						<br>
-						<li><b>Objetivos Generales:</b>				{{programa.obj_g}}</li>
-						<br>
-						<li><b>Objetivos Específicos:</b>			{{programa.obj_e}}</li>
-						<br>
-						<li><b>Contenidos:</b>									{{programa.contenidos}}</li>
-						<br>
-						<li><b>Estrategias Metodológicas:</b>	{{programa.estrategias}}</li>
-						<br>
-						<li><b>Estrategias Evaluativas:</b>		{{programa.estrat_eval}}</li>
-						<br>
-						<li><b>Fuentes de Información:</b>			{{programa.fuentes}}</li>
-						<br>
-						<li><b>Cronograma:</b>									{{programa.cronograma}}</li>
-						<br>
-						<li><b>Programa Sinóptico:</b>					{{programa.sinoptico}}</li>
+    {% if solicitud %}
+        <ul>
+            <li><b>Denominacion:</b>                             {{solicitud.denominacion}}</li>
+            <br>
+            <li><b>Codigo:</b>                                         {{solicitud.cod}}</li>
+            <br>
+            <li><b>Creditos:</b>                                     {{solicitud.creditos}}</li>
+            <br>
+            <li><b>Coordinación:</b>                             {{solicitud.nomcoord}}</li>
+            <br>
+        </ul>
 
-						{% endif %}
-
-		    </ul>
-	{% else %}
-	    <h3 align="center">No existe archivo que cumpla los criterios de búsqueda.</h3>
-			<a class="btn btn-default" href="{% url 'consultarpae' %}">Regresar</a>
-	{% endif %}
+    {% elif solicitudes %}
+        <ul>
+            {% for s in solicitudes %}
+                    <li><b>Denominacion:</b>                             {{s.denominacion}}</li>
+                    <br>
+                    <li><b>Codigo:</b>                                         {{s.cod}}</li>
+                    <br>
+                    <li><b>Creditos:</b>                                     {{s.creditos}}</li>
+                    <br>
+                    <li><b>Coordinación:</b>                             {{s.nomcoord}}</li>
+                    <br>
+                    {% for p in programas %}
+                        {% if p.pk == s.pk %}
+                            <li><b>Horas de teoria:</b>                         {{p.h_teoria}}</li>
+                            <br>
+                            <li><b>Horas de teoria:</b>                         {{p.h_teoria}}</li>
+                            <br>
+                            <li><b>Horas de práctica:</b>                     {{p.h_prac}}</li>
+                            <br>
+                            <li><b>Horas de Laboratorio:</b>             {{p.h_lab}}</li>
+                            <br>
+                            <li><b>Trimestre:</b>                                     {{p.fecha_vigtrim}}</li>
+                            <br>
+                            <li><b>Año:</b>                                                {{p.fecha_vigano}}</li>
+                            <br>
+                            <li><b>Objetivos Generales:</b>                {{p.obj_g}}</li>
+                            <br>
+                            <li><b>Objetivos Específicos:</b>            {{p.obj_e}}</li>
+                            <br>
+                            <li><b>Contenidos:</b>                                    {{p.contenidos}}</li>
+                            <br>
+                            <li><b>Estrategias Metodológicas:</b>    {{p.estrategias}}</li>
+                            <br>
+                            <li><b>Estrategias Evaluativas:</b>        {{p.estrat_eval}}</li>
+                            <br>
+                            <li><b>Fuentes de Información:</b>            {{p.fuentes}}</li>
+                            <br>
+                            <li><b>Cronograma:</b>                                    {{p.cronograma}}</li>
+                            <br>
+                            <li><b>Programa Sinóptico:</b>                    {{p.sinoptico}}</li>
+                            <br>
+                            <hr style="border: solid 2px;">
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3 align="center">No existe archivo que cumpla los criterios de búsqueda.</h3>
+            <a class="btn btn-default" href="{% url 'consultarpae' %}">Regresar</a>
+    {% endif %}
 
 
 {% endblock %}

@@ -18,7 +18,7 @@ def validate_year(value):
 
 def validate_hours(value):
     if (value < 0 or value > 16):
-        raise ValidationError(u'Hora Inválido')
+        raise ValidationError(u'Hora Inválida')
 
 def validate_code(value):
     if (Regex(value) == ""):

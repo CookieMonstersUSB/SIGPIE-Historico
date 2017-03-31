@@ -8,5 +8,6 @@ urlpatterns = [
         url(r'^listar/$', listar.as_view(), name ='listar'),
         url(r'^editar/(?P<pkdoc>\d+)/$', editar.as_view(), name ='editar'),
         url(r'^consultarpae/$', consultarpae.as_view(), name ='consultarpae'),
-        url(r'^mostrarpae/(?P<code>\w+)/(?P<year>\d+)$', mostrarpae.as_view(), name ='mostrarpae')
-    ]
+        url(r'^mostrarpae/(?P<code>\w+)/(?P<year>\d+)/$', mostrarpae.as_view(), name ='mostrarpae'),
+        url(r'^mostrarpae/(?P<code>\w+)/$', mostrarpae.as_view(), name ='mostrarpae')
+        ]

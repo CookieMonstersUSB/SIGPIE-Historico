@@ -15,318 +15,318 @@
 </head>
 
 <body>
-	{% include "SIGPAEHistorico/navbar.html" %}
-
-	<div class="row" style="margin-top:4%; margin-left:2%;margin-bottom:2%;">
-
-		<!-- Espacio del visor PDF -->
-		<div class="col-md-4" style=" height:540px;width: 500px;" >
-		  <embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
-		</div>
-		<!-- Espacio del visor PDF -->
-
-		<form id="textForm" method="post" enctype="multipart/form-data">
-
-			<!-- Area de transcripcion -->
-			{% csrf_token %}
-			{{ textform.non_field_errors }}
-			<div class="col-md-3" style="height:540px">
-				{{ textform.doctext.errors }}
-				{{textform.doctext}}
-			</div>
-			<!-- Area de transcripcion -->
-			<!-- Cuadro de Pestañas -->
-			<div class="col-md-4" style= 'height:600'>
-
-				<br/>
-				<div id="containerI">
-
-					<input id="tab-1" type="radio" name="tab-group" checked="checked" />
-					<label for="tab-1">Obligatorios</label>
-					<input id="tab-2" type="radio" name="tab-group" />
-					<label for="tab-2">Adicionales</label>
-				  	<input id="tab-3" type="radio" name="tab-group" />
-				  	<label for="tab-3">Fuentes recomendadas</label>
-
-				  	<!-- Contenido de las pestañas -->
-				  	<div id="content" >
-
-						<!--Contenido de la Pestaña 1-->
-					  <div id="content-1" style="">
-
-							<table border="0" >
-
-								<tr>
-									<td class="dato">Código</td>
-									<td class="dato1">
-										{{textform.codigo_programa}}
-									</td>
-									<td class="dato1">
-										{{textform.codigo_programa.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td  class="dato">Creditos</td>
-									<td class="dato1">
-										{{textform.creditos}}
-									</td>
-									<td class="dato1">
-										{{textform.creditos.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td class="dato">Título</td>
-									<td class="dato1">
-										{{textform.tituloP}}
-									</td>
-									<td class="dato1">
-										{{textform.tituloP.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<tr>
-									<td colspan="3" class="dato">Entrada en  vigencia</td>
-								</tr>
-
-								<tr>
-									<td  class="dato">Año</td>
-									<td class="dato1">
-										{{textform.fechaP}}
-									</td>
-									<td class="dato1">
-										{{textform.fechaP.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td valign ="top" class="dato">Periodo</td>
-									<td class="dato1">
-										{{textform.periodoP}}
-									</td>
-									<td class="dato1">
-										{{textform.periodoP.errors}}
-									</td>
-								</tr>
-
-							</table>
-
-							<table border="0">
-
-								<tr>
-									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<tr>
-									<td colspan="3" class="dato">Horas semanales</td>
-								</tr>
-
-								<tr>
-									<td  class="dato">Teoría</td>
-									<td class="dato1">
-										{{textform.h_teo}}
-									</td>
-									<td class="dato1">
-										{{textform.h_teo.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td  class="dato">Práctica</td>
-									<td class="dato1">
-										{{textform.h_prac}}
-									</td>
-									<td class="dato1">
-										{{textform.h_prac.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td  class="dato">Laboratorio</td>
-									<td class="dato1">
-										{{textform.h_lab}}
-									</td>
-									<td class="dato1">
-										{{textform.h_lab.errors}}
-									</td>
-								</tr>
-
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<td colspan="2" class="dato">Entidad Encargada</td>
-							</table>
-
-							<div>
-								<script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
-								{{textform.divisiones}}
-								<br>
-								<br>
-								{{textform.dependencias}}
-							</div>
-
-							<table border="0" >
-
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-								<tr>
-									<td class="dato">Contenido sinoptico</td>
-
-								</tr>
-							</table>
-
-							<div class="area">
-								<td class="dato1">
-									{{textform.contSinop.errors}}
-									{{textform.contSinop}}
-								</td>
-							</div>
-							<hr size="5px" width="50%" align="center" color="red"/>
-							<table border="0" >
-								<tr>
-									<td colspan="3" class="dato" style="border: double blue"> </td>
-								</tr>
-									<td  class="dato">Fuentes de informacion recomendadas</td>
-							</table>
-
-							<div class="area">
-
-								{{textform.FuenteInfo.errors}}
-								{{textform.FuenteInfo}}
-							</div>
-
-							<!-- Normados -->
-							<table border="0" >
-
-								<tr>
-									<td colspan="4" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<tr>
-									<td colspan="2" class="dato">Objetivos</td>
-								</tr>
-
-							</table>
-
-							<div class="area" >
-								{{textform.objetivos.errors}}
-								{{textform.objetivos}}
-							</div>
-
-							<table border="0" >
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<td colspan="2" class="dato">Requisitos</td>
-							</table>
-
-							<div class="area">
-								{{textform.requisito.errors}}
-								{{textform.requisito}}
-							</div>
-
-							<table border="0" >
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-
-								<td colspan="2" class="dato">Estrategias metodologicas</td>
-							</table>
-
-							<div class="area ">
-								{{textform.estrategias_meto.errors}}
-								{{textform.estrategias_meto}}
-							</div>
-
-							<table border="0">
-								<tr>
-									<td colspan="2" class="dato" style="border: double blue"> </td>
-								</tr>
-								<td colspan="2" class="dato">Estrategias de evaluacion</td>
-							</table>
-
-							<div class="area ">
-								{{textform.estrategias_eval.errors}}
-								{{textform.estrategias_eval}}
-							</div>
-
-						</div>
-						<!-- Fin de la Pestaña 1-->
-
-						<!--Contenido de la Pestaña 2-->
-					  <div id="content-2" style="position: absolute;top:  5px;left: 0px;">
-
-							{% if nuevoform %}
-						<div class="area" >
-								<ul>
-								{% for ca in nuevoform%}
-									{% csrf_token %}	
-									{{ca.nameAdd.errors}}
-									<p><b>{{ca.nameAdd}}</b></p>
-
-									{{ca.contentAdd.errors}}
-									<p>{{ca.contentAdd}}</p>
-									
-									</br>									
-								{% endfor %}
-								</ul>
-							{% else %}
-								<h1>HOLA</h1>
-							{% endif%}
-
-								<a href=""><button class="btn btn-default" id="submitAdd">
-									Agregar adicional
-								</button></a>
-							</div>
-						</div>
-						<!-- Fin de la Pestaña 2-->
-
-						<!--Contenido de la Pestaña 3-->
-				   	<div id="content-3" style="position: absolute;top:  5px;left: 0px;">
-
-
-						</div>
-						<!-- Fin de la Pestaña 3-->
-
-					</div>
-					<!-- Fin contenido de las pestañas -->
-
-				</div>
-			</div>
-			<!-- Cuadro de Pestañas -->
-
-
-		</form> <!-- fin del form -->
-
-		<div class="container">
-			<button class="btn btn-default" id="submitTextForm">
-				Guardar
-			</button>
-		</div>
-	</div>
-
-	{% include "SIGPAEHistorico/footer.html" %}
-
-	{% endblock %}
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#submitTextForm, #submitAdd").on('click', function(){
-
-					$("#textForm").submit();
-
-			});
-		});
-
-
-
-	</script>
+    {% include "SIGPAEHistorico/navbar.html" %}
+
+    <div class="row" style="margin-top:4%; margin-left:2%;margin-bottom:2%;">
+
+        <!-- Espacio del visor PDF -->
+        <div class="col-md-4" style=" height:540px;width: 500px;" >
+          <embed src="/{{document.docfile}}" width="100%" height="100%"></embed>
+        </div>
+        <!-- Espacio del visor PDF -->
+
+        <form id="textForm" method="post" enctype="multipart/form-data">
+
+            <!-- Area de transcripcion -->
+            {% csrf_token %}
+            {{ textform.non_field_errors }}
+            <div class="col-md-3" style="height:540px">
+                {{ textform.doctext.errors }}
+                {{textform.doctext}}
+            </div>
+            <!-- Area de transcripcion -->
+            <!-- Cuadro de Pestañas -->
+            <div class="col-md-4" style= 'height:600'>
+
+                <br/>
+                <div id="containerI">
+
+                    <input id="tab-1" type="radio" name="tab-group" checked="checked" />
+                    <label for="tab-1">Obligatorios</label>
+                    <input id="tab-2" type="radio" name="tab-group" />
+                    <label for="tab-2">Adicionales</label>
+                      <input id="tab-3" type="radio" name="tab-group" />
+                      <label for="tab-3">Fuentes recomendadas</label>
+
+                      <!-- Contenido de las pestañas -->
+                      <div id="content" >
+
+                        <!--Contenido de la Pestaña 1-->
+                      <div id="content-1" style="">
+
+                            <table border="0" >
+
+                                <tr>
+                                    <td class="dato">Código</td>
+                                    <td class="dato1">
+                                        {{textform.codigo_programa}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.codigo_programa.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td  class="dato">Creditos</td>
+                                    <td class="dato1">
+                                        {{textform.creditos}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.creditos.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="dato">Título</td>
+                                    <td class="dato1">
+                                        {{textform.tituloP}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.tituloP.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" class="dato">Entrada en  vigencia</td>
+                                </tr>
+
+                                <tr>
+                                    <td  class="dato">Año</td>
+                                    <td class="dato1">
+                                        {{textform.fechaP}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.fechaP.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td valign ="top" class="dato">Periodo</td>
+                                    <td class="dato1">
+                                        {{textform.periodoP}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.periodoP.errors}}
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <table border="0">
+
+                                <tr>
+                                    <td colspan="3" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" class="dato">Horas semanales</td>
+                                </tr>
+
+                                <tr>
+                                    <td  class="dato">Teoría</td>
+                                    <td class="dato1">
+                                        {{textform.h_teo}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.h_teo.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td  class="dato">Práctica</td>
+                                    <td class="dato1">
+                                        {{textform.h_prac}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.h_prac.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td  class="dato">Laboratorio</td>
+                                    <td class="dato1">
+                                        {{textform.h_lab}}
+                                    </td>
+                                    <td class="dato1">
+                                        {{textform.h_lab.errors}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <td colspan="2" class="dato">Entidad Encargada</td>
+                            </table>
+
+                            <div>
+                                <script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
+                                {{textform.divisiones}}
+                                <br>
+                                <br>
+                                {{textform.dependencias}}
+                            </div>
+
+                            <table border="0" >
+
+                                <tr>
+                                    <td colspan="2" class="dato" style="border: double blue"> </td>
+                                </tr>
+                                <tr>
+                                    <td class="dato">Contenido sinoptico</td>
+
+                                </tr>
+                            </table>
+
+                            <div class="area">
+                                <td class="dato1">
+                                    {{textform.contSinop.errors}}
+                                    {{textform.contSinop}}
+                                </td>
+                            </div>
+                            <hr size="5px" width="50%" align="center" color="red"/>
+                            <table border="0" >
+                                <tr>
+                                    <td colspan="3" class="dato" style="border: double blue"> </td>
+                                </tr>
+                                    <td  class="dato">Fuentes de informacion recomendadas</td>
+                            </table>
+
+                            <div class="area">
+
+                                {{textform.FuenteInfo.errors}}
+                                {{textform.FuenteInfo}}
+                            </div>
+
+                            <!-- Normados -->
+                            <table border="0" >
+
+                                <tr>
+                                    <td colspan="4" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="dato">Objetivos</td>
+                                </tr>
+
+                            </table>
+
+                            <div class="area" >
+                                {{textform.objetivos.errors}}
+                                {{textform.objetivos}}
+                            </div>
+
+                            <table border="0" >
+                                <tr>
+                                    <td colspan="2" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <td colspan="2" class="dato">Requisitos</td>
+                            </table>
+
+                            <div class="area">
+                                {{textform.requisito.errors}}
+                                {{textform.requisito}}
+                            </div>
+
+                            <table border="0" >
+                                <tr>
+                                    <td colspan="2" class="dato" style="border: double blue"> </td>
+                                </tr>
+
+                                <td colspan="2" class="dato">Estrategias metodologicas</td>
+                            </table>
+
+                            <div class="area ">
+                                {{textform.estrategias_meto.errors}}
+                                {{textform.estrategias_meto}}
+                            </div>
+
+                            <table border="0">
+                                <tr>
+                                    <td colspan="2" class="dato" style="border: double blue"> </td>
+                                </tr>
+                                <td colspan="2" class="dato">Estrategias de evaluacion</td>
+                            </table>
+
+                            <div class="area ">
+                                {{textform.estrategias_eval.errors}}
+                                {{textform.estrategias_eval}}
+                            </div>
+
+                        </div>
+                        <!-- Fin de la Pestaña 1-->
+
+                        <!--Contenido de la Pestaña 2-->
+                      <div id="content-2" style="position: absolute;top:  5px;left: 0px;">
+
+                            {% if nuevoform %}
+                        <div class="area" >
+                                <ul>
+                                {% for ca in nuevoform%}
+                                    {% csrf_token %}
+                                    {{ca.nameAdd.errors}}
+                                    <p><b>{{ca.nameAdd}}</b></p>
+
+                                    {{ca.contentAdd.errors}}
+                                    <p>{{ca.contentAdd}}</p>
+
+                                    </br>
+                                {% endfor %}
+                                </ul>
+                            {% else %}
+                                <h1>HOLA</h1>
+                            {% endif%}
+
+                                <a href=""><button class="btn btn-default" id="submitAdd">
+                                    Agregar adicional
+                                </button></a>
+                            </div>
+                        </div>
+                        <!-- Fin de la Pestaña 2-->
+
+                        <!--Contenido de la Pestaña 3-->
+                       <div id="content-3" style="position: absolute;top:  5px;left: 0px;">
+
+
+                        </div>
+                        <!-- Fin de la Pestaña 3-->
+
+                    </div>
+                    <!-- Fin contenido de las pestañas -->
+
+                </div>
+            </div>
+            <!-- Cuadro de Pestañas -->
+
+
+        </form> <!-- fin del form -->
+
+        <div class="container">
+            <button class="btn btn-default" id="submitTextForm">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+    {% include "SIGPAEHistorico/footer.html" %}
+
+    {% endblock %}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#submitTextForm, #submitAdd").on('click', function(){
+
+                    $("#textForm").submit();
+
+            });
+        });
+
+
+
+    </script>
 </body>

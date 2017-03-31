@@ -43,17 +43,17 @@ class TextForm(ModelForm):
     class Meta:
         model = Document
         exclude = ['name', 'docfile']
-        
+
 class ConsultaPaeForm(Form):
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
-    year = forms.IntegerField(label='Año del programa', validators=[validate_year])
+    year = forms.IntegerField(label='Año del programa', validators=[validate_year], required=False)
 
 class camposAddsForm(ModelForm):
     class Meta:
         model = camposAdds
         exclude = ['docfk']
         widgets = {
-            'nameAdd': forms.TextInput(attrs={'placeholder': 'nombre nuevo campo'}),
+            'nameAdd': forms.TextInput(attrs={'placeholder': 'Nombre del nuevo campo'}),
             'contentAdd': forms.Textarea(
                 attrs={'placeholder': 'Contenido del nuevo campo'}),
         }
