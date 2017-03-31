@@ -31,12 +31,12 @@ class editar(UpdateView):
         return super(editar, self).get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        
+
         self.object = get_object_or_404(Document, pk=self.kwargs['pkdoc'])
-        
+
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
-        
+
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
             if (self.object.divisiones_id == None):
@@ -84,28 +84,42 @@ class listar(ListView):
     template_name = 'SIGPAEHistorico/listar.html'
 
 class consultarpae(FormView):
-    form_class = ConsultaPaeForm
-    template_name = 'SIGPAEHistorico/consultarpae.html'
+	form_class = ConsultaPaeForm
+	template_name = 'SIGPAEHistorico/consultarpae.html'
 
-    def form_valid(self, form):
-        self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
-                                                         'year': form.cleaned_data.get('year')})
-        return super(consultarpae, self).form_valid(form)
+	def form_valid(self, form):
+		if (form.cleaned_data.get('year') != None):
+				self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
+	                                                         'year': form.cleaned_data.get('year')})
+		else:
+			self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code')})
+		return super(consultarpae, self).form_valid(form)
 
 class mostrarpae(TemplateView):
-    def get(self , request , *args , **kwargs):
-        context = self.get_context_data(**kwargs)
-        return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
+	def get(self , request , *args , **kwargs):
+		context = self.get_context_data(**kwargs)
+		return render_to_response('SIGPAEHistorico/mostrarpae.html', context)
 
-    def get_context_data(self, **kwargs):
-        lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
-        if (not lista_solicitud):
-            print ('')
-        else:
-            solicitud = lista_solicitud[0]
-            programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
+	def get_context_data(self, **kwargs):
+		try:
+			lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code']).filter(ano__lte=self.kwargs['year'])
+			if (not lista_solicitud):
+				pass
+			else:
+				solicitud = lista_solicitud[0]
+				lista_programa = Programa.objects.all().filter(pk__exact=solicitud.pk)[0]
+				kwargs['solicitud'] = solicitud
+				kwargs['programa'] = lista_programa
 
-            kwargs['solicitud'] = solicitud
-            kwargs['programa'] = programa
+		except KeyError:
+			lista_solicitud = Solicitud.objects.all().filter(cod__exact=self.kwargs['code'])
+			if (not lista_solicitud):
+				pass
+			else:
+				lista_programa = []
+				for l in lista_solicitud:
+					lista_programa.append(Programa.objects.all().filter(pk__exact=l.pk)[0])
+				kwargs['solicitudes'] = lista_solicitud
+				kwargs['programas'] = lista_programa
 
-        return super(mostrarpae, self).get_context_data(**kwargs)
+		return super(mostrarpae, self).get_context_data(**kwargs)
