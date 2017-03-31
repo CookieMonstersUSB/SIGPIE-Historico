@@ -91,11 +91,11 @@ class existeCampo(models.Model):
 class fuenteDeInformacion(models.Model):
     """ Modelo para representar una fuente de información recomendada """
     _DATABASE = 'default'
-    docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
-    titulo = models.CharField(blank=True, max_length=100)
-    subtitulo = models.CharField(blank=True, max_length=100)
-    autor = models.CharField(blank=True, max_length=100)
-    notas = models.CharField(blank=True, max_length=100)
+    fifk = models.ForeignKey(Document, on_delete=models.CASCADE)
+    titulo = models.CharField( max_length=100)
+    subtitulo = models.CharField(max_length=100)
+    autor = models.CharField(max_length=100)
+    notas = models.CharField(max_length=100)
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):

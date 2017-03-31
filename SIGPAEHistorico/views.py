@@ -31,14 +31,25 @@ class editar(UpdateView):
 
         document = Document.objects.get(pk=self.kwargs['pkdoc'])
         second_model = camposAdds.objects.filter(docfk=document.pk)
+        third_model = fuenteDeInformacion.objects.filter(fifk=document.pk)
         nuevoform = []
         if second_model:
             largo = len(second_model)
             for i in range(0, largo):
                 nuevoform.append(camposAddsForm({'nameAdd':second_model[i].nameAdd,'contentAdd':second_model[i].contentAdd}))
+        nuevoform2 = []
+        if third_model:
+            largo2 = len(third_model)
+            for i in range(0, largo2):
+                nuevoform2.append(fuenteDeInformacionForm({'titulo':third_model[i].titulo,
+                                                          'subtitulo':third_model[i].subtitulo,
+                                                          'autor':third_model[i].autor,
+                                                          'notas':third_model[i].notas}))
 
         nuevoform.append(camposAddsForm())
+        nuevoform2.append(fuenteDeInformacionForm())
 
+        context['nuevoform2'] = nuevoform2
         context['nuevoform'] = nuevoform
         context['document'] = document
         context['textform'] = self.get_form()
@@ -51,6 +62,8 @@ class editar(UpdateView):
 
         textForm = TextForm(request.POST, instance=self.object)
         camposForm = camposAddsForm(request.POST)
+        fuenteForm = fuenteDeInformacionForm(request.POST)
+
 
         if textForm.is_valid():
             self.object = textForm.save(commit=False)
@@ -59,8 +72,6 @@ class editar(UpdateView):
             if (self.object.dependencias_id == None or self.object.divisiones_id == 0):
                 self.object.dependencias_id = Dependencias.objects.all().filter(id=0)[0]
             self.object.save()
-        else:
-            return self.form_invalid(textForm)
 
         if camposForm.is_valid():
 
@@ -72,8 +83,23 @@ class editar(UpdateView):
                 campoNuevo.save()
             else:
                 print("El campo especificado ya existe")
+
+        if fuenteForm.is_valid():
+            print('valid')
+            fuenteNueva = fuenteForm.save(commit=False)
+            fuenteNueva.fifk = self.object
+            fuenteNueva.save()
         else:
+            return self.form_invalid(fuenteForm)
+
+        if not textForm.is_valid():
+            return self.form_invalid(textform)
+
+        if not camposForm.is_valid():
             return self.form_invalid(camposForm)
+
+        if not fuenteForm.is_valid():
+            return self.form_invalid(fuenteForm)
 
         return HttpResponseRedirect(reverse_lazy('editar', kwargs={'pkdoc':self.object.pk}))
 
@@ -157,7 +183,7 @@ class consultarpae(FormView):
     template_name = 'SIGPAEHistorico/consultarpae.html'
 
     def form_valid(self, form):
-    """ Función para redigir a la vista de mostrar la consulta realizada """
+        """ Función para redigir a la vista de mostrar la consulta realizada """
         if (form.cleaned_data.get('year') != None):
                 self.success_url = reverse('mostrarpae', kwargs={'code': form.cleaned_data.get('code'),
                                                              'year': form.cleaned_data.get('year')})

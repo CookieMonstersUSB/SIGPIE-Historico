@@ -291,8 +291,34 @@
 
                         <!--Contenido de la Pestaña 3-->
                        <div id="content-3" style="position: absolute;top:  5px;left: 0px;">
+                           {% if nuevoform2 %}
+                       <div class="area" >
+                               <ul>
+                               {% for ca in nuevoform2 %}
+                                   {% csrf_token %}
+                                   {{ca.titulo.errors}}
+                                   <p><b>{{ca.titulo}}</b></p>
 
+                                   {{ca.subtitulo.errors}}
+                                   <p>{{ca.subtitulo}}</p>
 
+                                   {{ca.autor.errors}}
+                                   <p>{{ca.autor}}</p>
+
+                                   {{ca.notas.errors}}
+                                   <p>{{ca.notas}}</p>
+
+                                   </br>
+                               {% endfor %}
+                               </ul>
+                           {% else %}
+                               <h1>HOLA</h1>
+                           {% endif%}
+
+                               <a href=""><button class="btn btn-default" id="submitAdd">
+                                   Agregar adicional
+                               </button></a>
+                           </div>
                         </div>
                         <!-- Fin de la Pestaña 3-->
 

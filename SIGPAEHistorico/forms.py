@@ -60,5 +60,11 @@ class camposAddsForm(ModelForm):
 
 class fuenteDeInformacionForm(ModelForm):
     class Meta:
-        model = fuenteDeInformacionForm
-        exclude = ['docfk']
+        model = fuenteDeInformacion
+        exclude = ['fifk']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'placeholder': 'Titulo'}),
+            'subtitulo': forms.TextInput(attrs={'placeholder': 'Subtitulo'}),
+            'autor': forms.TextInput(attrs={'placeholder': 'Nombre del autor'}),
+            'notas': forms.TextInput(attrs={'placeholder': 'Notas Adicionales'}),
+        }
