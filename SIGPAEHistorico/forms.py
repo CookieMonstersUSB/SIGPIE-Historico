@@ -6,7 +6,6 @@ from django.forms import widgets
 from django.forms.fields import ChoiceField
 
 class UploadFileForm(ModelForm):
-    """ Form para la carga de un archivo pdf e iniciar una nueva transcripcion """
     class Meta:
         model = Document
         exclude = ['doctext',
@@ -29,7 +28,7 @@ class UploadFileForm(ModelForm):
                 'estrategias_eval']
 
 class TextForm(ModelForm):
-    """ Form para editar una transcripción """
+    """docstring for TextForm."""
     EM = "sd"
     AJ = "em"
     SD = "aj"
@@ -46,12 +45,10 @@ class TextForm(ModelForm):
         exclude = ['name', 'docfile']
 
 class ConsultaPaeForm(Form):
-    """ Form para la consulta a la base de datos de SIGPAE """
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
     year = forms.IntegerField(label='Año del programa', validators=[validate_year], required=False)
 
 class camposAddsForm(ModelForm):
-    """ Form para los campos adicionales de una transcripción """
     class Meta:
         model = camposAdds
         exclude = ['docfk']
@@ -59,4 +56,15 @@ class camposAddsForm(ModelForm):
             'nameAdd': forms.TextInput(attrs={'placeholder': 'Nombre del nuevo campo'}),
             'contentAdd': forms.Textarea(
                 attrs={'placeholder': 'Contenido del nuevo campo'}),
+        }
+
+class fuenteDeInformacionForm(ModelForm):
+    class Meta:
+        model = fuenteDeInformacion
+        exclude = ['fifk']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'placeholder': 'Titulo'}),
+            'subtitulo': forms.TextInput(attrs={'placeholder': 'Subtitulo'}),
+            'autor': forms.TextInput(attrs={'placeholder': 'Nombre del autor'}),
+            'notas': forms.TextInput(attrs={'placeholder': 'Notas Adicionales'}),
         }
