@@ -3,78 +3,84 @@ from .validators import *
 from smart_selects.db_fields import ChainedForeignKey
 
 class Divisiones(models.Model):
-    name = models.CharField(blank=True, max_length=100)
-    class Meta:
-        _DATABASE = 'default'
-        ordering = ['id']
+	""" Modelo para las divisiones de la USB """
+	name = models.CharField(blank=True, max_length=100)
+	class Meta:
+		_DATABASE = 'default'
+		ordering = ['id']
 
-    def __str__(self):
-        return "%s" % (self.name)
+	def __str__(self):
+		""" Función para obtener la representacion como string de una division """
+		return "%s" % (self.name)
 
 
 class Dependencias(models.Model):
-    name = models.CharField(blank=True, max_length=100)
-    division = models.ForeignKey(Divisiones)
-    class Meta:
-        _DATABASE = 'default'
-        ordering = ['id']
+	""" Modelo para las dependencias de las divisiones de la USB """
+	name = models.CharField(blank=True, max_length=100)
+	division = models.ForeignKey(Divisiones)
+	siglas = models.CharField(blank=False, max_length=3)
+	class Meta:
+		_DATABASE = 'default'
+		ordering = ['id']
 
-    def __str__(self):
-        return "%s" % (self.name)
+	def __str__(self):
+		""" Función para obtener la representacion como string de una dependencia """
+		return "%s" % (self.name)
 
 class Document(models.Model):
-        _DATABASE = 'default'
-        EM = "sd"
-        AJ = "em"
-        SD = "aj"
-        VE = "ve"
-        ELECCION_PERIODO = (
-            (SD, 'sep-dic'),
-            (EM,'ene-mar'),
-            (AJ, 'abr-jul'),
-            (VE, 'verano'),
-        )
-        name = models.CharField(max_length = 50)
-        docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
-        doctext = models.TextField(default="", blank = True)
-        codigo_programa = models.CharField(max_length = 8, default="", blank = True)
-        creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
-        tituloP = models.CharField(max_length = 60, default="", blank = True)
-        fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
-        periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
-        h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
-        h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
-        h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
-
-        divisiones = models.ForeignKey(Divisiones, blank = True, default=0)
-        dependencias = ChainedForeignKey(Dependencias,
-                        chained_field="divisiones",
-                        chained_model_field="division",
-                        show_all=False,
-                        auto_choose=True,
-                        sort=True,
-                        blank = True,
-                        default = 0)
-
-        coordinacion = models.CharField(max_length=70, default="", blank = True)
-        contSinop = models.TextField(default="", blank = True)
-        FuenteInfo = models.TextField(default="", blank = True)
-        objetivos = models.TextField(default="", blank = True)
-        requisito = models.TextField(default="", blank = True)
-        estrategias_meto = models.TextField(default="", blank = True)
-        estrategias_eval = models.TextField(default="", blank = True)
-
-        class Meta:
-            ordering = ['id']
+	""" Modelo para representar una transcripcion en la base de datos """
+	_DATABASE = 'default'
+		# Se definen los posibles periodos (trimestres)
+	EM = "sd"
+	AJ = "em"
+	SD = "aj"
+	VE = "ve"
+	ELECCION_PERIODO = (
+			(SD, 'sep-dic'),
+			(EM,'ene-mar'),
+			(AJ, 'abr-jul'),
+			(VE, 'verano'),
+	)
+	name = models.CharField(max_length = 50)
+	docfile = models.FileField(validators=[validate_file_extension] , upload_to='static/uploads/pdf')
+	doctext = models.TextField(default="", blank = True)
+	codigo_programa = models.CharField(max_length = 8, default="", blank = True)
+	creditos = models.IntegerField(default=0, validators=[validate_credits], null = True)
+	tituloP = models.CharField(max_length = 60, default="", blank = True)
+	fechaP = models.IntegerField(blank = True, validators=[validate_year], null = True)
+	periodoP = models.CharField(max_length = 2, choices= ELECCION_PERIODO, default="", blank = True)
+	h_teo = models.IntegerField(default=0, validators=[validate_hours], null = True, blank = True)
+	h_prac = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
+	h_lab = models.IntegerField(default=0, validators=[validate_hours],null = True, blank = True)
+	divisiones = models.ForeignKey(Divisiones, blank = True, default=1, null=True)
+	dependencias = ChainedForeignKey(Dependencias,
+									chained_field="divisiones",
+									chained_model_field="division",
+									show_all=False,
+									auto_choose=True,
+									sort=True,
+									blank = True,
+									default = 1,
+									null = True)
+	coordinacion = models.CharField(max_length=70, default="", blank = True)
+	contSinop = models.TextField(default="", blank = True)
+	FuenteInfo = models.TextField(default="", blank = True)
+	objetivos = models.TextField(default="", blank = True)
+	requisito = models.TextField(default="", blank = True)
+	estrategias_meto = models.TextField(default="", blank = True)
+	estrategias_eval = models.TextField(default="", blank = True)
+	class Meta:
+		ordering = ['id']
 
 class camposAdds(models.Model):
-    _DATABASE = 'default'
-    docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
-    nameAdd = models.CharField(max_length = 50)
-    contentAdd = models.TextField(default = "")
+	""" Modelo para los campos adicionales de una transcripcion """
+	_DATABASE = 'default'
+	docfk = models.ForeignKey(Document, on_delete=models.CASCADE)
+	nameAdd = models.CharField(max_length = 50)
+	contentAdd = models.TextField(default = "")
 
-    class Meta:
-        unique_together = (('docfk', 'nameAdd'))
+	class Meta:
+		unique_together = (('docfk', 'nameAdd'))
 
 # Clases de modelo especificas para la conexion con SIGPAE
 class Solicitud(models.Model):

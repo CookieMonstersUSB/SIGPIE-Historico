@@ -6,6 +6,7 @@ from django.forms import widgets
 from django.forms.fields import ChoiceField
 
 class UploadFileForm(ModelForm):
+	""" Form para la carga de un archivo pdf e iniciar una nueva transcripcion """
     class Meta:
         model = Document
         exclude = ['doctext',
@@ -28,7 +29,7 @@ class UploadFileForm(ModelForm):
                 'estrategias_eval']
 
 class TextForm(ModelForm):
-    """docstring for TextForm."""
+    """ Form para editar una transcripción """
     EM = "sd"
     AJ = "em"
     SD = "aj"
@@ -45,15 +46,17 @@ class TextForm(ModelForm):
         exclude = ['name', 'docfile']
 
 class ConsultaPaeForm(Form):
+	""" Form para la consulta a la base de datos de SIGPAE """
     code = forms.CharField(min_length = 6, max_length = 6, label='Código de la materia')
     year = forms.IntegerField(label='Año del programa', validators=[validate_year], required=False)
 
 class camposAddsForm(ModelForm):
+	""" Form para los campos adicionales de una transcripción """
     class Meta:
         model = camposAdds
         exclude = ['docfk']
         widgets = {
-            'nameAdd': forms.TextInput(attrs={'placeholder': 'nombre nuevo campo'}),
+            'nameAdd': forms.TextInput(attrs={'placeholder': 'Nombre del nuevo campo'}),
             'contentAdd': forms.Textarea(
                 attrs={'placeholder': 'Contenido del nuevo campo'}),
         }
