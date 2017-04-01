@@ -23,4 +23,3 @@ def validate_hours(value):
 def validate_code(value):
     if (Regex(value) == ""):
         raise ValidationError(u'Código Inválido')
-		raise ValidationError(u'Código Inválido')
